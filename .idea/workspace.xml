@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flyAraoundTheWorld/DBConnection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flyAraoundTheWorld/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flyAraoundTheWorld/distanceCalculator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flyAraoundTheWorld/gameUI.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flyAraoundTheWorld/resources.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="project created with dummys">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,10 +23,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Leksa-Metropolia"
-  }
+  "lastFilter": {}
 }]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
@@ -60,6 +50,11 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ]
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -78,11 +73,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726558270853</updated>
-      <workItem from="1726558272632" duration="2533000" />
+      <workItem from="1726558272632" duration="5361000" />
     </task>
+    <task id="LOCAL-00001" summary="project created with dummys">
+      <option name="closed" value="true" />
+      <created>1727680538677</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727680538677</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="project created with dummys" />
+    <option name="LAST_COMMIT_MESSAGE" value="project created with dummys" />
   </component>
 </project>
