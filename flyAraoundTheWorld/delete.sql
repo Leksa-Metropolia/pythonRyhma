@@ -19,10 +19,10 @@ delete from airport
 where type = "small_airport";
 
 delete from airport
-where type = "medium_airport"
+where type = "medium_airport";
 
 delete from airport
-where type = "seaplane_base"
+where type = "seaplane_base";
 
 delete from airport
 where type = "closed";
