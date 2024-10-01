@@ -5,9 +5,9 @@ from formatter import NullWriter
 class Game:
     def __init__(self):
         # staattiset muuttujat listoille, jotka sisaltavat pelikulkureitit
-        l1 = []
-        l2 = []
-        l3 = []
+        l1 = [FI, MG, TH, CA, AU, BR, FI]
+        l2 = [JM, CA, DK, CG, JP, NP, JM]
+        l3 = [IS, RU, ZA, HN, CH, AU, IS]
         l4 = []
         l5 = []
         l6 = []
