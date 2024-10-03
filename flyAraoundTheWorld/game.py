@@ -1,25 +1,35 @@
 #luokka yllapitamaan pelisilmukkaa
-from formatter import NullWriter
+from flyAraoundTheWorld.DBConnection import GameDBC
+from flyAraoundTheWorld.player import Player
 
 
 class Game:
     def __init__(self):
         # staattiset muuttujat listoille, jotka sisaltavat pelikulkureitit
-        l1 = [FI, MG, TH, CA, AU, BR, FI]
-        l2 = [JM, CA, DK, CG, JP, NP, JM]
-        l3 = [IS, RU, ZA, HN, CH, AU, IS]
-        l4 = []
-        l5 = []
-        l6 = []
-        l7 = []
-        l8 = []
-        hintaLK = 0#hinta lentokilometrille
-        hintaM = 0#hinta mantereen vaihdolle
-        hintaR = 0#hinta maan vaihdolle
-        hintaY = 0#hinta yopymiselle
+        self.airports = [] #lista kaikista lentokentista
+        self.time = 0 #peliaika minuutteina
+        self.l1 = ["FI", "MG", "TH", "CA", "AU", "BR", "FI"]
+        self.l2 = ["JM", "CA", "DK", "CG", "JP", "NP", "JM"]
+        self.l3 = ["IS", "RU", "ZA", "HN", "CH", "AU", "IS"]
+        self.l4 = []
+        self.l5 = []
+        self.l6 = []
+        self.l7 = []
+        self.l8 = []
+        self.hintaLK = 0 #hinta lentokilometrille
+        self.hintaM = 0 #hinta mantereen vaihdolle
+        self.hintaR = 0 #hinta maan vaihdolle
+        self.hintaY = 0 #hinta yopymiselle
+        self.flinhtSpeed = 0 #lentonopeus kilometria minuutissa
+        self.maxFlightDistance = 0 #lentojen maksimi pituus
+
+        self.connector = GameDBC()
+        self.connector.getAirports(self.airports)
+        self.peli = self.game()
 
     #pelisilmukka
     def game(self):
+        pelaaja = Player()
         while True:
             DUMMY = 0
             #kutsu UIsta pelin aloitus sivu
@@ -27,7 +37,7 @@ class Game:
     #metodi lentamiselle
     def fly(self, icao):
         DUMMY = 0
-        #muuta pelaajan sijainti annettuun arvoon
+        #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
         #laske lennon hinta ja erota se varoista
         #siirra aika lennon keston verran
 
