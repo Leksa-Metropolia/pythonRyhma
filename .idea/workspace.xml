@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="expanding dummys for gameUI">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/DBConnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/DBConnection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/distanceCalculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/distanceCalculator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/player.py" afterDir="false" />
-    </list>
+    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="0.0.1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726558270853</updated>
-      <workItem from="1726558272632" duration="16453000" />
+      <workItem from="1726558272632" duration="16788000" />
     </task>
     <task id="LOCAL-00001" summary="project created with dummys">
       <option name="closed" value="true" />
@@ -120,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727775314931</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="0.0.1">
+      <option name="closed" value="true" />
+      <created>1727948713336</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727948713336</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +143,7 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="project created with dummys" />
     <MESSAGE value="expanding dummys for gameUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="expanding dummys for gameUI" />
+    <MESSAGE value="0.0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.0.1" />
   </component>
 </project>

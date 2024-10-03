@@ -1,5 +1,6 @@
 #luokka yllapitamaan pelisilmukkaa
 from flyAraoundTheWorld.DBConnection import GameDBC
+from flyAraoundTheWorld.gameUI import gameMainMenu
 from flyAraoundTheWorld.player import Player
 
 
@@ -31,6 +32,7 @@ class Game:
     def game(self):
         pelaaja = Player()
         while True:
+            gameMainMenu(self) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
             DUMMY = 0
             #kutsu UIsta pelin aloitus sivu
 

@@ -1,10 +1,10 @@
 #metodi nayttamaan pelin aloitus sivun
-def gameMainMenu():
+def gameMainMenu(game):
     DUMMY = 0
     #nayta vaitoehdot pelaajalle: pelin aloitus, high score lista ja lopeta ohjelma
 
 #metodi nayttamaan pelin kulun sivun
-def gameActiveMenu():
+def gameActiveMenu(game):
     DUMMY =0
     #nayta pelaajan tiedot
     #nayta vaihtoehdot pelaajalle:
@@ -15,13 +15,13 @@ def gameActiveMenu():
     #ottaa vastaan kayttajasyotteen ja kutsuu oikeaa funktiota
 
 #metodi nayttamaan pelin loppu sivun
-def gameEndSuccess():
+def gameEndSuccess(game):
     DUMMY = 0
     #nayta pelaajan kaymien valtioiden, mannerten ja lentokenttien maarat
     #nayta pelaajan pistetulos
     #siirra pelaaja paavalikkoon ENTERia painamalla
 
-def gameEndFailure():
+def gameEndFailure(game):
     DUMMY = 0
     #nayta pelaajan kaymien valtioiden, mannerten ja lentokenttien maarat
     #siirra pelaaja paavalikkoon ENTERia painamalla
@@ -32,7 +32,7 @@ def inputCheck(input, origin):
     #tarkistaa, etta syote on odotettu ja pyytaa syotteen udelleen jos ei ole
 
 #metodit ottamaan vastaan pelaajansyotteet
-def selectFlight(playerLocation):
+def selectFlight(game):
     DUMMY = 0
     #nayttaa pelaajalle mantereet minne pystytaan lentamaan
     #ottaa vastaan mantereen minne pelaaja haluaa lentaa
