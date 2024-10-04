@@ -127,10 +127,17 @@ class Game:
             self.aika += lentoaika
 
     #metodi yopymiselle
-    def sleep(self):
+    def sleep(self, pelaaja):
         DUMMY = 0
         #siirra aikaa 8h
+        self.time += 8 * 60  # 8 tuntia minuutteina
+        pelaaja.paivita_aika(8 * 60)
         #lisaa varoja pelaajalle
+        pelaaja.raha -= self.hintaY
+        pelaaja.raha += 99999  # pelaaja saa nyt hirveesti massiii
+
+        print(f"Yövyit ja sait lisää rahaa. Uusi rahamäärä: {pelaaja.raha}, aika siirtyi 8 tuntia eteenpäin.")
+        return True
 
     #metodi odottamiselle
     def wait(self):
