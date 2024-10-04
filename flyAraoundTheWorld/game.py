@@ -69,7 +69,7 @@ class Game:
         hinta, matka = self.laske_lennon_hinta(pelaaja, kohde_asema)
 
         # Tarkistan, että pelaajalla on tarpeeksi varoja
-        if pelaaja.varat < hinta:
+        if pelaaja.rahat < hinta:
             print("Ei tarpeeksi varoja lennolle.")
             return False
 
@@ -77,7 +77,7 @@ class Game:
         pelaaja.paivita_sijainti(kohde_asema)
 
         # Vähennän
-        pelaaja.varat -= hinta
+        pelaaja.rahat -= hinta
 
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(matka)
@@ -117,7 +117,7 @@ class Game:
     class Player:
         def __init__(self):
             self.sijainti = None  # Nykyinen sijainti lentokenttänä
-            self.varat = 1000  # Oletin alkuvarat
+            self.rahat = 1000  # Oletin alkuvarat
             self.aika = 0  # Peliaika
 
         def paivita_sijainti(self, uusi_asema):
@@ -133,8 +133,8 @@ class Game:
         self.time += 8 * 60  # 8 tuntia minuutteina
         pelaaja.paivita_aika(8 * 60)
         #lisaa varoja pelaajalle
-        pelaaja.raha -= self.hintaY
-        pelaaja.raha += 99999  # pelaaja saa nyt hirveesti massiii
+        pelaaja.varat -= self.hintaY
+        pelaaja.varat += 99999  # pelaaja saa nyt hirveesti massiii
 
         print(f"Yövyit ja sait lisää rahaa. Uusi rahamäärä: {pelaaja.raha}, aika siirtyi 8 tuntia eteenpäin.")
         return True
