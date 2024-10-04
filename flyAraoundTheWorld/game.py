@@ -117,7 +117,7 @@ class Game:
     class Player:
         def __init__(self):
             self.sijainti = None  # Nykyinen sijainti lentokenttänä
-            self.varat = 1000  # Oletetaan alkuvarat
+            self.varat = 1000  # Oletin alkuvarat
             self.aika = 0  # Peliaika
 
         def paivita_sijainti(self, uusi_asema):
