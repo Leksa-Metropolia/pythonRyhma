@@ -41,30 +41,90 @@ class Game:
     def fly(self, icao):
         DUMMY = 0
         #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
+        # Hakee nykyisen aseman tiedot pelaajalta
+        nykyinen_asema = pelaaja.sijainti
+
+        # Hakee kohdeaseman tiedot lentokenttien listasta
+        kohde_asema = None
+        for asema in self.airports:
+            if asema['icao'] == kohde_icao:
+                kohde_asema = asema
+                break
+
+        if kohde_asema is None:
+            print("Virheellinen lentokentän koodi.")
+            return False
+
+        # Lasken matka nykyisen aseman ja kohteen välillä geopylla
+        nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
+        kohde_koordi = (kohde_asema['latitude'], kohde_asema['longitude'])
+        matka = distance.distance(nykyinen_koordi, kohde_koordi).km
+
+        # Tarkistan että matka ei ylitä max lentomatkaa
+        if matka > self.maxFlightDistance:
+            print("Lento on liian pitkä, et voi valita tätä lentoa.")
+            return False
+
+        # Lasken lentohinta
+        hinta, matka = self.laske_lennon_hinta(pelaaja, kohde_asema)
+
+        # Tarkistan, että pelaajalla on tarpeeksi varoja
+        if pelaaja.varat < hinta:
+            print("Ei tarpeeksi varoja lennolle.")
+            return False
+
+        # Päivitän pelaajan sijainti
+        pelaaja.paivita_sijainti(kohde_asema)
+
+        # Vähennän
+        pelaaja.varat -= hinta
+
+        # Päivitän lentoajan
+        lentoaika = self.lennon_kesto(matka)
+        self.time += lentoaika
+        pelaaja.paivita_aika(lentoaika)
+
+        print(f"Lento suoritettu kohteeseen {kohde_asema['kaupunki']}.")
+        return True
+
         #laske lennon hinta ja erota se varoista
-        def laske_lennon_hinta(self, pelaaja, icao):
-            nykyinen_asema = #TODO yhteys missä se tyyppä on
-            kohde_asema = #TODO minne haluttiin mennä
 
-            matka = #laske matka
+    def laske_lennon_hinta(self, pelaaja, kohde_asema):
+        nykyinen_asema = pelaaja.sijainti
 
-            hinta = matka * self.hintaLK
-            # tarkistus vaihtuuko manner
-            if nykyinen_asema['continent'] != kohde_asema['continent']:
+        # Lasken matka geopylla
+        nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
+        kohde_koordi = (kohde_asema['latitude'], kohde_asema['longitude'])
+        matka = distance.distance(nykyinen_koordi, kohde_koordi).km
+
+        # Perushinta matkan perusteella
+        hinta = matka * self.hintaLK
+
+        # Tarkistan vaihtuuko manner
+        if nykyinen_asema['continent'] != kohde_asema['continent']:
             hinta += self.hintaM
 
-            # tarkistus vaihtuuko maa
-            if nykyinen_asema['country'] != kohde_asema['country']:
+        # Tarkistan vaihtuuko maa
+        if nykyinen_asema['country'] != kohde_asema['country']:
             hinta += self.hintaR
 
-            return hinta, matka
+        return hinta, matka
 
-        #siirra aika lennon keston verran
-        def lennon_kesto(self, matka):
-            return matka / self.flightSpeed
+    # Metodi lennon kesto
+    def lennon_kesto(self, matka):
+        return matka / self.flightSpeed
 
+    class Player:
+        def __init__(self):
+            self.sijainti = None  # Nykyinen sijainti lentokenttänä
+            self.varat = 1000  # Oletetaan alkuvarat
+            self.aika = 0  # Peliaika
 
+        def paivita_sijainti(self, uusi_asema):
+            self.sijainti = uusi_asema
 
+        def paivita_aika(self, lentoaika):
+            self.aika += lentoaika
 
     #metodi yopymiselle
     def sleep(self):
