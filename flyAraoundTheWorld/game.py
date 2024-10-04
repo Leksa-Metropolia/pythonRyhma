@@ -43,8 +43,8 @@ class Game:
         #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
         #laske lennon hinta ja erota se varoista
         def laske_lennon_hinta(self, pelaaja, icao):
-            nykyinen_asema = #yhteys missä se tyyppä on
-            kohde_asema = # minne haluttiin mennä
+            nykyinen_asema = #TODO yhteys missä se tyyppä on
+            kohde_asema = #TODO minne haluttiin mennä
 
             matka = #laske matka
 
