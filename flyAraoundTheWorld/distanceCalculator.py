@@ -1,6 +1,6 @@
 from geopy.distance import geodesic
 
-#funktio laskemaan lentokenttien valiser etaisyydet
+#funktio laskemaan lentokenttien valiset etaisyydet
 def calculateDistance(lat1, lon1, lat2, lon2):
     s1 = (lat1, lon1)
     s2 = (lat2, lon2)

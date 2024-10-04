@@ -2,7 +2,8 @@
 from flyAraoundTheWorld.DBConnection import GameDBC
 from flyAraoundTheWorld.gameUI import gameMainMenu
 from flyAraoundTheWorld.player import Player
-
+import mysql.connector
+from geopy import distance
 
 class Game:
     def __init__(self):
@@ -21,7 +22,7 @@ class Game:
         self.hintaM = 0 #hinta mantereen vaihdolle
         self.hintaR = 0 #hinta maan vaihdolle
         self.hintaY = 0 #hinta yopymiselle
-        self.flinhtSpeed = 0 #lentonopeus kilometria minuutissa
+        self.flightSpeed = 0 #lentonopeus kilometria minuutissa
         self.maxFlightDistance = 0 #lentojen maksimi pituus
 
         self.connector = GameDBC()
@@ -41,7 +42,29 @@ class Game:
         DUMMY = 0
         #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
         #laske lennon hinta ja erota se varoista
+        def laske_lennon_hinta(self, pelaaja, icao):
+            nykyinen_asema = #yhteys missä se tyyppä on
+            kohde_asema = # minne haluttiin mennä
+
+            matka = #laske matka
+
+            hinta = matka * self.hintaLK
+            # tarkistus vaihtuuko manner
+            if nykyinen_asema['continent'] != kohde_asema['continent']:
+            hinta += self.hintaM
+
+            # tarkistus vaihtuuko maa
+            if nykyinen_asema['country'] != kohde_asema['country']:
+            hinta += self.hintaR
+
+            return hinta, matka
+
         #siirra aika lennon keston verran
+        def lennon_kesto(self, matka):
+            return matka / self.flightSpeed
+
+
+
 
     #metodi yopymiselle
     def sleep(self):
