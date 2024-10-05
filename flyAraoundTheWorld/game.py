@@ -129,6 +129,8 @@ class Game:
     #metodi yopymiselle
     def sleep(self, pelaaja):
         DUMMY = 0
+        print(f"Sinulla on tällä hetkellä {pelaaja.varat} rahaa.")
+        #kaytettavat_tunnit = # TODO
         #siirra aikaa 8h
         self.time += 8 * 60  # 8 tuntia minuutteina
         pelaaja.paivita_aika(8 * 60)
