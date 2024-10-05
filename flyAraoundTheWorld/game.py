@@ -55,6 +55,16 @@ class Game:
             print("Virheellinen lentokentän koodi.")
             return False
 
+        # Tarkistetaan kello
+        nykyinen_aika_tunnit = (self.time % 1440) // 60  # Peliaika tunnit vuorokaudessa
+
+        # Lentojen lähtöaikaikkuna klo 6:00 - 2:00 (24h kellonaika)
+        if nykyinen_aika_tunnit < 6 or nykyinen_aika_tunnit > 2:
+            print(f"Nykyinen aika on {nykyinen_aika_tunnit}:00. Odotat seuraavaan lähtöön klo 6:00 asti.")
+            odotusaika = 360 - (self.time % 1440)  # Lasketaan aika klo 6:00 asti (360 minuuttia)
+            self.time += odotusaika
+            pelaaja.paivita_aika(odotusaika)
+
         # Lasken matka nykyisen aseman ja kohteen välillä geopylla
         nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
         kohde_koordi = (kohde_asema['latitude'], kohde_asema['longitude'])
@@ -119,30 +129,46 @@ class Game:
             self.sijainti = None  # Nykyinen sijainti lentokenttänä
             self.rahat = 1000  # Oletin alkuvarat
             self.aika = 0  # Peliaika
+            self.hereilla_oloaika = 0  # Hereillaoloaika
 
         def paivita_sijainti(self, uusi_asema):
             self.sijainti = uusi_asema
 
         def paivita_aika(self, lentoaika):
             self.aika += lentoaika
+            self.hereilla_oloaika += lisatty_aika  # Päivitetään hereilläoloaika
 
     #metodi yopymiselle
     def sleep(self, pelaaja):
         DUMMY = 0
+        # Näytetään pelaajan jäljellä olevat varat ja tunnit ennen nukkumista
+        hereilla_oloaika = pelaaja.hereilla_oloaika // 60  # Minuutit tunneiksi
         print(f"Sinulla on tällä hetkellä {pelaaja.varat} rahaa.")
-        #kaytettavat_tunnit = # TODO
-        #siirra aikaa 8h
+        print(f"Olet ollut hereillä {hereilla_oloaika} tuntia.")
+
+        # Tarkista, että pelaajalla on varaa yöpyä
+        if pelaaja.varat < self.hintaY:
+            print("Ei tarpeeksi varoja yöpymiseen. Peli päättyy.")
+            return False
+
+        # Vähennä yöpyminen varoista
+        pelaaja.varat -= self.hintaY
+
+        # Nollataan hereilläoloajan seuranta
+        pelaaja.hereilla_oloaika = 0
+
+        # Siirrä peliaikaa eteenpäin (8 tuntia)
         self.time += 8 * 60  # 8 tuntia minuutteina
         pelaaja.paivita_aika(8 * 60)
-        #lisaa varoja pelaajalle
-        pelaaja.varat -= self.hintaY
-        pelaaja.varat += 99999  # pelaaja saa nyt hirveesti massiii
 
-        print(f"Yövyit ja sait lisää rahaa. Uusi rahamäärä: {pelaaja.raha}, aika siirtyi 8 tuntia eteenpäin.")
+        # Lisää varoja yöpymisen jälkeen
+        lisa_varat = 9999  # Pelaaja saa hirveesti massiii
+        pelaaja.varat += lisa_varat
+
+        print(f"Yövyit ja sait lisää varoja. Uudet varat: {pelaaja.varat}, aika siirtyi 8 tuntia eteenpäin.")
         return True
 
     #metodi odottamiselle
-    #tarvitaan jonnekkin tieto mihin aikaan lennon lähtee että voitais siirtää lennon lahtoaikaan
     def wait(self, pelaaja, osottamisaika):
         DUMMY = 0
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
