@@ -42,7 +42,7 @@ class Game:
         DUMMY = 0
         #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
         # Hakee nykyisen aseman tiedot pelaajalta
-        nykyinen_asema = pelaaja.sijainti
+        nykyinen_asema = Player.sijainti
 
         # Hakee kohdeaseman tiedot lentokenttien listasta
         kohde_asema = None
@@ -63,7 +63,7 @@ class Game:
             print(f"Nykyinen aika on {nykyinen_aika_tunnit}:00. Odotat seuraavaan lähtöön klo 6:00 asti.")
             odotusaika = 360 - (self.time % 1440)  # Lasketaan aika klo 6:00 asti (360 minuuttia)
             self.time += odotusaika
-            pelaaja.paivita_aika(odotusaika)
+            Player.paivita_aika(odotusaika)
 
         # Lasken matka nykyisen aseman ja kohteen välillä geopylla
         nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
@@ -76,23 +76,23 @@ class Game:
             return False
 
         # Lasken lentohinta
-        hinta, matka = self.laske_lennon_hinta(pelaaja, kohde_asema)
+        hinta, matka = self.laske_lennon_hinta(Player, kohde_asema)
 
         # Tarkistan, että pelaajalla on tarpeeksi varoja
-        if pelaaja.rahat < hinta:
+        if Player.rahat < hinta:
             print("Ei tarpeeksi varoja lennolle.")
             return False
 
         # Päivitän pelaajan sijainti
-        pelaaja.paivita_sijainti(kohde_asema)
+        Player.paivita_sijainti(kohde_asema)
 
         # Vähennän
-        pelaaja.rahat -= hinta
+        Player.rahat -= hinta
 
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(matka)
         self.time += lentoaika
-        pelaaja.paivita_aika(lentoaika)
+        Player.paivita_aika(lentoaika)
 
         print(f"Lento suoritettu kohteeseen {kohde_asema['kaupunki']}.")
         return True
