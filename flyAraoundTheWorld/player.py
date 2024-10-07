@@ -10,3 +10,4 @@ class Player:
         self.Countries = [] #pelaajan vierailemat maat
         self.Continents = [] #pelaajan vierailemat mantereet
         self.FlownKM = 0 #lennetyt kilometrit
+        self.Rout = 0 #valittu reitti
