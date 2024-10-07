@@ -19,7 +19,6 @@ class Game:
         self.l6 = []
         self.l7 = []
         self.l8 = []
-        self.route = 0
         self.hintaLK = 0 #hinta lentokilometrille
         self.hintaM = 0 #hinta mantereen vaihdolle
         self.hintaR = 0 #hinta maan vaihdolle
