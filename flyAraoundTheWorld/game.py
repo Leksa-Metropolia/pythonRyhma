@@ -47,7 +47,7 @@ class Game:
         # Hakee kohdeaseman tiedot lentokenttien listasta
         kohde_asema = None
         for asema in self.airports:
-            if asema['icao'] == kohde_icao:
+            if asema['icao'] == kohde_asema:
                 kohde_asema = asema
                 break
 
@@ -182,4 +182,5 @@ class Game:
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
         DUMMY = 0
+        
         #laske pelin lopputulos tallennetusta datasta
