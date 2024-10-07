@@ -7,7 +7,7 @@ distance int default null,
 flight_count int default null,
 country_count int default null,
 continent_count int default null,
-route varchar default null,
+route varchar(40)default null,
 primary key(id)
 );
 delete from airport
