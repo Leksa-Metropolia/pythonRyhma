@@ -43,17 +43,6 @@ class Game:
         # Hakee nykyisen aseman tiedot pelaajalta
         nykyinen_asema = Player.sijainti
 
-        # Hakee kohdeaseman tiedot lentokenttien listasta
-        kohde_asema = None
-        for asema in self.airports:
-            if asema['icao'] == kohde_asema:
-                kohde_asema = asema
-                break
-
-        if kohde_asema is None:
-            print("Virheellinen lentokentän koodi.")
-            return False
-
         # Tarkistetaan kello
         nykyinen_aika_tunnit = (self.time % 1440) // 60  # Peliaika tunnit vuorokaudessa
 
@@ -179,5 +168,6 @@ class Game:
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
         DUMMY = 0
+        
 
         #laske pelin lopputulos tallennetusta datasta
