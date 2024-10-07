@@ -142,8 +142,12 @@ class Game:
 
     #metodi odottamiselle
     def wait(self):
-        aika_nyt = self.time
-        
+        aika_nyt = self.time%1440
+        if aika_nyt <=360 and aika_nyt>120:
+            odotus = 360-aika_nyt
+            self.time=+odotus
+
+
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
         DUMMY = 0
