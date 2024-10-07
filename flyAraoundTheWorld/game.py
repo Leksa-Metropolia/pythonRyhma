@@ -39,7 +39,6 @@ class Game:
 
     #metodi lentamiselle
     def fly(self, icao):
-        DUMMY = 0
         #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
         # Hakee nykyisen aseman tiedot pelaajalta
         nykyinen_asema = Player.sijainti
@@ -140,7 +139,6 @@ class Game:
 
     #metodi yopymiselle
     def sleep(self, Player):
-        DUMMY = 0
         # Näytetään pelaajan jäljellä olevat varat ja tunnit ennen nukkumista
         hereilla_oloaika = Player.hereilla_oloaika // 60  # Minuutit tunneiksi
         print(f"Sinulla on tällä hetkellä {Player.varat} rahaa.")
@@ -170,7 +168,6 @@ class Game:
 
     #metodi odottamiselle
     def wait(self, Player, odotusaika):
-        DUMMY = 0
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
         odotus_minuutit = odotusaika * 60  # Muutin tunnit minuuteiksi
         self.time += odotus_minuutit
@@ -182,5 +179,5 @@ class Game:
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
         DUMMY = 0
-        
+
         #laske pelin lopputulos tallennetusta datasta
