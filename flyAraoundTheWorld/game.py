@@ -141,15 +141,9 @@ class Game:
         return True
 
     #metodi odottamiselle
-    def wait(self, Player, odotusaika):
-        #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
-        odotus_minuutit = odotusaika * 60  # Muutin tunnit minuuteiksi
-        self.time += odotus_minuutit
-        Player.paivita_aika(odotus_minuutit)
-
-        print(f"Odottelit {odotusaika} tuntia. Peliaikaa siirrettiin eteenpäin {odotus_minuutit} minuuttia.")
-        return True
-
+    def wait(self):
+        aika_nyt = self.time
+        
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
         DUMMY = 0
