@@ -1,5 +1,6 @@
 #luokka yllapitamaan pelisilmukkaa
 from flyAraoundTheWorld.DBConnection import GameDBC
+from flyAraoundTheWorld.distanceCalculator import calculateDistance
 from flyAraoundTheWorld.gameUI import gameMainMenu
 from flyAraoundTheWorld.player import Player
 import mysql.connector
@@ -28,12 +29,12 @@ class Game:
         self.connector = GameDBC()
         self.connector.getAirports(self.airports)
         self.peli = self.game()
+        self.pelaaja = Player()
 
     #pelisilmukka
     def game(self):
-        pelaaja = Player()
         while True:
-            gameMainMenu(self) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
+            gameMainMenu(self.peli) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
             DUMMY = 0
             #kutsu UIsta pelin aloitus sivu
 
@@ -87,13 +88,11 @@ class Game:
 
         #laske lennon hinta ja erota se varoista
 
-    def laske_lennon_hinta(self, Player, kohde_asema):
-        nykyinen_asema = Player.sijainti
+    def laske_lennon_hinta(self, kohde_asema):
+        nykyinen_asema = self.pelaaja.Airport
 
         # Lasken matka geopylla
-        nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
-        kohde_koordi = (kohde_asema['latitude'], kohde_asema['longitude'])
-        matka = distance.distance(nykyinen_koordi, kohde_koordi).km
+        matka = calculateDistance(self.pelaaja.lat, self.pelaaja.lon, kohde_asema['latitude'], kohde_asema['longitude'])
 
         # Perushinta matkan perusteella
         hinta = matka * self.hintaLK
@@ -111,20 +110,6 @@ class Game:
     # Metodi lennon kesto
     def lennon_kesto(self, matka):
         return matka / self.flightSpeed
-
-    class Player:
-        def __init__(self):
-            self.sijainti = None  # Nykyinen sijainti lentokenttänä
-            self.rahat = 1000  # Oletin alkuvarat
-            self.aika = 0  # Peliaika
-            self.hereilla_oloaika = 0  # Hereillaoloaika
-
-        def paivita_sijainti(self, uusi_asema):
-            self.sijainti = uusi_asema
-
-        def paivita_aika(self, lentoaika):
-            self.aika += lentoaika
-            self.hereilla_oloaika += lentoaika  # Päivitetään hereilläoloaika
 
     #metodi yopymiselle
     def sleep(self, Player):
