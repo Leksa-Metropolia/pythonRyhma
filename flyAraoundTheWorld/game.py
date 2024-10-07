@@ -136,7 +136,7 @@ class Game:
 
         def paivita_aika(self, lentoaika):
             self.aika += lentoaika
-            self.hereilla_oloaika += lisatty_aika  # Päivitetään hereilläoloaika
+            self.hereilla_oloaika += lentoaika  # Päivitetään hereilläoloaika
 
     #metodi yopymiselle
     def sleep(self, pelaaja):
@@ -169,7 +169,7 @@ class Game:
         return True
 
     #metodi odottamiselle
-    def wait(self, pelaaja, osottamisaika):
+    def wait(self, pelaaja, odotusaika):
         DUMMY = 0
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
         odotus_minuutit = odotusaika * 60  # Muutin tunnit minuuteiksi
