@@ -55,16 +55,16 @@ class Game:
             Player.paivita_aika(odotusaika)
 
         # Lasken matka nykyisen aseman ja kohteen välillä geopylla
-        nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
-        kohde_koordi = (kohde_asema['latitude'], kohde_asema['longitude'])
-        matka = distance.distance(nykyinen_koordi, kohde_koordi).km
+        #nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
+        #kohde_koordi = (kohde_asema['latitude'], kohde_asema['longitude'])
+        #matka = distance.distance(nykyinen_koordi, kohde_koordi).km
 
         # Tarkistan että matka ei ylitä max lentomatkaa
-        if matka > self.maxFlightDistance:
+        if distance > self.maxFlightDistance:
             print("Lento on liian pitkä, et voi valita tätä lentoa.")
             return False
 
-        # Lasken lentohinta
+        # Lasken lentohintaa
         hinta, matka = self.laske_lennon_hinta(Player, kohde_asema)
 
         # Tarkistan, että pelaajalla on tarpeeksi varoja
