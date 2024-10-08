@@ -42,6 +42,7 @@ class Game:
     def fly(self, icao):
         #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
         # Hakee nykyisen aseman tiedot pelaajalta
+        kohde_asema = input("Anna lentokentän icao-koodi: ")
         nykyinen_asema = Player.sijainti
 
         # Tarkistetaan kello
