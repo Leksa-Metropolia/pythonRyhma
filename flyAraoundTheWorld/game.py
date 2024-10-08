@@ -113,31 +113,22 @@ class Game:
 
     #metodi yopymiselle
     def sleep(self, Player):
-        # Näytetään pelaajan jäljellä olevat varat ja tunnit ennen nukkumista
-        hereilla_oloaika = Player.hereilla_oloaika // 60  # Minuutit tunneiksi
-        print(f"Sinulla on tällä hetkellä {Player.varat} rahaa.")
-        print(f"Olet ollut hereillä {hereilla_oloaika} tuntia.")
-
         # Tarkista, että pelaajalla on varaa yöpyä
-        if Player.varat < self.hintaY:
-            print("Ei tarpeeksi varoja yöpymiseen. Peli päättyy.")
-            return False
+        #if Player.varat < self.hintaY:
+            #palauttaa endgame screenin
 
         # Vähennä yöpyminen varoista
-        Player.varat -= self.hintaY
+        #Player.varat -= self.hintaY
 
         # Nollataan hereilläoloajan seuranta
-        Player.hereilla_oloaika = 0
+        self.lastSlept = 0
 
         # Siirrä peliaikaa eteenpäin (8 tuntia)
         self.time += 8 * 60  # 8 tuntia minuutteina
-        Player.paivita_aika(8 * 60)
 
         # Lisää varoja yöpymisen jälkeen
-        lisa_varat = 9999  # Pelaaja saa hirveesti massiii(of maksaa hyvin ig)
+        lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
         Player.varat += lisa_varat
-
-        print(f"Yövyit ja sait lisää varoja. Uudet varat: {Player.varat}, aika siirtyi 8 tuntia eteenpäin.")
         return True
 
     #metodi odottamiselle
