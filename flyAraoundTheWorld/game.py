@@ -134,19 +134,17 @@ class Game:
         Player.paivita_aika(8 * 60)
 
         # Lisää varoja yöpymisen jälkeen
-        lisa_varat = 9999  # Pelaaja saa hirveesti massiii
+        lisa_varat = 9999  # Pelaaja saa hirveesti massiii(of maksaa hyvin ig)
         Player.varat += lisa_varat
 
         print(f"Yövyit ja sait lisää varoja. Uudet varat: {Player.varat}, aika siirtyi 8 tuntia eteenpäin.")
         return True
 
     #metodi odottamiselle
-    def wait(self):
-        aika_nyt = self.time%1440
-        if aika_nyt <=360 and aika_nyt>120:
-            odotus = 360-aika_nyt
-            self.time=+odotus
-
+    def wait(self, odotus):
+        #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
+        self.time += odotus
+        return True            
 
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
