@@ -179,10 +179,10 @@ def selectFlight(game):
 def showHS(game):
     DUMMY = 0
     query = "Minkä reitin parhaat tulokset haluat?"
-    exp =[1, 2, 3]
-    input = inputCheck(query, exp)
-    if input == 1:
-        game.connector.getHighScores(input)
+    exp = str([1, 2, 3])
+    syote = inputCheck(query, exp)
+    if syote == str(1):
+        game.connector.getHighScores(syote)
     
 
     #kysyy pelaajalta minka reitin parhaat tulokset halutaan nahda
