@@ -8,8 +8,8 @@ class GameDBC:
             host='localhost',
             port=3306,
             database='flight_game',
-            user='root',
-            password='salasana',
+            user='leksa',
+            password='tapani',
             autocommit=True)
 
     def getAirports(self, saveTarget):

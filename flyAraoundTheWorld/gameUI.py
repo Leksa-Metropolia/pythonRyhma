@@ -13,12 +13,12 @@ def gameMainMenu(game):
     print(f"2. Hae parhaat tulokset")
     print(f"3. Lopeta")
     query = f"Mitä tehdään? "
-    exp = ['1', '2']
+    exp = ['1', '2', '3']
     syote = inputCheck(query, exp)
     if syote == '1':
         setName = input("Anna pelaajanimi: ")
         game.pelaaja.Name = setName
-        query = f"Mikä reitti pelataan? (0-8, 0 on satunnainen)"
+        query = f"Mikä reitti pelataan? (0-8, 0 on satunnainen) "
         exp = range(9)
         syote = inputCheck(query, exp)
         if syote == 0:
@@ -50,11 +50,11 @@ def gameActiveMenu(game):
         a = "1. Lennä"
         exp.append('1')
         choices.append(a)
-    elif game.pelaaja.Funds > game.hintaY and game.pelaaja.LastSlept > 0:
+    if game.pelaaja.Funds > game.hintaY and game.pelaaja.LastSlept > 0:
         a = "2. Yövy"
         exp.append('2')
         choices.append(a)
-    elif not game.airportOpen():
+    if not game.airportOpen():
         a = "3. Odota"
         exp.append('3')
         choices.append(a)
@@ -63,6 +63,7 @@ def gameActiveMenu(game):
     print(f"Rahaa jäljellä: {round(game.pelaaja.Funds, 2)}")
     print(f"Reitillä vielä vierailtavat maat: {remaining}")
     print(f"Aika: {int(game.time/60)}:{int(ceil(game.time))%60}")
+    print(f"pelattu: {int(game.pelaaja.LastSlept)}")
     print(f"Vaihtoehdot:")
     for choice in choices:
         print(choice)

@@ -113,11 +113,12 @@ class Game:
             # Vähennä yöpyminen varoista
             self.pelaaja.Funds -= self.hintaY
             self.pelaaja.MoneySpent += self.hintaY
-            # Nollataan hereilläoloajan seuranta
-            self.LastSlept = 0
 
             # Siirrä peliaikaa eteenpäin (8 tuntia)
             self.advTime(420)
+
+            # Nollataan hereilläoloajan seuranta
+            self.pelaaja.LastSlept = 0
 
             # Lisää varoja yöpymisen jälkeen
             lisa_varat = 1000  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
