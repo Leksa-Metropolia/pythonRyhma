@@ -16,9 +16,8 @@ def gameMainMenu(game):
         setName = input("Anna pelaajanimi: ")
         game.pelaaja.Name = setName
         query = f"Mikä reitti pelataan? (0-3, 0 on satunnainen)"
-        exp = ['0', '1', '2', '3']
+        exp = [0, 1, 2, 3]
         syote = inputCheck(query, exp)
-        syote = int(syote)
         if syote == 0:
             syote = randint(1, 3)
         game.route = game.routes[syote - 1]
@@ -52,7 +51,7 @@ def gameActiveMenu(game):
         exp.append('3')
         choices.append(a)
 
-    print(f"Sijainti: {game.pelaaja.Airport['name']}, {game.pelaaja.Country}")
+    print(f"Sijainti: {game.pelaaja.Airport['name']}, {game.pelaaja.Airport['country']}")
     print(f"Rahaa jäljellä: {game.pelaaja.Funds}")
     print(f"Reitillä vielä vierailtavat maat: {remaining}")
     print(f"Aika: {game.time}")
@@ -119,6 +118,8 @@ def gameEndFailure(game, syy):
 #metodi tarkistamaan pelaajan syotteen ja kutsumaan edellisen syote rivin uudelleen jos ei validi syote pelaajalta
 def inputCheck(query, expected):
     syote = input(query)
+    if type(expected[0]) is int:
+        syote = int(syote)
     if not syote in expected:
         print(f"Odottamaton syöte. Yritä uudelleen.")
         inputCheck(query, expected)
@@ -146,12 +147,14 @@ def selectFlight(game):
     countries = np.unique(countries)
 
     print(f"Mihin maahan lennetään?")
+    i = 0
     for country in countries:
-        print(f"{country}")
-    syote = inputCheck("Maa: ", countries)
+        i += 1
+        print(f"{i}. {country}")
+    syote = inputCheck("Maa: ", range(1, len(countries) + 1))
     kentat = []
     for airport in flights:
-        if syote == airport['country']:
+        if countries[syote-1] == airport['country']:
             kentat.append(airport)
 
     print(f"Mille kentälle lennetään?")
