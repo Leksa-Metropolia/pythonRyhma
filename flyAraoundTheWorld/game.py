@@ -23,7 +23,7 @@ class Game:
         self.hintaM = 0 #hinta mantereen vaihdolle
         self.hintaR = 0 #hinta maan vaihdolle
         self.hintaY = 0 #hinta yopymiselle
-        self.flightSpeed = 0 #lentonopeus kilometria minuutissa
+        self.flightSpeed = 13 #lentonopeus kilometria minuutissa
         self.maxFlightDistance = 0 #lentojen maksimi pituus
         self.routes = [self.l1, self.l2, self.l3]
 

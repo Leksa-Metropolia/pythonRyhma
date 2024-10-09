@@ -52,9 +52,7 @@ def gameActiveMenu(game):
         exp.append('3')
         choices.append(a)
 
-
-
-    print(f"Sijainti: {game.pelaaja.Airport[1]}, {game.pelaaja.Country}")
+    print(f"Sijainti: {game.pelaaja.Airport['name']}, {game.pelaaja.Country}")
     print(f"Rahaa jäljellä: {game.pelaaja.Funds}")
     print(f"Reitillä vielä vierailtavat maat: {remaining}")
     print(f"Aika: {game.time}")
@@ -63,7 +61,14 @@ def gameActiveMenu(game):
         print(choice)
     query = "Mitä tehdään? "
     syote = inputCheck(query, exp)
-
+    if syote == '1':
+        selectFlight(game)
+    elif syote == '2':
+        game.sleep()
+        gameActiveMenu(game)
+    elif syote == '3':
+        game.wait()
+        gameActiveMenu(game)
 
     #nayta pelaajan tiedot
     #nayta vaihtoehdot pelaajalle:
