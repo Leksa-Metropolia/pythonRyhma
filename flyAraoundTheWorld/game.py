@@ -18,7 +18,7 @@ class Game:
         self.l6 = []
         self.l7 = []
         self.l8 = []
-        self.route = 0
+        self.route = None
         self.hintaLK = 0 #hinta lentokilometrille
         self.hintaM = 0 #hinta mantereen vaihdolle
         self.hintaR = 0 #hinta maan vaihdolle
@@ -35,13 +35,13 @@ class Game:
     #pelisilmukka
     def game(self):
         while True:
-            gameMainMenu(self.peli) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
+            gameMainMenu(self) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
             #kutsu UIsta pelin aloitus sivu
 
     def setStartLocation(self):
         apList = []
         for ap in self.airports:
-            if ap[3] == self.route[0]:
+            if ap['iso'] == self.route[0]:
                 apList.append(ap)
         startLocation = apList[randint(0, len(apList) - 1)]
         self.pelaaja.updateLocation(startLocation)
@@ -124,27 +124,27 @@ class Game:
         return matka / self.flightSpeed
 
     #metodi yopymiselle
-    def sleep(self,):
+    def sleep(self):
         # Tarkista, että pelaajalla on varaa yöpyä
-        if Player.Funds < self.hintaY:
+        if self.pelaaja.Funds < self.hintaY:
             #palauttaa endgame screenin
             print("Placeholder")
 
         else:
             # Vähennä yöpyminen varoista
-            Player.Funds -= self.hintaY
+            self.pelaaja.Funds -= self.hintaY
             # Nollataan hereilläoloajan seuranta
             self.LastSlept = 0
 
             # Siirrä peliaikaa eteenpäin (8 tuntia)
             self.time += 420
-            Player.PlayTime += 420
+            self.pelaaja.PlayTime += 420
             if self.time > 1440:
                 self.time = self.time - 1440
 
             # Lisää varoja yöpymisen jälkeen
             lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
-            Player.Funds += lisa_varat
+            self.pelaaja.Funds += lisa_varat
             return True
 
     #metodi odottamiselle
