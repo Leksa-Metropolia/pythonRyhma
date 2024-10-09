@@ -11,21 +11,33 @@ def gameMainMenu(game):
     input = inputCheck(query, exp)
     if input == 1:
         setName = input(f"Anna pelaajanimi: ")
-        game.pelaaja.name = setName
+        game.pelaaja.Name = setName
         query = f"Mikä reitti pelataan? (0-3, 0 on satunnainen)"
         exp = [0, 1, 2, 3]
         input = inputCheck(query, exp)
         if input == 0:
             input = randint(1, 3)
         game.route = game.routes[input]
+        game.setStartLocation()
         gameActiveMenu(game)
 
     #nayta vaitoehdot pelaajalle: pelin aloitus, high score lista ja lopeta ohjelma
 
 #metodi nayttamaan pelin kulun sivun
 def gameActiveMenu(game):
-    print(f"Sijainti: {game.pelaaja.airport[1]}, {game.pelaaja.Country}")
-
+    print(f"Sijainti: {game.pelaaja.Airport[1]}, {game.pelaaja.Country}")
+    print(f"Rahaa jäljellä: {game.pelaaja.Funds}")
+    remaining = game.remainingCountries()
+    print(f"Reitillä vielä vierailtavat maat: {remaining}")
+    print(f"Aika: {game.time}")
+    print(f"Vaihtoehdot:")
+    print(f"1. Lennä")
+    print(f"2. Yövy")
+    print(f"3. Odota lentokentän aukeamista")
+    print(f"4. Lopeta peli kesken")
+    query = "Mitä tehdään? "
+    exp = [1, 2, 3, 4]
+    input = inputCheck(query, exp)
     #nayta pelaajan tiedot
     #nayta vaihtoehdot pelaajalle:
     #lenna: avaa syoteenoton lentokohteen valinnaelle
