@@ -1,10 +1,11 @@
 #luokka yllapitamaan pelisilmukkaa
 from flyAraoundTheWorld.DBConnection import GameDBC
 from flyAraoundTheWorld.distanceCalculator import calculateDistance
-from flyAraoundTheWorld.gameUI import gameMainMenu
+from flyAraoundTheWorld.gameUI import gameMainMenu, gameActiveMenu
 from flyAraoundTheWorld.player import Player
 import mysql.connector
 from geopy import distance
+from random import randint
 
 class Game:
     def __init__(self):
@@ -19,6 +20,7 @@ class Game:
         self.l6 = []
         self.l7 = []
         self.l8 = []
+        self.route = 0
         self.hintaLK = 0 #hinta lentokilometrille
         self.hintaM = 0 #hinta mantereen vaihdolle
         self.hintaR = 0 #hinta maan vaihdolle
@@ -36,8 +38,16 @@ class Game:
     def game(self):
         while True:
             gameMainMenu(self.peli) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
-            DUMMY = 0
             #kutsu UIsta pelin aloitus sivu
+
+    def setStartLocation(self):
+        apList = []
+        for ap in self.airports:
+            if ap[3] == self.route[0]:
+                apList.append(ap)
+        self.pelaaja.Airport = apList[randint(0, len(apList) - 1)]
+        self.pelaaja.Country = self.pelaaja.Airport[3]
+        self.pelaaja.Continent = self.pelaaja.Airport[5]
 
     #metodi lentamiselle
     def fly(self, icao):
@@ -47,8 +57,10 @@ class Game:
         nykyinen_asema = Player.ICAO
 
         # Tarkistetaan kello
-        #aika_minuutit = (self.time % 1440) // 60  # Peliaika minuutut vuorokaudessa
         # Lentojen lähtöaikaikkuna klo 6:00 - 2:00 (24h kellonaika)
+        #if self.time < 360 or self.time > 120:
+            #odotus 
+
        
 
         # Lasken matka nykyisen aseman ja kohteen välillä geopylla
@@ -70,7 +82,7 @@ class Game:
             return False
 
         # Päivitän pelaajan sijainti
-        Player.paivita_sijainti(kohde_asema)
+        #Player.paivita_sijainti(kohde_asema)
 
         # Vähennän
         Player.Funds -= hinta
@@ -78,7 +90,9 @@ class Game:
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(matka)
         self.time += lentoaika
-        Player.paivita_aika(lentoaika)
+        Player.PlayTime += lentoaika
+        if self.time > 1440:
+                self.time = self.time - 1440
 
         print(f"Lento suoritettu kohteeseen {kohde_asema['kaupunki']}.")
         return True
@@ -89,7 +103,6 @@ class Game:
         nykyinen_asema = self.pelaaja.Airport
 
         # Lasken matka geopylla
-        matka = calculateDistance(self.pelaaja.lat, self.pelaaja.lon, kohde_asema['latitude'], kohde_asema['longitude'])
 
         # Perushinta matkan perusteella
         hinta = matka * self.hintaLK
@@ -124,7 +137,8 @@ class Game:
             # Siirrä peliaikaa eteenpäin (8 tuntia)
             self.time += 420
             Player.PlayTime += 420
-            
+            if self.time > 1440:
+                self.time = self.time - 1440
 
             # Lisää varoja yöpymisen jälkeen
             lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
@@ -134,7 +148,7 @@ class Game:
     #metodi odottamiselle
     def wait(self, odotus):
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
-        self.time += odotus
+        self.time = 360
         Player.PlayTime += odotus
         if self.time > 1440:
             self.time = self.time - 1440
