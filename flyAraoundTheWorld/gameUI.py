@@ -1,5 +1,6 @@
 from random import randint
 import os
+import numpy as np
 
 #metodi nayttamaan pelin aloitus sivun
 def gameMainMenu(game):
@@ -119,7 +120,42 @@ def inputCheck(query, expected):
 
 #metodit ottamaan vastaan pelaajansyotteet
 def selectFlight(game):
-    DUMMY = 0
+    flights = game.getValidAirports()
+    continents = []
+    for airport in flights:
+        continents.append(airport['continent'])
+    continents = np.unique(continents)
+
+    print(f"Mille mantereelle lennetään?")
+    for continent in continents:
+        print(f"{continent}")
+    input = inputCheck("Manner: ", continents)
+    countries = []
+    for airport in flights:
+        if input == airport['country']:
+            countries.append(airport['country'])
+
+    print(f"Mihin maahan lennetään?")
+    for country in countries:
+        print(f"{country}")
+    input = inputCheck("Maa: ", countries)
+    kentat = []
+    for airport in flights:
+        if input == airport['country']:
+            kentat.append(airport)
+
+    print(f"Mille kentälle lennetään?")
+    exp = []
+    for airport in kentat:
+        exp.append(airport['icao'])
+        print(f"{airport['icao']} {airport['name']}")
+    input = inputCheck("Anna kentän ICAO-koodi: ", exp)
+    kohde = None
+    for airport in kentat:
+        if input == airport['icao']:
+            kohde = airport
+    game.fly(kohde)
+    gameActiveMenu(game)
     #nayttaa pelaajalle mantereet minne pystytaan lentamaan
     #ottaa vastaan mantereen minne pelaaja haluaa lentaa
     #nayttaa pelaajalle maat minne pystytaan lentamaan valitulla mantereella
