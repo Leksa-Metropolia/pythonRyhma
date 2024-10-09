@@ -1,4 +1,5 @@
 from random import randint
+import os
 
 #metodi nayttamaan pelin aloitus sivun
 def gameMainMenu(game):
@@ -136,5 +137,5 @@ def showHS(origin):
 
 #metodi tyhjentamaan komentokehoteeen
 def clearTerminal(menu):
-    DUMMY = 0
     #tyhjentaa terminaalin tekstista ennen seuraavan valikon tulostamista
+    os.system('cls' if os.name == 'nt' else 'clear')
