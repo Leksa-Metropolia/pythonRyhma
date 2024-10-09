@@ -87,7 +87,7 @@ class Game:
         #Player.paivita_sijainti(kohde_asema)
 
         # Vähennän
-        Player.Funds -= hinta
+        self.pelaaja.Funds -= hinta
 
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(self.calculateDistance(airport))
@@ -151,7 +151,7 @@ class Game:
     def wait(self, odotus):
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
         self.time = 360
-        Player.PlayTime += odotus
+        self.pelaaja.PlayTime += odotus
         if self.time > 1440:
             self.time = self.time - 1440
         return True            
