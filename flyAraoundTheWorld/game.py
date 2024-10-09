@@ -13,11 +13,11 @@ class Game:
         self.l1 = ["FI", "MG", "TH", "CA", "AU", "BR", "FI"]
         self.l2 = ["JM", "CA", "DK", "CG", "JP", "NP", "JM"]
         self.l3 = ["IS", "RU", "ZA", "HN", "CH", "AU", "IS"]
-        self.l4 = []
-        self.l5 = []
-        self.l6 = []
-        self.l7 = []
-        self.l8 = []
+        self.l4 = ["VE", "ES", "BW", "IR", "MM", "NZ", "CA", "VE"]
+        self.l5 = ["NC", "KR", "TM", "MG", "GH", "UY", "US", "NC"]
+        self.l6 = ["AO", "BY", "IS", "KG", "JP", "NZ", "CL", "AO"]
+        self.l7 = ["CU", "CA", "AR", "CD", "SE", "MN", "HK", "CU"]
+        self.l8 = ["UA", "MR", "ZA", "PK", "PG", "MX", "BR", "UA"]
         self.route = None
         self.hintaLK = 0.035 #hinta lentokilometrille
         self.hintaM = 120 #hinta mantereen vaihdolle

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="0.0.1" />
+    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="project created with dummys">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,12 +27,12 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Leksa-Metropolia/pythonRyhma.git&quot;,
-    &quot;accountId&quot;: &quot;a9609f88-32bb-48e3-955b-92ec2510fc84&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Leksa-Metropolia/pythonRyhma.git",
+    "accountId": "cb678970-f1bb-4072-a136-8e3167eb1cbb"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -73,6 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1726558270853</updated>
       <workItem from="1726558272632" duration="16788000" />
+      <workItem from="1728487016890" duration="3512000" />
     </task>
     <task id="LOCAL-00001" summary="project created with dummys">
       <option name="closed" value="true" />
