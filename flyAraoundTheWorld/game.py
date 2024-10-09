@@ -45,12 +45,15 @@ class Game:
         for ap in self.airports:
             if ap[3] == self.route[0]:
                 apList.append(ap)
-        self.pelaaja.Airport = apList[randint(0, len(apList) - 1)]
-        self.pelaaja.Country = self.pelaaja.Airport[3]
-        self.pelaaja.Continent = self.pelaaja.Airport[5]
-        self.pelaaja.ICAO = self.pelaaja.Airport[0]
-        self.pelaaja.Lat = self.pelaaja.Airport[8]
-        self.pelaaja.Lon = self.pelaaja.Airport[9]
+        startLocation = apList[randint(0, len(apList) - 1)]
+        self.pelaaja.updateLocation(startLocation)
+
+    def remainingCountries(self):
+        remaining = []
+        for country in self.route:
+            if not country in self.pelaaja.Countries:
+                remaining.append(country)
+        return remaining
 
     #metodi lentamiselle
     def fly(self, icao):
