@@ -25,6 +25,7 @@ class Game:
         self.hintaY = 0 #hinta yopymiselle
         self.flightSpeed = 0 #lentonopeus kilometria minuutissa
         self.maxFlightDistance = 0 #lentojen maksimi pituus
+        self.routes = [self.l1, self.l2, self.l3]
 
         self.connector = GameDBC()
         self.connector.getAirports(self.airports)
@@ -46,14 +47,9 @@ class Game:
         nykyinen_asema = Player.ICAO
 
         # Tarkistetaan kello
-        nykyinen_aika_tunnit = (self.time % 1440) // 60  # Peliaika tunnit vuorokaudessa
-
+        #aika_minuutit = (self.time % 1440) // 60  # Peliaika minuutut vuorokaudessa
         # Lentojen lähtöaikaikkuna klo 6:00 - 2:00 (24h kellonaika)
-        if nykyinen_aika_tunnit < 6 or nykyinen_aika_tunnit > 2:
-            print(f"Nykyinen aika on {nykyinen_aika_tunnit}:00. Odotat seuraavaan lähtöön klo 6:00 asti.")
-            odotusaika = 360 - (self.time % 1440)  # Lasketaan aika klo 6:00 asti (360 minuuttia)
-            self.time += odotusaika
-            Player.paivita_aika(odotusaika)
+       
 
         # Lasken matka nykyisen aseman ja kohteen välillä geopylla
         #nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
@@ -126,7 +122,9 @@ class Game:
             self.LastSlept = 0
 
             # Siirrä peliaikaa eteenpäin (8 tuntia)
-            self.time += 8 * 60  # 8 tuntia minuutteina
+            self.time += 420
+            Player.PlayTime += 420
+            
 
             # Lisää varoja yöpymisen jälkeen
             lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
@@ -137,6 +135,9 @@ class Game:
     def wait(self, odotus):
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
         self.time += odotus
+        Player.PlayTime += odotus
+        if self.time > 1440:
+            self.time = self.time - 1440
         return True            
 
     # metodi laskemaan pelin pistesaldoa
