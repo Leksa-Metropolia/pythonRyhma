@@ -108,7 +108,7 @@ class Game:
     def laske_lennon_hinta(self, kohde_asema):
         nykyinen_asema = self.pelaaja.Airport
 
-        # Lasken matka geopylla
+        matka = calculateDistance(self.pelaaja.lat, self.pelaaja.lon, self.airport['lat'], self.airport['lon'])
 
         # Perushinta matkan perusteella
         hinta = matka * self.hintaLK
