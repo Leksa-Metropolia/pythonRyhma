@@ -37,6 +37,11 @@ class GameDBC:
         sql = f"SELECT * FROM high_score where route = {gameRoute}" #kirjoita sql haku lause hakemaan oikean reitin tulokset
         cursor.execute(sql)
         scores = cursor.fetchall()
-        return scores
+        for row in scores:
+            high_score_lista = {'name': row[0],
+                  'points' : row[1],
+                  'flight_count' : row[2]
+                }
+        return high_score_lista
         # nayta haetut tulokset
 
