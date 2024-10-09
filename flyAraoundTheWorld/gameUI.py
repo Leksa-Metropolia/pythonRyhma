@@ -16,11 +16,11 @@ def gameMainMenu(game):
     if syote == '1':
         setName = input("Anna pelaajanimi: ")
         game.pelaaja.Name = setName
-        query = f"Mikä reitti pelataan? (0-3, 0 on satunnainen)"
-        exp = [0, 1, 2, 3]
+        query = f"Mikä reitti pelataan? (0-8, 0 on satunnainen)"
+        exp = range(9)
         syote = inputCheck(query, exp)
         if syote == 0:
-            syote = randint(1, 3)
+            syote = randint(1, 8)
         game.route = game.routes[syote - 1]
         game.setStartLocation()
         gameActiveMenu(game)
