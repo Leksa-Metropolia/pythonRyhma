@@ -21,7 +21,7 @@ class GameDBC:
         cursor.execute(sql)
         kursori = cursor.fetchall()
         for row in kursori:
-            kentta = {'ICAO': row[0],
+            kentta = {'icao': row[0],
                       'name': row[1],
                       'iso': row[2],
                       'country': row[3],

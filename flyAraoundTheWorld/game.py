@@ -137,10 +137,11 @@ class Game:
             self.LastSlept = 0
 
             # Siirrä peliaikaa eteenpäin (8 tuntia)
-            self.time += 420
-            self.pelaaja.PlayTime += 420
-            if self.time > 1440:
-                self.time = self.time - 1440
+            self.advTime(420)
+            #self.time += 420
+            #self.pelaaja.PlayTime += 420
+            #if self.time > 1440:
+            #    self.time = self.time - 1440
 
             # Lisää varoja yöpymisen jälkeen
             lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
