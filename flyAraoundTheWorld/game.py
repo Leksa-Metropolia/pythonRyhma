@@ -73,6 +73,7 @@ class Game:
         lentoaika = self.lennon_kesto(self.calculateDistance(airport))
 
         self.advTime(lentoaika)
+        self.pelaaja.updateLocation(airport)
         print(f"Lento suoritettu kohteeseen {airport['city']}.")
         return True
 
