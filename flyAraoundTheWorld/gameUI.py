@@ -83,10 +83,10 @@ def gameEndSuccess(game):
     gameMainMenu(game)
 
 def gameEndFailure(game, syy):
-    print("Voi ei, hävisit pelin")
+    print("Voi ei, hävisit pelin.")
 
     if syy == "varat":
-        print("Rahasi loppuivat kesken")
+        print("Rahasi loppuivat kesken.")
 
     elif syy == "aika":
         print("Aikasi loppui kesken, et saavuttanut tavoitettasi ajoissa.")
