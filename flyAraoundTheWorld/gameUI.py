@@ -1,6 +1,7 @@
 from random import randint
 import os
 import numpy as np
+from math import ceil
 
 #metodi nayttamaan pelin aloitus sivun
 def gameMainMenu(game):
@@ -52,9 +53,9 @@ def gameActiveMenu(game):
         choices.append(a)
 
     print(f"Sijainti: {game.pelaaja.Airport['name']}, {game.pelaaja.Airport['country']}")
-    print(f"Rahaa jäljellä: {game.pelaaja.Funds}")
+    print(f"Rahaa jäljellä: {round(game.pelaaja.Funds, 2)}")
     print(f"Reitillä vielä vierailtavat maat: {remaining}")
-    print(f"Aika: {game.time}")
+    print(f"Aika: {int(game.time/60)}:{int(ceil(game.time))%60}")
     print(f"Vaihtoehdot:")
     for choice in choices:
         print(choice)
