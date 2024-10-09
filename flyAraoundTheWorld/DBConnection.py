@@ -8,16 +8,18 @@ class GameDBC:
             host='localhost',
             port=3306,
             database='flight_game',
-            user='leksa',
-            password='tapani',
+            user='root',
+            password='salasana',
             autocommit=True)
 
     def getAirports(self, saveTarget):
         cursor = self.connector.cursor()
-        sql = f"SELECT * FROM airports WHERE ident = {saveTarget}" #TODO kirjoita sql haku lause hakemaan kentan ICAO-tunniste, koko nimi, maatunniste, maa, kaupunki, mannertunniste, manner, latitude, longitude, tyyppi
+        sql = f"SELECT airport.ident, airport.iso_country, country.name as country_name, airport.municipality, airport.continent, country.continent as country_continent, airport.latitude_deg, airport.longitude_deg, airport.type FROM airport JOIN country on airport.iso_country = country.iso_country WHERE ident = {saveTarget}"
+        #kirjoita sql haku lause hakemaan kentan ICAO-tunniste, koko nimi, maatunniste, maa, kaupunki, mannertunniste, manner, latitude, longitude, tyyppi
         cursor.execute(sql)
         #TODO tallenna haetut tiedot jarkevassa muodossa
         saveTarget = cursor.fetchall()
+        return saveTarget
 
     def getHighScores(self, gameRoute):
         cursor = self.connector.cursor()
@@ -26,3 +28,4 @@ class GameDBC:
         scores = cursor.fetchall()
         return scores
         # nayta haetut tulokset
+
