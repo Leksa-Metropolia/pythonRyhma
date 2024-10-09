@@ -182,14 +182,13 @@ def selectFlight(game):
 #metodi nayttamaan high score listan
 def showHS(game):
     query = "Minkä reitin parhaat tulokset haluat?"
-    exp = str([1, 2, 3, ""])
+    exp = range(1,9)
     syote = inputCheck(query, exp)
-    if syote == str(1) or syote == str(2) or syote == str(3):
-        hs = game.connector.getHighScores(syote)
-        print(f"TOP 10 \n {hs[0]}\n {hs[1]}\n {hs[2]}\n {hs[3]}\n {hs[4]}\n {hs[5]}\n {hs[6]}\n {hs[7]}\n {hs[8]}\n {hs[9]}")
-        
+    hs = game.connector.getHighScores(syote)
+    print(f"TOP 10 \n {hs[0]}\n {hs[1]}\n {hs[2]}\n {hs[3]}\n {hs[4]}\n {hs[5]}\n {hs[6]}\n {hs[7]}\n {hs[8]}\n {hs[9]}")
+    input("Paina ENTER siirtyäksesi takaisin päävalikkoon.")
+    gameMainMenu(game)
     
-
     #kysyy pelaajalta minka reitin parhaat tulokset halutaan nahda
     #nayttaa pelaajalle reitin 10 parasta tulosta
     #palaa ENTERia painamalla edelliseen valikkoon
