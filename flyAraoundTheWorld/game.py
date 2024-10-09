@@ -157,6 +157,28 @@ class Game:
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
         DUMMY = 0
-        
+        # Pisteitä vierailluista lentokentistä, maista ja mantereista
+        lentokentta_pisteet = len(self.pelaaja.Airports) * 10  # Jokainen lentokenttä antaa esim. 10 pistettä
+        maa_pisteet = len(self.pelaaja.Countries) * 20  # Jokainen maa antaa esim. 20 pistettä
+        manner_pisteet = len(self.pelaaja.Continents) * 30  # Jokainen manner antaa esim. 30 pistettä
+
+        # Pisteitä lennetystä kokonaismatkasta (esim. joka 1000 km antaa vaikka 5 pistettä)
+        matka_pisteet = int(self.pelaaja.FlownKM / 1000) * 5
+
+        # Miinuspisteitä käytetystä ajasta (enemmän aikaa johtaa vähempiin pisteisiin)
+        aika_miinus = int(self.time / 60) * 2  # Miinustetaan vaikka 2 pistettä jokaisesta tunnista
+
+        # Bonus jäljellä olevista varoista
+        varat_bonus = int(self.pelaaja.Funds / 100)  # Jokainen 100 yksikköä rahaa antaa 1 pisteen
+
+        # Lasketaan lopullinen pistemäärä
+        lopullinen_pisteet = (lentokentta_pisteet + maa_pisteet + manner_pisteet + matka_pisteet + varat_bonus) - aika_miinus
+
+        # Varmistetan, että pisteet eivät mene miinukselle
+        if lopullinen_pisteet < 0:
+            lopullinen_pisteet = 0
+
+        print(f"Lopullinen pistemäärä: {lopullinen_pisteet}")
+        return lopullinen_pisteet
 
         #laske pelin lopputulos tallennetusta datasta
