@@ -1,6 +1,19 @@
 #metodi nayttamaan pelin aloitus sivun
 def gameMainMenu(game):
-    DUMMY = 0
+    print(f"Tervetuloa pelaamaan Fly Around the World -peliä!")
+    print(f"Päävalikko:")
+    print(f"1. Aloita uusi peli")
+    print(f"2. Lopeta")
+    query = f"Mitä tehdään?"
+    exp = [1, 2]
+    input = inputCheck(query, exp)
+    if input == 1:
+        setName = input(f"Anna pelaajanimi: ")
+        game.pelaaja.name = setName
+        query = f"Mikä reitti pelataan? (0-3, 0 on satunnainen)"
+        exp = [0, 1, 2, 3]
+        input = inputCheck(query, exp)
+
     #nayta vaitoehdot pelaajalle: pelin aloitus, high score lista ja lopeta ohjelma
 
 #metodi nayttamaan pelin kulun sivun
@@ -27,8 +40,14 @@ def gameEndFailure(game):
     #siirra pelaaja paavalikkoon ENTERia painamalla
 
 #metodi tarkistamaan pelaajan syotteen ja kutsumaan edellisen syote rivin uudelleen jos ei validi syote pelaajalta
-def inputCheck(input, origin):
-    DUMMY = 0
+def inputCheck(query, expected):
+    syote = input(query)
+    if not syote in expected:
+        print(f"Odottamaton syöte. Yritä uudelleen.")
+        inputCheck(query, expected)
+    else:
+        return syote
+
     #tarkistaa, etta syote on odotettu ja pyytaa syotteen udelleen jos ei ole
 
 #metodit ottamaan vastaan pelaajansyotteet
