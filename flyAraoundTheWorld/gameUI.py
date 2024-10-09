@@ -18,13 +18,14 @@ def gameMainMenu(game):
         if input == 0:
             input = randint(1, 3)
         game.route = game.routes[input]
-
+        gameActiveMenu(game)
 
     #nayta vaitoehdot pelaajalle: pelin aloitus, high score lista ja lopeta ohjelma
 
 #metodi nayttamaan pelin kulun sivun
 def gameActiveMenu(game):
-    DUMMY =0
+    print(f"Sijainti: {game.pelaaja.airport[1]}, {game.pelaaja.Country}")
+
     #nayta pelaajan tiedot
     #nayta vaihtoehdot pelaajalle:
     #lenna: avaa syoteenoton lentokohteen valinnaelle
