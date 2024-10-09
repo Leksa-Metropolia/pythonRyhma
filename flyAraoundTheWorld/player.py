@@ -17,3 +17,17 @@ class Player:
         self.PlayTime = 0
         self.LastSlept = 0
         self.Nimi = None
+
+    def updateLocation(self, airport):
+        self.Airport = airport
+        self.Lat = self.Airport[8]
+        self.Lon = self.Airport[9]
+        self.Country = self.Airport[3]
+        self.Continent = self.Airport[5]
+        self.ICAO = self.Airport[0]
+        if not self.Country in self.Countries:
+            self.Countries.append(self.Country)
+        if not self.Continent in self.Continents:
+            self.Continents.append(self.Continent)
+        if not self.Airport in self.Airports:
+            self.Airports.append(self.Airport)
