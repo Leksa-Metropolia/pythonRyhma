@@ -34,13 +34,13 @@ class GameDBC:
 
     def getHighScores(self, gameRoute):
         cursor = self.connector.cursor()
-        sql = f"SELECT * FROM high_score where route = {gameRoute}" #kirjoita sql haku lause hakemaan oikean reitin tulokset
+        sql = f"SELECT player_name, flight_count, points FROM high_score where route = {gameRoute}" #kirjoita sql haku lause hakemaan oikean reitin tulokset
         cursor.execute(sql)
         scores = cursor.fetchall()
         for row in scores:
-            high_score_lista = {'name': row[0],
-                  'points' : row[1],
-                  'flight_count' : row[2]
+            high_score_lista = {'player_name': row[0],
+                  'flight_count' : row[1],
+                  'points' : row[2]
                 }
         return high_score_lista
         # nayta haetut tulokset
