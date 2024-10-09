@@ -1,10 +1,11 @@
 #luokka yllapitamaan pelisilmukkaa
 from flyAraoundTheWorld.DBConnection import GameDBC
 from flyAraoundTheWorld.distanceCalculator import calculateDistance
-from flyAraoundTheWorld.gameUI import gameMainMenu
+from flyAraoundTheWorld.gameUI import gameMainMenu, gameActiveMenu
 from flyAraoundTheWorld.player import Player
 import mysql.connector
 from geopy import distance
+from random import randint
 
 class Game:
     def __init__(self):
@@ -19,6 +20,7 @@ class Game:
         self.l6 = []
         self.l7 = []
         self.l8 = []
+        self.route = 0
         self.hintaLK = 0 #hinta lentokilometrille
         self.hintaM = 0 #hinta mantereen vaihdolle
         self.hintaR = 0 #hinta maan vaihdolle
@@ -36,8 +38,16 @@ class Game:
     def game(self):
         while True:
             gameMainMenu(self.peli) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
-            DUMMY = 0
             #kutsu UIsta pelin aloitus sivu
+
+    def setStartLocation(self):
+        apList = []
+        for ap in self.airports:
+            if ap[3] == self.route[0]:
+                apList.append(ap)
+        self.pelaaja.Airport = apList[randint(0, len(apList) - 1)]
+        self.pelaaja.Country = self.pelaaja.Airport[3]
+        self.pelaaja.Continent = self.pelaaja.Airport[5]
 
     #metodi lentamiselle
     def fly(self, icao):
@@ -93,7 +103,6 @@ class Game:
         nykyinen_asema = self.pelaaja.Airport
 
         # Lasken matka geopylla
-        matka = calculateDistance(self.pelaaja.lat, self.pelaaja.lon, kohde_asema['latitude'], kohde_asema['longitude'])
 
         # Perushinta matkan perusteella
         hinta = matka * self.hintaLK
