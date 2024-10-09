@@ -187,3 +187,35 @@ class Game:
         return lopullinen_pisteet
 
         #laske pelin lopputulos tallennetusta datasta
+
+    def calculateDistance(lat1, lon1, lat2, lon2):
+        s1 = (lat1, lon1)
+        s2 = (lat2, lon2)
+        distance = geodesic(s1, s2).km
+        return distance
+
+    # funktio karsimaan resurssien ulottumattomissa olevat kentat
+    def getValidAirports(game, airports):
+        airportList = []
+        nykyinenSijainti = (game.pelaaja.lat, game.pelaaja.lon)  # Pelaajan nykyinen sijainti
+
+        # Käyn läpi listan lentokentista
+        for airport in airports:
+            kenttaSijainti = (airport[8], airport[9])  # Lentokentän koordinaatit
+
+            # Lasketaan etäisyys pelaajan ja lentokentän välillä
+            etaisyys = calculateDistance(pelaaja.lat, pelaaja.lon, airport[8], airport[9])
+
+            # Tarkistetan, riittävätkö pelaajan resurssit lentämään kentälle
+            if etaisyys <= pelaaja.maxFlightDistance and pelaaja.Funds >= etaisyys * Game.hintaLK:
+                # Jos lentokenttä on kelvollinen, kerätään sen tiedot
+                lentokenttaTiedot = {
+                    'ICAO': airport['ICAO'],
+                    'Nimi': airport['nimi'],
+                    'Maa_tunniste': airport['maa_tunniste'],
+                    'Maa': airport['maa'],
+                    'Manner': airport['manner']
+                }
+                airportList.append(lentokenttaTiedot)
+
+        return airportList
