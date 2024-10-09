@@ -25,7 +25,7 @@ class Game:
         self.hintaY = 120 #hinta yopymiselle
         self.flightSpeed = 13 #lentonopeus kilometria minuutissa
         self.maxFlightDistance = 12000 #lentojen maksimi pituus
-        self.routes = [self.l1, self.l2, self.l3]
+        self.routes = [self.l1, self.l2, self.l3, self.l4, self.l5, self.l6, self.l7, self.l8]
 
         self.connector = GameDBC()
         self.connector.getAirports(self.airports)
