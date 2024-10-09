@@ -43,7 +43,7 @@ def gameActiveMenu(game):
         a = "1. Lennä"
         exp.append('1')
         choices.append(a)
-    elif game.pelaaja.Funds > game.hintay and game.pelaaja.LastSlept > 0:
+    elif game.pelaaja.Funds > game.hintaY and game.pelaaja.LastSlept > 0:
         a = "2. Yövy"
         exp.append('2')
         choices.append(a)
