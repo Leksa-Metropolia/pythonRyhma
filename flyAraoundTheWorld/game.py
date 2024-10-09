@@ -1,7 +1,7 @@
 #luokka yllapitamaan pelisilmukkaa
-from flyAraoundTheWorld.DBConnection import GameDBC
-from flyAraoundTheWorld.gameUI import gameMainMenu, gameActiveMenu
-from flyAraoundTheWorld.player import Player
+import DBConnection
+import gameUI
+from player import Player
 from geopy.distance import geodesic
 from random import randint
 
@@ -27,7 +27,7 @@ class Game:
         self.maxFlightDistance = 12000 #lentojen maksimi pituus
         self.routes = [self.l1, self.l2, self.l3, self.l4, self.l5, self.l6, self.l7, self.l8]
 
-        self.connector = GameDBC()
+        self.connector = DBConnection.GameDBC()
         self.connector.getAirports(self.airports)
         self.pelaaja = Player()
         self.game()
@@ -35,7 +35,7 @@ class Game:
     #pelisilmukka
     def game(self):
         while True:
-            gameMainMenu(self) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
+            gameUI.gameMainMenu(self) #kutsukaa gameUIn funktioita tähän tyyliin niin pystytte käyttämään pelin tietoja näissä funktioissa
             #kutsu UIsta pelin aloitus sivu
 
     def setStartLocation(self):
@@ -189,3 +189,6 @@ class Game:
             return False
         else:
             return True
+
+if __name__ == '__main__':
+    Game()

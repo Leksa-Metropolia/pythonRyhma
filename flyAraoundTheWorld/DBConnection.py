@@ -45,3 +45,8 @@ class GameDBC:
         return high_score_lista
         # nayta haetut tulokset
 
+    def saveScore(self, score):
+        cursor = self.connector.cursor()
+        sql = f"INSERT INTO high_score (player_name, flight_count, points, time, money, distance, country_count, continent_count, route) VALUES ({score[0]}, {score[1]}, {score[2]}, {score[3]}, {score[4], score[5], score[6], score[7], score[8]})"
+        cursor.execute(sql)
+        self.connector.commit()
