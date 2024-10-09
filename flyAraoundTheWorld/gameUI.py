@@ -51,7 +51,7 @@ def gameActiveMenu(game):
         exp.append('3')
         choices.append(a)
 
-    print(f"Sijainti: {game.pelaaja.Airport['name']}, {game.pelaaja.Country}")
+    print(f"Sijainti: {game.pelaaja.Airport['name']}, {game.pelaaja.Airport['country']}")
     print(f"Rahaa jäljellä: {game.pelaaja.Funds}")
     print(f"Reitillä vielä vierailtavat maat: {remaining}")
     print(f"Aika: {game.time}")
