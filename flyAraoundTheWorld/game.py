@@ -162,7 +162,6 @@ class Game:
 
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
-        DUMMY = 0
         # Pisteitä vierailluista lentokentistä, maista ja mantereista
         lentokentta_pisteet = len(self.pelaaja.Airports) * 10  # Jokainen lentokenttä antaa esim. 10 pistettä
         maa_pisteet = len(self.pelaaja.Countries) * 20  # Jokainen maa antaa esim. 20 pistettä
