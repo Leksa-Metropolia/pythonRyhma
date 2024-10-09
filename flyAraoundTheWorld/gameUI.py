@@ -175,13 +175,13 @@ def selectFlight(game):
     #palaa pelin kulkuvalikkoon
 
 #metodi nayttamaan high score listan
-def showHS(Origin):
+def showHS(game):
     DUMMY = 0
     query = "Minkä reitin parhaat tulokset haluat?"
     exp =[1, 2, 3]
     input = inputCheck(query, exp)
     if input == 1:
-        
+        game.connector.getHighScores(input)
     
 
     #kysyy pelaajalta minka reitin parhaat tulokset halutaan nahda
