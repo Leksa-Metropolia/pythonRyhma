@@ -21,7 +21,16 @@ class GameDBC:
         cursor.execute(sql)
         kursori = cursor.fetchall()
         for row in kursori:
-            saveTarget.append(row)
+            kentta = {'ICAO': row[0],
+                      'name': row[1],
+                      'iso': row[2],
+                      'country': row[3],
+                      'city': row[4],
+                      'continent': row[5],
+                      'lat': row[7],
+                      'lon': row[8]
+                      }
+            saveTarget.append(kentta)
 
     def getHighScores(self, gameRoute):
         cursor = self.connector.cursor()
