@@ -34,7 +34,7 @@ class GameDBC:
 
     def getHighScores(self, gameRoute):
         cursor = self.connector.cursor()
-        sql = f"SELECT * FROM highScores where route = {gameRoute}" #kirjoita sql haku lause hakemaan oikean reitin tulokset
+        sql = f"SELECT * FROM high_score where route = {gameRoute}" #kirjoita sql haku lause hakemaan oikean reitin tulokset
         cursor.execute(sql)
         scores = cursor.fetchall()
         return scores

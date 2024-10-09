@@ -178,10 +178,11 @@ def selectFlight(game):
 #metodi nayttamaan high score listan
 def showHS(game):
     query = "Minkä reitin parhaat tulokset haluat?"
-    exp = str([1, 2, 3])
+    exp = str([1, 2, 3, ""])
     syote = inputCheck(query, exp)
-    if syote == str(1):
-        game.connector.getHighScores(syote)
+    if syote == str(1) or syote == str(2) or syote == str(3):
+        hs = game.connector.getHighScores(syote)
+        
     
 
     #kysyy pelaajalta minka reitin parhaat tulokset halutaan nahda

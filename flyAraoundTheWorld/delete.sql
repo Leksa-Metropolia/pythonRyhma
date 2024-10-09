@@ -1,3 +1,7 @@
+drop table high_score;
+drop table goal_reached;
+drop table game;
+drop table goal;
 create table high_score(
 id int not null auto_increment,
 player_name varchar(40) default null,
@@ -8,6 +12,7 @@ flight_count int default null,
 country_count int default null,
 continent_count int default null,
 route varchar(40)default null,
+points int default null,
 primary key(id)
 );
 delete from airport
