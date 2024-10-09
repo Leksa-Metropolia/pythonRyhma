@@ -29,8 +29,8 @@ class Game:
 
         self.connector = GameDBC()
         self.connector.getAirports(self.airports)
-        self.peli = self.game()
         self.pelaaja = Player()
+        self.game()
 
     #pelisilmukka
     def game(self):
@@ -54,11 +54,9 @@ class Game:
         return remaining
 
     #metodi lentamiselle
-    def fly(self, icao):
+    def fly(self, airport):
         #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
         # Hakee nykyisen aseman tiedot pelaajalta
-        kohde_asema = icao
-        nykyinen_asema = Player.ICAO
 
         # Tarkistetaan kello
         # Lentojen lähtöaikaikkuna klo 6:00 - 2:00 (24h kellonaika)
@@ -73,17 +71,17 @@ class Game:
         #matka = distance.distance(nykyinen_koordi, kohde_koordi).km
 
         # Tarkistan että matka ei ylitä max lentomatkaa
-        if distance > self.maxFlightDistance:
-            print("Lento on liian pitkä, et voi valita tätä lentoa.")
-            return False
+        #if distance > self.maxFlightDistance:
+        #    print("Lento on liian pitkä, et voi valita tätä lentoa.")
+        #    return False
 
         # Lasken lentohintaa
-        hinta, matka = self.laske_lennon_hinta(Player, kohde_asema)
+        hinta = self.laske_lennon_hinta(airport)
 
         # Tarkistan, että pelaajalla on tarpeeksi varoja
-        if Player.Funds < hinta:
-            print("Ei tarpeeksi varoja lennolle.")
-            return False
+        #if Player.Funds < hinta:
+        #    print("Ei tarpeeksi varoja lennolle.")
+        #    return False
 
         # Päivitän pelaajan sijainti
         #Player.paivita_sijainti(kohde_asema)
@@ -92,13 +90,13 @@ class Game:
         Player.Funds -= hinta
 
         # Päivitän lentoajan
-        lentoaika = self.lennon_kesto(matka)
-        self.time += lentoaika
-        Player.PlayTime += lentoaika
-        if self.time > 1440:
-                self.time = self.time - 1440
-
-        print(f"Lento suoritettu kohteeseen {kohde_asema['kaupunki']}.")
+        lentoaika = self.lennon_kesto(self.calculateDistance(airport))
+        #self.time += lentoaika
+        #Player.PlayTime += lentoaika
+        #if self.time > 1440:
+        #        self.time = self.time - 1440
+        self.advTime(lentoaika)
+        print(f"Lento suoritettu kohteeseen {airport['city']}.")
         return True
 
         #laske lennon hinta ja erota se varoista
@@ -106,7 +104,7 @@ class Game:
     def laske_lennon_hinta(self, kohde_asema):
         nykyinen_asema = self.pelaaja.Airport
 
-        matka = calculateDistance(self.pelaaja.lat, self.pelaaja.lon, self.airport['lat'], self.airport['lon'])
+        matka = self.calculateDistance(kohde_asema)
 
         # Perushinta matkan perusteella
         hinta = matka * self.hintaLK
@@ -119,7 +117,7 @@ class Game:
         if nykyinen_asema['country'] != kohde_asema['country']:
             hinta += self.hintaR
 
-        return hinta, matka
+        return hinta
 
     # Metodi lennon kesto
     def lennon_kesto(self, matka):
@@ -199,21 +197,18 @@ class Game:
 
         # Käyn läpi listan lentokentista
         for airport in airports:
-            kenttaSijainti = (airport[8], airport[9])  # Lentokentän koordinaatit
-
             # Lasketaan etäisyys pelaajan ja lentokentän välillä
-            etaisyys = self.calculateDistance(self.pelaaja.lat, self.pelaaja.lon, airport[8], airport[9])
+            etaisyys = self.calculateDistance(airport)
 
             # Tarkistetan, riittävätkö pelaajan resurssit lentämään kentälle
-            if etaisyys <= pelaaja.maxFlightDistance and pelaaja.Funds >= etaisyys * Game.hintaLK:
+            if etaisyys <= self.maxFlightDistance and self.pelaaja.Funds >= etaisyys * self.hintaLK:
                 # Jos lentokenttä on kelvollinen, kerätään sen tiedot
-                lentokenttaTiedot = {
-                    'ICAO': airport['ICAO'],
-                    'Nimi': airport['nimi'],
-                    'Maa_tunniste': airport['maa_tunniste'],
-                    'Maa': airport['maa'],
-                    'Manner': airport['manner']
-                }
-                airportList.append(lentokenttaTiedot)
+
+                airportList.append(airport)
 
         return airportList
+
+    def advTime(self, time):
+        self.pelaaja.PlayTime += time
+        self.pelaaja.LastSlept += time
+        self.time = (self.time + time) % 1440
