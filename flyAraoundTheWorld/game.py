@@ -148,13 +148,15 @@ class Game:
             return True
 
     #metodi odottamiselle
-    def wait(self, odotus):
+    def wait(self):
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
-        self.time = 360
-        self.pelaaja.PlayTime += odotus
-        if self.time > 1440:
-            self.time = self.time - 1440
-        return True            
+        odotus = (360 - self.time + 1440) % 1440
+        self.advTime(odotus)
+        #self.time = 360
+        #self.pelaaja.PlayTime += odotus
+        #if self.time > 1440:
+        #    self.time = self.time - 1440
+        #return True
 
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
