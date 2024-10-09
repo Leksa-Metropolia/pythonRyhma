@@ -9,7 +9,7 @@ class Game:
     def __init__(self):
         # staattiset muuttujat listoille, jotka sisaltavat pelikulkureitit
         self.airports = [] #lista kaikista lentokentista
-        self.time = 0 #peliaika minuutteina
+        self.time = 720 #peliaika minuutteina
         self.l1 = ["FI", "MG", "TH", "CA", "AU", "BR", "FI"]
         self.l2 = ["JM", "CA", "DK", "CG", "JP", "NP", "JM"]
         self.l3 = ["IS", "RU", "ZA", "HN", "CH", "AU", "IS"]
@@ -19,12 +19,12 @@ class Game:
         self.l7 = []
         self.l8 = []
         self.route = None
-        self.hintaLK = 0 #hinta lentokilometrille
-        self.hintaM = 0 #hinta mantereen vaihdolle
-        self.hintaR = 0 #hinta maan vaihdolle
-        self.hintaY = 0 #hinta yopymiselle
+        self.hintaLK = 0.035 #hinta lentokilometrille
+        self.hintaM = 120 #hinta mantereen vaihdolle
+        self.hintaR = 40 #hinta maan vaihdolle
+        self.hintaY = 120 #hinta yopymiselle
         self.flightSpeed = 13 #lentonopeus kilometria minuutissa
-        self.maxFlightDistance = 0 #lentojen maksimi pituus
+        self.maxFlightDistance = 12000 #lentojen maksimi pituus
         self.routes = [self.l1, self.l2, self.l3]
 
         self.connector = GameDBC()
@@ -151,7 +151,7 @@ class Game:
             #    self.time = self.time - 1440
 
             # Lisää varoja yöpymisen jälkeen
-            lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
+            lisa_varat = 1000  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
             self.pelaaja.Funds += lisa_varat
             return True
 

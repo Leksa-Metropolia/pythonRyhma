@@ -141,8 +141,9 @@ def selectFlight(game):
     syote = inputCheck("Manner: ", continents)
     countries = []
     for airport in flights:
-        if syote == airport['country']:
+        if syote == airport['continent']:
             countries.append(airport['country'])
+    countries = np.unique(countries)
 
     print(f"Mihin maahan lennetään?")
     for country in countries:
