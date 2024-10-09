@@ -16,7 +16,7 @@ class Player:
         self.Route = 0 #valittu reitti
         self.PlayTime = 0
         self.LastSlept = 0
-        self.Nimi = None
+        self.Name = None
 
     def updateLocation(self, airport):
         self.Airport = airport
