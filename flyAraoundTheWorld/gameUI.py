@@ -182,7 +182,7 @@ def showHS(Origin):
     exp =[1, 2, 3]
     input = inputCheck(query, exp)
     if input == 1:
-        
+        DUMMY = 0
     
 
     #kysyy pelaajalta minka reitin parhaat tulokset halutaan nahda
