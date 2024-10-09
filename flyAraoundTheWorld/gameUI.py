@@ -48,15 +48,39 @@ def gameActiveMenu(game):
 
 #metodi nayttamaan pelin loppu sivun
 def gameEndSuccess(game):
-    DUMMY = 0
+    print("Onnittelut! Voitit pelin.")
     #nayta pelaajan kaymien valtioiden, mannerten ja lentokenttien maarat
+    print(f"Vierailit näillä lentokentillä: {len(game.pelaaja.Airports)}")
+    print(f"Vierailit näissä maissa: {len(game.pelaaja.Countries)}")
+    print(f"Vierailit näillä mantereilla: {len(game.pelaaja.Continents)}")
     #nayta pelaajan pistetulos
+    final_score = game.finalScore()
+    print(f"Lopullinen pistemääräsi on: {final_score}")
     #siirra pelaaja paavalikkoon ENTERia painamalla
+    input("Paina ENTER siirtyäksesi takaisin päävalikkoon.")
+    gameMainMenu(game)
 
-def gameEndFailure(game):
-    DUMMY = 0
+def gameEndFailure(game, syy):
+    print("Voi ei, hävisit pelin")
+
+    if syy == "varat":
+        print("Rahasi loppuivat kesken")
+
+    elif syy == "aika":
+        print("Aikasi loppui kesken, et saavuttanut tavoitettasi ajoissa.")
+
+    else:
+        print("Tuntematon syy. Peli päättyi.")
+
     #nayta pelaajan kaymien valtioiden, mannerten ja lentokenttien maarat
+    print(f"Vierailit näillä lentokentillä: {len(game.pelaaja.Airports)}")
+    print(f"Vierailit näissä maissa: {len(game.pelaaja.Countries)}")
+    print(f"Vierailit näillä mantereilla: {len(game.pelaaja.Continents)}")
+    final_score = game.finalScore()
+    print(f"Lopullinen pistemääräsi on: {final_score}")
     #siirra pelaaja paavalikkoon ENTERia painamalla
+    input("Paina ENTER siirtyäksesi takaisin päävalikkoon.")
+    gameMainMenu(game)
 
 #metodi tarkistamaan pelaajan syotteen ja kutsumaan edellisen syote rivin uudelleen jos ei validi syote pelaajalta
 def inputCheck(query, expected):
