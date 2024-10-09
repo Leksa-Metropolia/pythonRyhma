@@ -186,6 +186,7 @@ def showHS(game):
     syote = inputCheck(query, exp)
     if syote == str(1) or syote == str(2) or syote == str(3):
         hs = game.connector.getHighScores(syote)
+        print(f"TOP 10 \n {hs[0]}\n {hs[1]}\n {hs[2]}\n {hs[3]}\n {hs[4]}\n {hs[5]}\n {hs[6]}\n {hs[7]}\n {hs[8]}\n {hs[9]}")
         
     
 
