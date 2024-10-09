@@ -1,3 +1,5 @@
+from random import randint
+
 #metodi nayttamaan pelin aloitus sivun
 def gameMainMenu(game):
     print(f"Tervetuloa pelaamaan Fly Around the World -peliä!")
@@ -13,6 +15,10 @@ def gameMainMenu(game):
         query = f"Mikä reitti pelataan? (0-3, 0 on satunnainen)"
         exp = [0, 1, 2, 3]
         input = inputCheck(query, exp)
+        if input == 0:
+            input = randint(1, 3)
+        game.route = game.routes[input]
+
 
     #nayta vaitoehdot pelaajalle: pelin aloitus, high score lista ja lopeta ohjelma
 
