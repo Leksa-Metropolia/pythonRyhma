@@ -138,4 +138,7 @@ def showHS(origin):
 #metodi tyhjentamaan komentokehoteeen
 def clearTerminal(menu):
     #tyhjentaa terminaalin tekstista ennen seuraavan valikon tulostamista
-    os.system('cls' if os.name == 'nt' else 'clear')
+    if os.name == 'nt':  # Windows
+        os.system('cls')
+    else:  # Unix-pohjaiset (Linux, macOS)
+        os.system('clear')
