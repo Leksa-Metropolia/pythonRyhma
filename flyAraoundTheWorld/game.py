@@ -43,7 +43,7 @@ class Game:
         #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
         # Hakee nykyisen aseman tiedot pelaajalta
         kohde_asema = icao
-        nykyinen_asema = Player.sijainti
+        nykyinen_asema = Player.ICAO
 
         # Tarkistetaan kello
         nykyinen_aika_tunnit = (self.time % 1440) // 60  # Peliaika tunnit vuorokaudessa
@@ -69,7 +69,7 @@ class Game:
         hinta, matka = self.laske_lennon_hinta(Player, kohde_asema)
 
         # Tarkistan, että pelaajalla on tarpeeksi varoja
-        if Player.rahat < hinta:
+        if Player.Funds < hinta:
             print("Ei tarpeeksi varoja lennolle.")
             return False
 
@@ -77,7 +77,7 @@ class Game:
         Player.paivita_sijainti(kohde_asema)
 
         # Vähennän
-        Player.rahat -= hinta
+        Player.Funds -= hinta
 
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(matka)
