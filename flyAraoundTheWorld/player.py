@@ -2,8 +2,8 @@
 class Player:
     def __init__(self):
         self.Airport = None #pelaajan taman hetkinen sijainti
-        self.lat = None
-        self.lon = None
+        self.Lat = None
+        self.Lon = None
         self.Country = None #pelaajan taman hetkinen sijainti
         self.Continent = None #pelaajan taman hetkinen sijainti
         self.Funds = 0 #pelaajan kaytettavissa olevat varat
@@ -13,5 +13,6 @@ class Player:
         self.Continents = [] #pelaajan vierailemat mantereet
         self.FlownKM = 0 #lennetyt kilometrit
         self.Route = 0 #valittu reitti
-        self.playTime = 0
-        self.lastSlept = 0
+        self.PlayTime = 0
+        self.LastSlept = 0
+        self.Nimi = None

@@ -123,7 +123,7 @@ class Game:
             # Vähennä yöpyminen varoista
             Player.Funds -= self.hintaY
             # Nollataan hereilläoloajan seuranta
-            self.lastSlept = 0
+            self.LastSlept = 0
 
             # Siirrä peliaikaa eteenpäin (8 tuntia)
             self.time += 8 * 60  # 8 tuntia minuutteina
