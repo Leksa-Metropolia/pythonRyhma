@@ -47,8 +47,10 @@ class Game:
         nykyinen_asema = Player.ICAO
 
         # Tarkistetaan kello
-        #aika_minuutit = (self.time % 1440) // 60  # Peliaika minuutut vuorokaudessa
         # Lentojen lähtöaikaikkuna klo 6:00 - 2:00 (24h kellonaika)
+        #if self.time < 360 or self.time > 120:
+            #odotus 
+
        
 
         # Lasken matka nykyisen aseman ja kohteen välillä geopylla
@@ -70,7 +72,7 @@ class Game:
             return False
 
         # Päivitän pelaajan sijainti
-        Player.paivita_sijainti(kohde_asema)
+        #Player.paivita_sijainti(kohde_asema)
 
         # Vähennän
         Player.Funds -= hinta
@@ -78,7 +80,9 @@ class Game:
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(matka)
         self.time += lentoaika
-        Player.paivita_aika(lentoaika)
+        Player.PlayTime += lentoaika
+        if self.time > 1440:
+                self.time = self.time - 1440
 
         print(f"Lento suoritettu kohteeseen {kohde_asema['kaupunki']}.")
         return True
@@ -124,7 +128,8 @@ class Game:
             # Siirrä peliaikaa eteenpäin (8 tuntia)
             self.time += 420
             Player.PlayTime += 420
-            
+            if self.time > 1440:
+                self.time = self.time - 1440
 
             # Lisää varoja yöpymisen jälkeen
             lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
@@ -134,7 +139,7 @@ class Game:
     #metodi odottamiselle
     def wait(self, odotus):
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
-        self.time += odotus
+        self.time = 360
         Player.PlayTime += odotus
         if self.time > 1440:
             self.time = self.time - 1440
