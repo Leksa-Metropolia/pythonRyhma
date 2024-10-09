@@ -1,10 +1,8 @@
 #luokka yllapitamaan pelisilmukkaa
 from flyAraoundTheWorld.DBConnection import GameDBC
-from flyAraoundTheWorld.distanceCalculator import calculateDistance
 from flyAraoundTheWorld.gameUI import gameMainMenu, gameActiveMenu
 from flyAraoundTheWorld.player import Player
-import mysql.connector
-from geopy import distance
+from geopy.distance import geodesic
 from random import randint
 
 class Game:
@@ -188,23 +186,23 @@ class Game:
 
         #laske pelin lopputulos tallennetusta datasta
 
-    def calculateDistance(lat1, lon1, lat2, lon2):
-        s1 = (lat1, lon1)
-        s2 = (lat2, lon2)
+    def calculateDistance(self, airport):
+        s1 = (self.pelaaja.Lat, self.pelaaja.Lon)
+        s2 = (airport['lat'], airport['lon'])
         distance = geodesic(s1, s2).km
         return distance
 
     # funktio karsimaan resurssien ulottumattomissa olevat kentat
-    def getValidAirports(game, airports):
+    def getValidAirports(self, airports):
         airportList = []
-        nykyinenSijainti = (game.pelaaja.lat, game.pelaaja.lon)  # Pelaajan nykyinen sijainti
+        nykyinenSijainti = (self.pelaaja.Lat, self.pelaaja.Lon)  # Pelaajan nykyinen sijainti
 
         # Käyn läpi listan lentokentista
         for airport in airports:
             kenttaSijainti = (airport[8], airport[9])  # Lentokentän koordinaatit
 
             # Lasketaan etäisyys pelaajan ja lentokentän välillä
-            etaisyys = calculateDistance(pelaaja.lat, pelaaja.lon, airport[8], airport[9])
+            etaisyys = self.calculateDistance(self.pelaaja.lat, self.pelaaja.lon, airport[8], airport[9])
 
             # Tarkistetan, riittävätkö pelaajan resurssit lentämään kentälle
             if etaisyys <= pelaaja.maxFlightDistance and pelaaja.Funds >= etaisyys * Game.hintaLK:
