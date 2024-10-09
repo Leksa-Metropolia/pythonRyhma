@@ -113,24 +113,25 @@ class Game:
         return matka / self.flightSpeed
 
     #metodi yopymiselle
-    def sleep(self, Player):
+    def sleep(self,):
         # Tarkista, että pelaajalla on varaa yöpyä
-        #if Player.varat < self.hintaY:
+        if Player.Funds < self.hintaY:
             #palauttaa endgame screenin
+            print("Placeholder")
 
-        # Vähennä yöpyminen varoista
-        #Player.varat -= self.hintaY
+        else:
+            # Vähennä yöpyminen varoista
+            Player.Funds -= self.hintaY
+            # Nollataan hereilläoloajan seuranta
+            self.lastSlept = 0
 
-        # Nollataan hereilläoloajan seuranta
-        self.lastSlept = 0
+            # Siirrä peliaikaa eteenpäin (8 tuntia)
+            self.time += 8 * 60  # 8 tuntia minuutteina
 
-        # Siirrä peliaikaa eteenpäin (8 tuntia)
-        self.time += 8 * 60  # 8 tuntia minuutteina
-
-        # Lisää varoja yöpymisen jälkeen
-        lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
-        Player.varat += lisa_varat
-        return True
+            # Lisää varoja yöpymisen jälkeen
+            lisa_varat = 9999  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
+            Player.Funds += lisa_varat
+            return True
 
     #metodi odottamiselle
     def wait(self, odotus):
