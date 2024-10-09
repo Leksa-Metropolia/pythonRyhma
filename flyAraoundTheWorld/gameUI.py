@@ -104,8 +104,15 @@ def selectFlight(game):
     #palaa pelin kulkuvalikkoon
 
 #metodi nayttamaan high score listan
-def showHS(origin):
+def showHS(Origin):
     DUMMY = 0
+    query = "Minkä reitin parhaat tulokset haluat?"
+    exp =[1, 2, 3]
+    input = inputCheck(query, exp)
+    if input == 1:
+        
+    
+
     #kysyy pelaajalta minka reitin parhaat tulokset halutaan nahda
     #nayttaa pelaajalle reitin 10 parasta tulosta
     #palaa ENTERia painamalla edelliseen valikkoon
