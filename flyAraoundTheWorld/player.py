@@ -10,6 +10,7 @@ class Player:
         self.Continents = [] #pelaajan vierailemat mantereet
         self.FlownKM = 0 #lennetyt kilometrit
         self.Route = 0 #valittu reitti
+        self.MoneySpent = 0
         self.PlayTime = 0
         self.LastSlept = 0
         self.Name = None

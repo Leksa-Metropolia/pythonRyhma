@@ -68,6 +68,7 @@ class Game:
 
         # Vähennän
         self.pelaaja.Funds -= hinta
+        self.pelaaja.MoneySpent += hinta
 
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(self.calculateDistance(airport))
@@ -111,6 +112,7 @@ class Game:
         else:
             # Vähennä yöpyminen varoista
             self.pelaaja.Funds -= self.hintaY
+            self.pelaaja.MoneySpent += self.hintaY
             # Nollataan hereilläoloajan seuranta
             self.LastSlept = 0
 

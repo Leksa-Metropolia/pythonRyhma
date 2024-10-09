@@ -1,5 +1,6 @@
 from random import randint
 import os
+import sys
 import numpy as np
 from math import ceil
 
@@ -9,7 +10,8 @@ def gameMainMenu(game):
     print(f"Tervetuloa pelaamaan Fly Around the World -peliä!")
     print(f"Päävalikko:")
     print(f"1. Aloita uusi peli")
-    print(f"2. Lopeta")
+    print(f"2. Hae parhaat tulokset")
+    print(f"3. Lopeta")
     query = f"Mitä tehdään? "
     exp = ['1', '2']
     syote = inputCheck(query, exp)
@@ -21,9 +23,14 @@ def gameMainMenu(game):
         syote = inputCheck(query, exp)
         if syote == 0:
             syote = randint(1, 8)
+        game.pelaaja.Route = syote
         game.route = game.routes[syote - 1]
         game.setStartLocation()
         gameActiveMenu(game)
+    elif syote == '2':
+        showHS(game)
+    elif syote == '3':
+        sys.exit(0)
 
     #nayta vaitoehdot pelaajalle: pelin aloitus, high score lista ja lopeta ohjelma
 
@@ -90,6 +97,16 @@ def gameEndSuccess(game):
     final_score = game.finalScore()
     print(f"Lopullinen pistemääräsi on: {final_score}")
     #siirra pelaaja paavalikkoon ENTERia painamalla
+    score = []
+    score.append(game.pelaaja.Name)
+    score.append(game.pelaaja.Flights)
+    score.append(final_score)
+    score.append(game.pelaaja.PlayTime)
+    score.append(game.pelaaja.MoneySpent)
+    score.append(game.pelaaja.FlownKM)
+    score.append(len(game.pelaaja.Countries))
+    score.append(len(game.pelaaja.Continents))
+    score.append(game.pelaaja.Route)
     input("Paina ENTER siirtyäksesi takaisin päävalikkoon.")
     gameMainMenu(game)
 
@@ -138,12 +155,14 @@ def selectFlight(game):
     continents = np.unique(continents)
 
     print(f"Mille mantereelle lennetään?")
+    i = 0
     for continent in continents:
-        print(f"{continent}")
-    syote = inputCheck("Manner: ", continents)
+        i += 1
+        print(f"{i}. {continent}")
+    syote = inputCheck("Manner: ", range(1, len(continents)+1))
     countries = []
     for airport in flights:
-        if syote == airport['continent']:
+        if continents[syote-1] == airport['continent']:
             countries.append(airport['country'])
     countries = np.unique(countries)
 
@@ -185,7 +204,11 @@ def showHS(game):
     exp = range(1,9)
     syote = inputCheck(query, exp)
     hs = game.connector.getHighScores(syote)
-    print(f"TOP 10 \n {hs[0]}\n {hs[1]}\n {hs[2]}\n {hs[3]}\n {hs[4]}\n {hs[5]}\n {hs[6]}\n {hs[7]}\n {hs[8]}\n {hs[9]}")
+    print(f"Reitin #{syote} TOP 10:")
+    i = 0
+    for score in hs:
+        i += 1
+        print(f"{i}. {score[0]} {score[1]} {score[2]}")
     input("Paina ENTER siirtyäksesi takaisin päävalikkoon.")
     gameMainMenu(game)
     
