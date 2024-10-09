@@ -48,6 +48,9 @@ class Game:
         self.pelaaja.Airport = apList[randint(0, len(apList) - 1)]
         self.pelaaja.Country = self.pelaaja.Airport[3]
         self.pelaaja.Continent = self.pelaaja.Airport[5]
+        self.pelaaja.ICAO = self.pelaaja.Airport[0]
+        self.pelaaja.Lat = self.pelaaja.Airport[8]
+        self.pelaaja.Lon = self.pelaaja.Airport[9]
 
     #metodi lentamiselle
     def fly(self, icao):
