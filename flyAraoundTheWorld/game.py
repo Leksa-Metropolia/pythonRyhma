@@ -24,7 +24,7 @@ class Game:
         self.hintaR = 0 #hinta maan vaihdolle
         self.hintaY = 0 #hinta yopymiselle
         self.flightSpeed = 13 #lentonopeus kilometria minuutissa
-        self.maxFlightDistance = 0 #lentojen maksimi pituus
+        self.maxFlightDistance = 12000 #lentojen maksimi pituus
         self.routes = [self.l1, self.l2, self.l3]
 
         self.connector = GameDBC()
