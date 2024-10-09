@@ -19,7 +19,6 @@ class GameDBC:
                f" FROM airport JOIN country on airport.iso_country = country.iso_country WHERE ident = '{saveTarget}'")
         #kirjoita sql haku lause hakemaan kentan ICAO-tunniste, koko nimi, maatunniste, maa, kaupunki, mannertunniste, manner, latitude, longitude, tyyppi
         cursor.execute(sql)
-        #TODO tallenna haetut tiedot jarkevassa muodossa
         saveTarget = cursor.fetchall()
         return saveTarget
 
