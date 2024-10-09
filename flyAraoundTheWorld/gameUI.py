@@ -28,6 +28,7 @@ def gameMainMenu(game):
 
 #metodi nayttamaan pelin kulun sivun
 def gameActiveMenu(game):
+    clearTerminal()
     remaining = game.remainingCountries()
     choices = []
     exp = ['4']
@@ -35,7 +36,7 @@ def gameActiveMenu(game):
     if len(remaining) == 0 and game.pelaaja.Airport == game.pelaaja.Start:
         gameEndSuccess(game)
     elif game.pelaaja.Funds < game.hintaY and not game.canFinish():
-        gameEndFailure(game)
+        gameEndFailure(game, 'varat')
 
     if game.pelaaja.LastSlept < 17*60 and len(game.getValidAirports()) > 0 and game.airportOpen():
         a = "1. Lennä"
@@ -73,6 +74,7 @@ def gameActiveMenu(game):
 
 #metodi nayttamaan pelin loppu sivun
 def gameEndSuccess(game):
+    clearTerminal()
     print("Onnittelut! Voitit pelin.")
     #nayta pelaajan kaymien valtioiden, mannerten ja lentokenttien maarat
     print(f"Vierailit näillä lentokentillä: {len(game.pelaaja.Airports)}")
@@ -86,6 +88,7 @@ def gameEndSuccess(game):
     gameMainMenu(game)
 
 def gameEndFailure(game, syy):
+    clearTerminal()
     print("Voi ei, hävisit pelin.")
 
     if syy == "varat":
@@ -173,7 +176,7 @@ def showHS(origin):
     #palaa ENTERia painamalla edelliseen valikkoon
 
 #metodi tyhjentamaan komentokehoteeen
-def clearTerminal(menu):
+def clearTerminal():
     #tyhjentaa terminaalin tekstista ennen seuraavan valikon tulostamista
     if os.name == 'nt':  # Windows
         os.system('cls')
