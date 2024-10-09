@@ -201,12 +201,12 @@ class Game:
         return distance
 
     # funktio karsimaan resurssien ulottumattomissa olevat kentat
-    def getValidAirports(self, airports):
+    def getValidAirports(self):
         airportList = []
         #nykyinenSijainti = (self.pelaaja.Lat, self.pelaaja.Lon)  # Pelaajan nykyinen sijainti
 
         # Käyn läpi listan lentokentista
-        for airport in airports:
+        for airport in self.airports:
             # Lasketaan etäisyys pelaajan ja lentokentän välillä
             etaisyys = self.calculateDistance(airport)
 
