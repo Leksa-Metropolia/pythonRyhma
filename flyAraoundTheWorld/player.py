@@ -2,6 +2,7 @@
 class Player:
     def __init__(self):
         self.Airport = None #pelaajan taman hetkinen sijainti
+        self.Start = None
         self.Lat = None
         self.Lon = None
         self.Country = None #pelaajan taman hetkinen sijainti
