@@ -1,4 +1,6 @@
 from geopy.distance import geodesic
+from flyAraoundTheWorld.player import Player
+from flyAraoundTheWorld.game import Game
 
 #funktio laskemaan lentokenttien valiset etaisyydet
 def calculateDistance(lat1, lon1, lat2, lon2):
@@ -8,7 +10,27 @@ def calculateDistance(lat1, lon1, lat2, lon2):
     return distance
 
 #funktio karsimaan resurssien ulottumattomissa olevat kentat
-def getValidAirports():
+def getValidAirports(pelaaja, airports):
     airportList = []
-    #TODO palauta lista lentokenttien ICAO-koodeja joille pelaaja pystyy lentamaan
+    nykyinenSijainti = (pelaaja.lat, pelaaja.lon)  # Pelaajan nykyinen sijainti
+
+# Käyn läpi listan lentokentista
+    for airport in airports:
+        kenttaSijainti = (airport['lat'], airport['lon']) #Lentokentän koordinaatit
+
+        # Lasketaan etäisyys pelaajan ja lentokentän välillä
+        etaisyys = calculateDistance(Player.lat, Player.lon, airport['lat'], airport['lon'])
+
+        # Tarkistetan, riittävätkö pelaajan resurssit lentämään kentälle
+        if etaisyys <= Player.maxFlightDistance and Player.Funds >= etaisyys * Game.hintaLK:
+            # Jos lentokenttä on kelvollinen, kerätään sen tiedot
+            lentokenttaTiedot = {
+                'ICAO': airport['ICAO'],
+                'Nimi': airport['nimi'],
+                'Maa_tunniste': airport['maa_tunniste'],
+                'Maa': airport['maa'],
+                'Manner': airport['manner']
+            }
+            airportList.append(lentokenttaTiedot)
+
     return airportList
