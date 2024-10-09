@@ -9,18 +9,19 @@ def gameMainMenu(game):
     print(f"Päävalikko:")
     print(f"1. Aloita uusi peli")
     print(f"2. Lopeta")
-    query = f"Mitä tehdään?"
+    query = f"Mitä tehdään? "
     exp = ['1', '2']
-    input = inputCheck(query, exp)
-    if input == 1:
-        setName = input(f"Anna pelaajanimi: ")
+    syote = inputCheck(query, exp)
+    if syote == '1':
+        setName = input("Anna pelaajanimi: ")
         game.pelaaja.Name = setName
         query = f"Mikä reitti pelataan? (0-3, 0 on satunnainen)"
-        exp = [0, 1, 2, 3]
-        input = inputCheck(query, exp)
-        if input == 0:
-            input = randint(1, 3)
-        game.route = game.routes[input]
+        exp = ['0', '1', '2', '3']
+        syote = inputCheck(query, exp)
+        syote = int(syote)
+        if syote == 0:
+            syote = randint(1, 3)
+        game.route = game.routes[syote - 1]
         game.setStartLocation()
         gameActiveMenu(game)
 
@@ -61,7 +62,7 @@ def gameActiveMenu(game):
     for choice in choices:
         print(choice)
     query = "Mitä tehdään? "
-    input = inputCheck(query, exp)
+    syote = inputCheck(query, exp)
 
 
     #nayta pelaajan tiedot
@@ -132,19 +133,19 @@ def selectFlight(game):
     print(f"Mille mantereelle lennetään?")
     for continent in continents:
         print(f"{continent}")
-    input = inputCheck("Manner: ", continents)
+    syote = inputCheck("Manner: ", continents)
     countries = []
     for airport in flights:
-        if input == airport['country']:
+        if syote == airport['country']:
             countries.append(airport['country'])
 
     print(f"Mihin maahan lennetään?")
     for country in countries:
         print(f"{country}")
-    input = inputCheck("Maa: ", countries)
+    syote = inputCheck("Maa: ", countries)
     kentat = []
     for airport in flights:
-        if input == airport['country']:
+        if syote == airport['country']:
             kentat.append(airport)
 
     print(f"Mille kentälle lennetään?")
@@ -152,10 +153,10 @@ def selectFlight(game):
     for airport in kentat:
         exp.append(airport['icao'])
         print(f"{airport['icao']} {airport['name']}")
-    input = inputCheck("Anna kentän ICAO-koodi: ", exp)
+    syote = inputCheck("Anna kentän ICAO-koodi: ", exp)
     kohde = None
     for airport in kentat:
-        if input == airport['icao']:
+        if syote == airport['icao']:
             kohde = airport
     game.fly(kohde)
     gameActiveMenu(game)
