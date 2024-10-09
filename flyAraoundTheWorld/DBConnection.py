@@ -16,7 +16,7 @@ class GameDBC:
         cursor = self.connector.cursor()
         sql = (f"SELECT airport.ident, airport.name as airport_name, airport.iso_country, country.name as country_name, airport.municipality, airport.continent,"
                f" country.continent as country_continent, airport.latitude_deg, airport.longitude_deg, airport.type"
-               f" FROM airport JOIN country on airport.iso_country = country.iso_country WHERE ident = {saveTarget}")
+               f" FROM airport JOIN country on airport.iso_country = country.iso_country WHERE ident = '{saveTarget}'")
         #kirjoita sql haku lause hakemaan kentan ICAO-tunniste, koko nimi, maatunniste, maa, kaupunki, mannertunniste, manner, latitude, longitude, tyyppi
         cursor.execute(sql)
         #TODO tallenna haetut tiedot jarkevassa muodossa
