@@ -3,6 +3,7 @@ import os
 
 #metodi nayttamaan pelin aloitus sivun
 def gameMainMenu(game):
+    clearTerminal() #Tyhjennetään terminaali ennenkuin jatketaan
     print(f"Tervetuloa pelaamaan Fly Around the World -peliä!")
     print(f"Päävalikko:")
     print(f"1. Aloita uusi peli")
