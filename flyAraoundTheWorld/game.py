@@ -45,6 +45,13 @@ class Game:
                 apList.append(ap)
         startLocation = apList[randint(0, len(apList) - 1)]
         self.pelaaja.updateLocation(startLocation)
+        self.pelaaja.Start = startLocation
+
+    def canFinish(self):
+        if self.laske_lennon_hinta(self.pelaaja.Start) < self.pelaaja.Funds:
+            return True
+        else:
+            return False
 
     def remainingCountries(self):
         remaining = []
@@ -196,7 +203,7 @@ class Game:
     # funktio karsimaan resurssien ulottumattomissa olevat kentat
     def getValidAirports(self, airports):
         airportList = []
-        nykyinenSijainti = (self.pelaaja.Lat, self.pelaaja.Lon)  # Pelaajan nykyinen sijainti
+        #nykyinenSijainti = (self.pelaaja.Lat, self.pelaaja.Lon)  # Pelaajan nykyinen sijainti
 
         # Käyn läpi listan lentokentista
         for airport in airports:
@@ -204,7 +211,7 @@ class Game:
             etaisyys = self.calculateDistance(airport)
 
             # Tarkistetan, riittävätkö pelaajan resurssit lentämään kentälle
-            if etaisyys <= self.maxFlightDistance and self.pelaaja.Funds >= etaisyys * self.hintaLK:
+            if etaisyys <= self.maxFlightDistance and self.pelaaja.Funds >= self.laske_lennon_hinta(airport) and self.pelaaja.LastSlept + self.lennon_kesto(etaisyys) < 22*60:
                 # Jos lentokenttä on kelvollinen, kerätään sen tiedot
 
                 airportList.append(airport)
@@ -215,3 +222,9 @@ class Game:
         self.pelaaja.PlayTime += time
         self.pelaaja.LastSlept += time
         self.time = (self.time + time) % 1440
+
+    def airportOpen(self):
+        if 120 < self.time < 360:
+            return False
+        else:
+            return True

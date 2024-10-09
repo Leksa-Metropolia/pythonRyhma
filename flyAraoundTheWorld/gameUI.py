@@ -7,7 +7,7 @@ def gameMainMenu(game):
     print(f"1. Aloita uusi peli")
     print(f"2. Lopeta")
     query = f"Mitä tehdään?"
-    exp = [1, 2]
+    exp = ['1', '2']
     input = inputCheck(query, exp)
     if input == 1:
         setName = input(f"Anna pelaajanimi: ")
@@ -25,19 +25,41 @@ def gameMainMenu(game):
 
 #metodi nayttamaan pelin kulun sivun
 def gameActiveMenu(game):
+    remaining = game.remainingCountries()
+    choices = []
+    exp = ['4']
+
+    if len(remaining) == 0 and game.pelaaja.Airport == game.pelaaja.Start:
+        gameEndSuccess(game)
+    elif game.pelaaja.Funds < game.hintaY and not game.canFinish():
+        gameEndFailure(game)
+
+    if game.pelaaja.LastSlept < 17*60 and len(game.getValidAirports()) > 0 and game.airportOpen():
+        a = "1. Lennä"
+        exp.append('1')
+        choices.append(a)
+    elif game.pelaaja.Funds > game.hintay and game.pelaaja.LastSlept > 0:
+        a = "2. Yövy"
+        exp.append('2')
+        choices.append(a)
+    elif not game.airportOpen():
+        a = "3. Odota"
+        exp.append('3')
+        choices.append(a)
+
+
+
     print(f"Sijainti: {game.pelaaja.Airport[1]}, {game.pelaaja.Country}")
     print(f"Rahaa jäljellä: {game.pelaaja.Funds}")
-    remaining = game.remainingCountries()
     print(f"Reitillä vielä vierailtavat maat: {remaining}")
     print(f"Aika: {game.time}")
     print(f"Vaihtoehdot:")
-    print(f"1. Lennä")
-    print(f"2. Yövy")
-    print(f"3. Odota lentokentän aukeamista")
-    print(f"4. Lopeta peli kesken")
+    for choice in choices:
+        print(choice)
     query = "Mitä tehdään? "
-    exp = [1, 2, 3, 4]
     input = inputCheck(query, exp)
+
+
     #nayta pelaajan tiedot
     #nayta vaihtoehdot pelaajalle:
     #lenna: avaa syoteenoton lentokohteen valinnaelle
