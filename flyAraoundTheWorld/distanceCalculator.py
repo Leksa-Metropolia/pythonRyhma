@@ -19,10 +19,10 @@ def getValidAirports(pelaaja, airports):
         kenttaSijainti = (airport['lat'], airport['lon']) #Lentokentän koordinaatit
 
         # Lasketaan etäisyys pelaajan ja lentokentän välillä
-        etaisyys = calculateDistance(Player.lat, Player.lon, airport['lat'], airport['lon'])
+        etaisyys = calculateDistance(pelaaja.lat, pelaaja.lon, airport['lat'], airport['lon'])
 
         # Tarkistetan, riittävätkö pelaajan resurssit lentämään kentälle
-        if etaisyys <= Player.maxFlightDistance and Player.Funds >= etaisyys * Game.hintaLK:
+        if etaisyys <= pelaaja.maxFlightDistance and pelaaja.Funds >= etaisyys * Game.hintaLK:
             # Jos lentokenttä on kelvollinen, kerätään sen tiedot
             lentokenttaTiedot = {
                 'ICAO': airport['ICAO'],
