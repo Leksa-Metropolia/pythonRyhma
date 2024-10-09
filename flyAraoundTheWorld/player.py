@@ -8,7 +8,7 @@ class Player:
         self.Country = None #pelaajan taman hetkinen sijainti
         self.Continent = None #pelaajan taman hetkinen sijainti
         self.ICAO = None #pelaajan tämänhetkinen kenttä
-        self.Funds = 0 #pelaajan kaytettavissa olevat varat
+        self.Funds = 1000 #pelaajan kaytettavissa olevat varat
         self.Flights = 0 #pelaajan lentojen maara
         self.Airports = [] #pelaajan vierailemat lentokentat
         self.Countries = [] #pelaajan vierailemat maat
