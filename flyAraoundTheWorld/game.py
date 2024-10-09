@@ -62,46 +62,16 @@ class Game:
 
     #metodi lentamiselle
     def fly(self, airport):
-        #muuta pelaajan sijainti annettuun arvoon ja tallentaa Player luokkaan uudet lentokentat, maat ja mantereet joilla kayty
-        # Hakee nykyisen aseman tiedot pelaajalta
-
-        # Tarkistetaan kello
-        # Lentojen lähtöaikaikkuna klo 6:00 - 2:00 (24h kellonaika)
-        #if self.time < 360 or self.time > 120:
-            #odotus 
-
-       
-
-        # Lasken matka nykyisen aseman ja kohteen välillä geopylla
-        #nykyinen_koordi = (nykyinen_asema['latitude'], nykyinen_asema['longitude'])
-        #kohde_koordi = (kohde_asema['latitude'], kohde_asema['longitude'])
-        #matka = distance.distance(nykyinen_koordi, kohde_koordi).km
-
-        # Tarkistan että matka ei ylitä max lentomatkaa
-        #if distance > self.maxFlightDistance:
-        #    print("Lento on liian pitkä, et voi valita tätä lentoa.")
-        #    return False
 
         # Lasken lentohintaa
         hinta = self.laske_lennon_hinta(airport)
-
-        # Tarkistan, että pelaajalla on tarpeeksi varoja
-        #if Player.Funds < hinta:
-        #    print("Ei tarpeeksi varoja lennolle.")
-        #    return False
-
-        # Päivitän pelaajan sijainti
-        #Player.paivita_sijainti(kohde_asema)
 
         # Vähennän
         self.pelaaja.Funds -= hinta
 
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(self.calculateDistance(airport))
-        #self.time += lentoaika
-        #Player.PlayTime += lentoaika
-        #if self.time > 1440:
-        #        self.time = self.time - 1440
+
         self.advTime(lentoaika)
         print(f"Lento suoritettu kohteeseen {airport['city']}.")
         return True
@@ -145,10 +115,6 @@ class Game:
 
             # Siirrä peliaikaa eteenpäin (8 tuntia)
             self.advTime(420)
-            #self.time += 420
-            #self.pelaaja.PlayTime += 420
-            #if self.time > 1440:
-            #    self.time = self.time - 1440
 
             # Lisää varoja yöpymisen jälkeen
             lisa_varat = 1000  # Pelaaja saa hirveesti massiii(OF maksaa hyvin ig)
@@ -160,11 +126,6 @@ class Game:
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
         odotus = (360 - self.time + 1440) % 1440
         self.advTime(odotus)
-        #self.time = 360
-        #self.pelaaja.PlayTime += odotus
-        #if self.time > 1440:
-        #    self.time = self.time - 1440
-        #return True
 
     # metodi laskemaan pelin pistesaldoa
     def finalScore(self):
@@ -203,7 +164,6 @@ class Game:
     # funktio karsimaan resurssien ulottumattomissa olevat kentat
     def getValidAirports(self):
         airportList = []
-        #nykyinenSijainti = (self.pelaaja.Lat, self.pelaaja.Lon)  # Pelaajan nykyinen sijainti
 
         # Käyn läpi listan lentokentista
         for airport in self.airports:

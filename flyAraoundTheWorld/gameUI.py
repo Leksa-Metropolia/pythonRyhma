@@ -177,7 +177,6 @@ def selectFlight(game):
 
 #metodi nayttamaan high score listan
 def showHS(game):
-    DUMMY = 0
     query = "Minkä reitin parhaat tulokset haluat?"
     exp = str([1, 2, 3])
     syote = inputCheck(query, exp)
