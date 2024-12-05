@@ -1,10 +1,12 @@
-html{
+html {
     font-family: "Source Code Pro", monospace;
 }
-body{
-    margin-top:0;
+
+body {
+    margin-top: 0;
     margin-bottom: 0;
 }
+
 header {
     font-size: 100px;
     text-align: center;
@@ -22,19 +24,21 @@ header {
     background-color: lightgray;
     height: 445px;
 }
-figure{
+
+figure {
     float: right;
     height: 600px;
     margin-top: 0;
     border: 5px, solid, black;
 }
 
-.texts{
-   background-color: black;
-   width: 800px;
-   height: 600px;
-   border: 5px, solid, black;
+.texts {
+    background-color: black;
+    width: 800px;
+    height: 600px;
+    border: 5px, solid, black;
 }
-.texts p{
+
+.texts p {
     margin: 0;
 }
