@@ -4,10 +4,28 @@ header {
     padding: 5px;
 }
 
-.playerdata{
+.playerdata {
     color: red;
+    background-color: lightgray;
+    padding: 5px;
+    margin: 5px;
+    margin-right: 650px;
 }
 
-.UI{
-    color:green;
+.UI {
+    color: green;
+    background-color: lightgray;
+    padding: 5px;
+    margin:5px;
+    margin-right: 650px;
+    height: 435px;
+
+}
+.content{
+    display: block;
+    text-align: left;
+}
+figure{
+    float: right;
+    margin-top: 0;
 }
