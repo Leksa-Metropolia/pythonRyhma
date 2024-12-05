@@ -67,10 +67,11 @@ function initMap() {
 loadGoogleMapsAPI(initMap);
 
 
-Key Points:
-Markers: Each marker is created using the google.maps.Marker class and placed at a specified latitude and longitude.
-Polyline: A google.maps.Polyline object connects the marker locations with straight lines.
-Customization: You can adjust the stroke color, weight, and opacity of the lines.
-Next Steps:
-If embedding on a website, ensure the API key is secured (e.g., restrict it to your domain).
-If you need advanced interaction or styling, explore other Google Maps API features like custom markers or event listeners.
+Dynamic Script Loading: The loadGoogleMapsAPI function dynamically loads the Google Maps API script into the page's <head>. Once loaded, it triggers the initMap function.
+Map Initialization: The initMap function:
+Creates a <div> element for the map and appends it to the body.
+Initializes the Google Map centered at a specific latitude and longitude.
+Markers and Polyline: The function adds markers and draws a polyline connecting them.
+Usage:
+Replace YOUR_API_KEY with your actual Google Maps API key.
+Copy and paste this script into your JavaScript file or a <script> block in your HTML. It will dynamically generate a map when the page loads.
