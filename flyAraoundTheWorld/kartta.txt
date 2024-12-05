@@ -1,0 +1,77 @@
+Add Google Maps Script: Include the Google Maps JavaScript API in your HTML file. You'll need an API key.
+
+HTML:
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+Initialize the Map: Set up a basic Google Map with a center and zoom level.
+
+Add Markers: Use the google.maps.Marker class to place markers on the map.
+
+Draw Lines: Use the google.maps.Polyline class to draw straight lines between the markers.
+
+Javascript:
+
+// Load the Google Maps script dynamically
+function loadGoogleMapsAPI(callback) {
+    const script = document.createElement("script");
+    script.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY";
+    script.async = true;
+    script.defer = true;
+    script.onload = callback;
+    document.head.appendChild(script);
+}
+
+// Initialize the map and its features
+function initMap() {
+    // Create a div for the map
+    const mapDiv = document.createElement("div");
+    mapDiv.id = "map";
+    mapDiv.style.height = "500px";
+    mapDiv.style.width = "100%";
+    document.body.appendChild(mapDiv);
+
+    // Initialize the map
+    const map = new google.maps.Map(mapDiv, {
+        center: { lat: 60.1699, lng: 24.9384 }, // Example: Helsinki
+        zoom: 10,
+    });
+
+    // Define marker locations
+    const locations = [
+        { lat: 60.1699, lng: 24.9384 }, // Marker 1
+        { lat: 60.2055, lng: 24.6559 }, // Marker 2
+        { lat: 60.2941, lng: 24.9824 }, // Marker 3
+    ];
+
+    // Add markers
+    const markers = locations.map((location) => {
+        return new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    });
+
+    // Draw lines between markers
+    const polyline = new google.maps.Polyline({
+        path: locations,
+        geodesic: true, // Straight lines on the map
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+    });
+
+    // Add the polyline to the map
+    polyline.setMap(map);
+}
+
+// Load the map
+loadGoogleMapsAPI(initMap);
+
+
+Dynamic Script Loading: The loadGoogleMapsAPI function dynamically loads the Google Maps API script into the page's <head>. Once loaded, it triggers the initMap function.
+Map Initialization: The initMap function:
+Creates a <div> element for the map and appends it to the body.
+Initializes the Google Map centered at a specific latitude and longitude.
+Markers and Polyline: The function adds markers and draws a polyline connecting them.
+Usage:
+Replace YOUR_API_KEY with your actual Google Maps API key.
+Copy and paste this script into your JavaScript file or a <script> block in your HTML. It will dynamically generate a map when the page loads.
