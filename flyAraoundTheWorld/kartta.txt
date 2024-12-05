@@ -1,3 +1,15 @@
+Add Google Maps Script: Include the Google Maps JavaScript API in your HTML file. You'll need an API key.
+
+HTML:
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+Initialize the Map: Set up a basic Google Map with a center and zoom level.
+
+Add Markers: Use the google.maps.Marker class to place markers on the map.
+
+Draw Lines: Use the google.maps.Polyline class to draw straight lines between the markers.
+
+Javascript:
+
 // Load the Google Maps script dynamically
 function loadGoogleMapsAPI(callback) {
     const script = document.createElement("script");
@@ -53,3 +65,12 @@ function initMap() {
 
 // Load the map
 loadGoogleMapsAPI(initMap);
+
+
+Key Points:
+Markers: Each marker is created using the google.maps.Marker class and placed at a specified latitude and longitude.
+Polyline: A google.maps.Polyline object connects the marker locations with straight lines.
+Customization: You can adjust the stroke color, weight, and opacity of the lines.
+Next Steps:
+If embedding on a website, ensure the API key is secured (e.g., restrict it to your domain).
+If you need advanced interaction or styling, explore other Google Maps API features like custom markers or event listeners.
