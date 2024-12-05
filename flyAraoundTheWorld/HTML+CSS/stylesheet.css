@@ -16,7 +16,6 @@ body {
     float: right;
     margin-top: 10px;
     margin-right: 10px;
-
 }
 
 header {
@@ -44,23 +43,27 @@ section{
     text-align: center;
 }
 .UI {
+
     background-color: lightgray;
     height: 445px;
 }
 
 figure {
     height: 600px;
-    width: 600px;
-    margin-top: 0;
+    width: 500px;
+    float: right;
     margin: 0;
+    padding: 0;
     border: 5px, solid, black;
+    margin-bottom: 5px;
 }
 
 .texts {
     background-color: black;
     border: 5px, solid, black;
-    width: 61%;
-
+    width: 60%;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 
 .texts p {
