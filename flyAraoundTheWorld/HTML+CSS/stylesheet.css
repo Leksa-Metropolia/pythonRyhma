@@ -25,7 +25,12 @@ header {
     padding-bottom: 5px;
     margin: 0;
 }
-
+section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
 .playerdata {
     background-color: lightgray;
@@ -44,19 +49,18 @@ header {
 }
 
 figure {
-    float: right;
     height: 600px;
+    width: 600px;
     margin-top: 0;
-    margin-right: 10px;
+    margin: 0;
     border: 5px, solid, black;
 }
 
 .texts {
     background-color: black;
-    width: 800px;
-    height: 600px;
     border: 5px, solid, black;
-    margin-left: 10px;
+    width: 61%;
+
 }
 
 .texts p {
