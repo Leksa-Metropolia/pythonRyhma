@@ -1,0 +1,13 @@
+header {
+    font-size: 100px;
+    text-align: center;
+    padding: 5px;
+}
+
+.playerdata{
+    color: red;
+}
+
+.UI{
+    color:green;
+}
