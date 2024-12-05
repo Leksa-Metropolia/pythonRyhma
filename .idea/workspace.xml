@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="project created with dummys">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pythonRyhma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonRyhma.iml" afterDir="false" />
+    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="update from 10.10.">
+      <change afterPath="$PROJECT_DIR$/flyAraoundTheWorld/API.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +84,7 @@
       <workItem from="1728543551779" duration="7000" />
       <workItem from="1728544375198" duration="606000" />
       <workItem from="1730363404336" duration="37000" />
+      <workItem from="1733383232870" duration="1568000" />
     </task>
     <task id="LOCAL-00001" summary="project created with dummys">
       <option name="closed" value="true" />
@@ -142,7 +141,15 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1728499549391</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update from 10.10.">
+      <option name="closed" value="true" />
+      <created>1733383512496</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733383512496</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +171,7 @@
     <MESSAGE value="expanding dummys for gameUI" />
     <MESSAGE value="0.0.1" />
     <MESSAGE value="project created with dummys" />
-    <option name="LAST_COMMIT_MESSAGE" value="project created with dummys" />
+    <MESSAGE value="update from 10.10." />
+    <option name="LAST_COMMIT_MESSAGE" value="update from 10.10." />
   </component>
 </project>
