@@ -19,7 +19,12 @@ header {
     height: 150px;
     margin-bottom: 5px;
 }
-
+.playerdata h1{
+    margin: 0;
+    padding: 0;
+    font-size: medium;
+    text-align: center;
+}
 .UI {
     background-color: lightgray;
     height: 445px;
