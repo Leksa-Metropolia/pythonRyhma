@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" afterDir="false" />
+    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="2.0">
+      <change afterPath="$PROJECT_DIR$/Random stuff/lp.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/API.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/API.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,23 +45,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/l3ksa/PycharmProjects/pythonRyhma/Random stuff",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
     ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Random stuff" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -90,7 +94,7 @@
       <workItem from="1728544375198" duration="606000" />
       <workItem from="1730363404336" duration="37000" />
       <workItem from="1733383232870" duration="8771000" />
-      <workItem from="1733659448754" duration="2425000" />
+      <workItem from="1733659448754" duration="5880000" />
     </task>
     <task id="LOCAL-00001" summary="project created with dummys">
       <option name="closed" value="true" />
@@ -163,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733384888519</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="2.0">
+      <option name="closed" value="true" />
+      <created>1733661944389</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733661944389</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +199,7 @@
     <MESSAGE value="project created with dummys" />
     <MESSAGE value="update from 10.10." />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.0" />
   </component>
 </project>

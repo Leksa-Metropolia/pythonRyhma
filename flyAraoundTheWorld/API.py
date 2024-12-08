@@ -20,8 +20,8 @@ def start_game():
     game = Game(db_connector, route, player_name)
     return True
 
-@app.route('/player_data')
-def player_data():
+@app.route('/game_data')
+def game_data():
     game_data = {
         'player_name': game.pelaaja.Name,
         'player_funds': game.pelaaja.Funds,

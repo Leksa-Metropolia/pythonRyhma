@@ -14,3 +14,14 @@ function start_game() {
         }})
 }
 
+function update() {
+    $.get('/game_data', function(data, status) {
+        //kirjoita funktio purkamaan pelin tämän hetkisen tilan tiedot
+    })
+}
+
+function valid_flights() {
+    $.get('valid_locations', function(data, status) {
+        //kirjoita funktio tallentamaan saadut lentokentät listat maittain listoihin
+    })
+}
