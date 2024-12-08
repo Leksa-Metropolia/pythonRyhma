@@ -1,6 +1,6 @@
 #luokka resurssien seuraamiseen ja muutoksiin
 class Player:
-    def __init__(self):
+    def __init__(self, name):
         self.Airport = None #pelaajan taman hetkinen sijainti
         self.Start = None
         self.Funds = 1000 #pelaajan kaytettavissa olevat varat
@@ -13,7 +13,7 @@ class Player:
         self.MoneySpent = 0
         self.PlayTime = 0
         self.LastSlept = 0
-        self.Name = None
+        self.Name = name
 
     def updateLocation(self, airport):
         self.Airport = airport

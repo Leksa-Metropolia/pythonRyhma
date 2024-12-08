@@ -6,7 +6,7 @@ from geopy.distance import geodesic
 from random import randint
 
 class Game:
-    def __init__(self):
+    def __init__(self, DBC, route, player_name):
         # staattiset muuttujat listoille, jotka sisaltavat pelikulkureitit
         self.airports = [] #lista kaikista lentokentista
         self.time = 720 #peliaika minuutteina
@@ -18,7 +18,6 @@ class Game:
         self.l6 = ["AO", "BY", "IS", "KG", "JP", "NZ", "CL", "AO"]
         self.l7 = ["CU", "CA", "AR", "CD", "SE", "MN", "HK", "CU"]
         self.l8 = ["UA", "MR", "ZA", "PK", "PG", "MX", "BR", "UA"]
-        self.route = None
         self.hintaLK = 0.035 #hinta lentokilometrille
         self.hintaM = 120 #hinta mantereen vaihdolle
         self.hintaR = 40 #hinta maan vaihdolle
@@ -27,10 +26,11 @@ class Game:
         self.maxFlightDistance = 12000 #lentojen maksimi pituus
         self.routes = [self.l1, self.l2, self.l3, self.l4, self.l5, self.l6, self.l7, self.l8]
 
-        self.connector = DBConnection.GameDBC()
+        self.connector = DBC
         self.connector.getAirports(self.airports)
-        self.pelaaja = Player()
-        self.game()
+        self.pelaaja = Player(player_name)
+        self.route = self.routes[route]
+        self.setStartLocation()
 
     #pelisilmukka
     def game(self):
@@ -192,8 +192,3 @@ class Game:
             return False
         else:
             return True
-
-
-
-if __name__ == '__main__':
-    Game()

@@ -1,3 +1,3 @@
-from flyAraoundTheWorld.game import Game
+from flyAraoundTheWorld.game import Game, Player
 
 Game()
