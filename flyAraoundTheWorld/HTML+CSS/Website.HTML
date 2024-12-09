@@ -8,10 +8,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fly around the world</title>
+    <title>Fly Around The World</title>
+    <script src="JS/map.js" defer></script>
 </head>
 
 <body>
@@ -19,22 +20,22 @@
     <img src="https://placehold.co/110" alt="Logo" class="logoR">
     <header>Fly Around The World</header>
     <section>
-        <article class ="texts">
+        <article class="texts">
             <div class="playerdata">
                 <h1>Player data</h1>
                 <p></p>
             </div>
             <div class="UI">
                 <p>UI</p>
-                <P></P>
+                <p></p>
             </div>
         </article>
         <article>
             <figure>
-                <img src="https://placehold.co/500x600" alt="map">
+                <!-- Map container -->
+                <div id="map" style="height: 600px; width: 500px;"></div>
             </figure>
         </article>
-
     </section>
 </body>
 
