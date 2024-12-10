@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="2.0">
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/HTML+CSS/Website.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/HTML+CSS/Website.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" afterDir="false" />
-    </list>
+    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="2.0" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +20,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
@@ -94,7 +90,7 @@
       <workItem from="1733383232870" duration="8771000" />
       <workItem from="1733659448754" duration="5880000" />
       <workItem from="1733839022751" duration="763000" />
-      <workItem from="1733839792167" duration="7947000" />
+      <workItem from="1733839792167" duration="8261000" />
     </task>
     <task id="LOCAL-00001" summary="project created with dummys">
       <option name="closed" value="true" />
@@ -191,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733850168055</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="2.0">
+      <option name="closed" value="true" />
+      <created>1733850181240</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733850181240</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
