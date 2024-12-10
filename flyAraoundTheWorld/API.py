@@ -30,7 +30,9 @@ def game_data():
         'time_current': game.time,
         'time_played': game.pelaaja.PlayTime,
         'time_slept': game.pelaaja.LastSlept,
-        'distance_flown': game.pelaaja.FlownKM}
+        'distance_flown': game.pelaaja.FlownKM,
+        'location_visited': game.pelaaja.Airports,
+        'location_to_visit': game.}
     return game_data
 
 @app.route('/valid_locations')

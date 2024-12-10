@@ -53,6 +53,10 @@ class Game:
         else:
             return False
 
+    def can_continue(self):
+        #kirjoita metodi joka tarkastaa voiko pelaaja enää edetä pelissä nukkumalla tai lentämällä, palauttaa ture/false
+        return
+
     def remainingCountries(self):
         remaining = []
         for country in self.route:

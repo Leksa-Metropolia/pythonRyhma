@@ -1,3 +1,5 @@
+'use strict'
+
 let game_data = []
 let valid_locations = []
 let continents = []

@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="2.0" />
+    <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="2.0">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/API.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/HTML+CSS/JS/gameJS.js" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/HTML+CSS/JS/gameJS.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/game.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,13 +18,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
@@ -61,6 +67,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Random stuff" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flyAraoundTheWorld/HTML+CSS/JS" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -90,7 +99,7 @@
       <workItem from="1733383232870" duration="8771000" />
       <workItem from="1733659448754" duration="5880000" />
       <workItem from="1733839022751" duration="763000" />
-      <workItem from="1733839792167" duration="8261000" />
+      <workItem from="1733839792167" duration="10433000" />
     </task>
     <task id="LOCAL-00001" summary="project created with dummys">
       <option name="closed" value="true" />
@@ -195,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733850181240</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="2.0">
+      <option name="closed" value="true" />
+      <created>1733850574355</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733850574355</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
