@@ -10,11 +10,11 @@ let small = []
 let medium = []
 let large = []
 
-function start_game() {
+function game_start() {
     let player_name = document.getElementById('player_name').value
     let route = document.getElementById('route').value
     $.ajax({
-        url: '/start_game',
+        url: '/game_start',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({'player_name': player_name, 'route': route}),
@@ -28,9 +28,16 @@ function start_game() {
         }})
 }
 
+function game_end(reason) {
+    //metodi lopettamaan peli
+}
+
 function update() {
     $.get('/game_data', function(data, status) {
         game_data = data
+        if (game_data['can_continue'] === false) {
+            game_end('failure')
+        }
     })
 }
 
