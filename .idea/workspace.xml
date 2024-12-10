@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="2.0">
-      <change afterPath="$PROJECT_DIR$/Random stuff/lp.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/API.py" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/API.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" afterDir="false" />
     </list>
@@ -45,24 +43,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/l3ksa/PycharmProjects/pythonRyhma/Random stuff",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/l3ksa/PycharmProjects/pythonRyhma/Random stuff&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Random stuff" />
@@ -95,6 +93,7 @@
       <workItem from="1730363404336" duration="37000" />
       <workItem from="1733383232870" duration="8771000" />
       <workItem from="1733659448754" duration="5880000" />
+      <workItem from="1733839022751" duration="763000" />
     </task>
     <task id="LOCAL-00001" summary="project created with dummys">
       <option name="closed" value="true" />

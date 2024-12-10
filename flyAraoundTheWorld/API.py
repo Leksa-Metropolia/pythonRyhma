@@ -45,5 +45,25 @@ def get_high_scores():
     high_scores = {'high_scores': db_connector.getHighScores(route)}
     return high_scores
 
+@app.route('/fly')
+def fly():
+    data = request.get_json()
+    icao = data['icao']
+    for a in game.airports:
+        if a['icao'] == icao:
+            airport = a
+    game.fly(airport)
+    return True
+
+@app.route('/sleep')
+def sleep():
+    game.sleep()
+    return True
+
+@app.route('/wait')
+def wait():
+    game.wait()
+    return True
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
