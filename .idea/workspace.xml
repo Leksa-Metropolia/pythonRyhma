@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7430e91a-1bab-4947-ad78-c9e0ab70b54f" name="Changes" comment="2.0">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/HTML+CSS/Website.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/HTML+CSS/Website.HTML" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" beforeDir="false" afterPath="$PROJECT_DIR$/flyAraoundTheWorld/gameJS.js" afterDir="false" />
     </list>
@@ -95,7 +94,7 @@
       <workItem from="1733383232870" duration="8771000" />
       <workItem from="1733659448754" duration="5880000" />
       <workItem from="1733839022751" duration="763000" />
-      <workItem from="1733839792167" duration="7511000" />
+      <workItem from="1733839792167" duration="7947000" />
     </task>
     <task id="LOCAL-00001" summary="project created with dummys">
       <option name="closed" value="true" />
@@ -184,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733845749435</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="2.0">
+      <option name="closed" value="true" />
+      <created>1733850168055</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733850168055</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
