@@ -11,8 +11,8 @@ let medium = []
 let large = []
 
 function game_start() {
-    let player_name = document.getElementById('player_name').value
-    let route = document.getElementById('route').value
+    let player_name = 'Mario' //document.getElementById('player_name').value
+    let route = 1//document.getElementById('route').value
     $.ajax({
         url: '/game_start',
         type: 'POST',
