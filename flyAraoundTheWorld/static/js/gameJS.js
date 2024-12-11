@@ -10,7 +10,7 @@ let small = []
 let medium = []
 let large = []
 
-function game_start() {
+async function game_start() {
     let player_name = 'Mario' //document.getElementById('player_name').value
     let route = 1//document.getElementById('route').value
     $.ajax({
@@ -23,6 +23,7 @@ function game_start() {
         error: function (error) {
             console.log(error)
         }})
+    await delay(500).then(() => {}).catch((error) => console.error("error", error))
     valid_flights()
     update()
     menu_game()
@@ -50,7 +51,7 @@ function valid_flights() {
 
 function menu_main() {
     //tyhjennetään menu kenttä
-    document.getElementById("menu").innerHTML("")
+    document.getElementById("menu").innerHTML = ""
 
     //nappi aloittamaan uusi peli
     let button_new_game = document.createElement("button")
@@ -80,7 +81,7 @@ function menu_main() {
 
 function menu_new_game() {
     //tyhjennetään menu kenttä
-    document.getElementById("menu").innerHTML("")
+    document.getElementById("menu").innerHTML = ""
 
     //kenttä pelaajan nimen syötölle
     let input_name = document.createElement("input")
@@ -106,7 +107,7 @@ function menu_new_game() {
 
 function menu_game() {
     //tyhjennetään menu kenttä
-    document.getElementById("menu").innerHTML("")
+    document.getElementById("menu").innerHTML = ""
 
     //nappi lento menun avukselle
     let button_fly = document.createElement("button")
@@ -141,6 +142,15 @@ function menu_game() {
     button_stop.id = "exit_game"
     button_stop.onclick = game_end('exit')
     document.getElementById("menu").appendChild(button_stop)
+}
+
+function menu_fly() {
+    document.getElementById("menu").innerHTML = ""
+    let continents = document.createElement("select")
+    let countries = document.createElement("select")
+    let size = document.createElement("select")
+    let airports = document.createElement("select")
+
 }
 
 function player_data(){
@@ -224,5 +234,9 @@ function list_size() {
     if (large.length > 0) {
         sizes.append('large')
     }
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 game_start()
