@@ -111,8 +111,8 @@ function update() {
 
 function valid_flights() {
     $.get('valid_locations', function(data, status) {
-        valid_locations = data
     })
+    valid_locations = data
 }
 
 function menu_main() {
@@ -342,17 +342,17 @@ function fly() {
 }
 
 function wait() {
-    $.get('/wait', function(data, status) {})
+    $.get('/wait', function(data, status) {
     valid_flights()
     update()
-    menu_game()
+    menu_game()})
 }
 
 function sleep() {
-    $.get('/sleep', function(data, status) {})
+    $.get('/sleep', function(data, status) {
     valid_flights()
     update()
-    menu_game()
+    menu_game()})
 }
 
 function list_continents() {
