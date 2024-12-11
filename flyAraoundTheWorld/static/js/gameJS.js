@@ -235,8 +235,24 @@ function menu_fly() {
 }
 
 function player_data(){
-    
+    let funds = document.createElement("p")
+    funds.innerHTML = "Funds: "
+    document.getElementById("target").appendChild(funds)
+
+    let time = document.createElement("p")
+    time.innerHTML = "Current time: "
+    document.getElementById("target").appendChild(time)
+
+    let sleep = document.createElement("p")
+    sleep.innerHTML = "Time you've been awake: "
+    document.getElementById("target").appendChild(sleep)
+
+    let countries = document.createElement("p")
+    countries.innerHTML = "Countries you need to visit: "
+    document.getElementById("target").appendChild(countries)
+
 }
+
 function show_high_scores() {
     let route = document.getElementById("route").value
 }
