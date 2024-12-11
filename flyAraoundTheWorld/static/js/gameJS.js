@@ -19,13 +19,13 @@ function game_start() {
         contentType: 'application/json',
         data: JSON.stringify({'player_name': player_name, 'route': route}),
         success: function (response) {
-            valid_flights()
-            update()
-            menu_game()
         },
         error: function (error) {
             console.log(error)
         }})
+    valid_flights()
+    update()
+    menu_game()
 }
 
 function game_end(reason) {
@@ -212,3 +212,4 @@ function list_size() {
         sizes.append('large')
     }
 }
+game_start()

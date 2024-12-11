@@ -32,6 +32,7 @@ class Game:
         self.pelaaja = Player(player_name)
         self.route = self.routes[self.route_selection(route)]
         self.setStartLocation()
+        print("game initialized")
 
     #pelisilmukka
     def game(self):
