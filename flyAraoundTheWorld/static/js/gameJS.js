@@ -239,4 +239,3 @@ function list_size() {
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-game_start()

@@ -16,7 +16,6 @@ def game_html():
 
 @app.route('/game_start', methods=['POST'])
 def game_start():
-    print("starting game")
     data = request.get_json()
     route = data['route']
     player_name = data['player_name']
@@ -26,7 +25,6 @@ def game_start():
 
 @app.route('/game_data')
 def update():
-    print(game)
     can_continue = game.can_continue()
     can_fly = game.can_fly()
     remaining = game.remainingCountries()
