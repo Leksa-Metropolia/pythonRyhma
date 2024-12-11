@@ -11,8 +11,8 @@ game = None
 def gameUI():
     return render_template('lentopeli.html')
 
-@app.route('/start_game')
-def start_game():
+@app.route('/game_start')
+def game_start():
     data = request.get_json()
     route = data['route']
     player_name = data['player_name']
@@ -30,7 +30,11 @@ def game_data():
         'time_current': game.time,
         'time_played': game.pelaaja.PlayTime,
         'time_slept': game.pelaaja.LastSlept,
-        'distance_flown': game.pelaaja.FlownKM}
+        'distance_flown': game.pelaaja.FlownKM,
+        'location_visited': game.pelaaja.Airports,
+        'location_to_visit': game.remainingCountries,
+        'can_fly': game.can_fly(),
+        'can_continue': game.can_continue()}
     return game_data
 
 @app.route('/valid_locations')

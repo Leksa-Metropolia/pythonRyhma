@@ -21,7 +21,8 @@ class Game:
         self.hintaLK = 0.035 #hinta lentokilometrille
         self.hintaM = 120 #hinta mantereen vaihdolle
         self.hintaR = 40 #hinta maan vaihdolle
-        self.hintaY = 120 #hinta yopymiselle
+        self.hintaY = {'small': 50, 'medium': 85, 'large': 120} #hinta yopymiselle
+        self.airport_open = {'small': [10*60, 18*60], 'medium': [8*60, 22*60], 'large': [6*60, 24*60]}
         self.flightSpeed = 13 #lentonopeus kilometria minuutissa
         self.maxFlightDistance = 12000 #lentojen maksimi pituus
         self.routes = [self.l1, self.l2, self.l3, self.l4, self.l5, self.l6, self.l7, self.l8]
@@ -29,7 +30,7 @@ class Game:
         self.connector = DBC
         self.connector.getAirports(self.airports)
         self.pelaaja = Player(player_name)
-        self.route = self.routes[route]
+        self.route = self.routes[self.route_selection(route)]
         self.setStartLocation()
 
     #pelisilmukka
@@ -52,6 +53,27 @@ class Game:
             return True
         else:
             return False
+
+    def can_continue(self):
+        #metodi joka tarkastaa voiko pelaaja enää edetä pelissä nukkumalla tai lentämällä, palauttaa true/false
+        if len(self.getValidAirports()) > 0:
+            return True
+        elif self.pelaaja.Funds <= self.hintaY[self.pelaaja.Airport['size']]:
+            return True
+        else:
+            return False
+
+    def can_fly(self):
+        if self.time in range(self.airport_open[self.pelaaja.Airport['size'][0], self.pelaaja.Airport['size'][1]]):
+            return True
+        else:
+            return False
+
+    def route_selection(self, route):
+        if route == 0:
+            return randint(0, len(self.routes) - 1)
+        else:
+            return route
 
     def remainingCountries(self):
         remaining = []
@@ -105,14 +127,15 @@ class Game:
     #metodi yopymiselle
     def sleep(self):
         # Tarkista, että pelaajalla on varaa yöpyä
-        if self.pelaaja.Funds < self.hintaY:
+        hinta = self.hintaY[self.pelaaja.Airport['size']]
+        if self.pelaaja.Funds < hinta:
             #palauttaa endgame screenin
             print("Placeholder")
 
         else:
             # Vähennä yöpyminen varoista
-            self.pelaaja.Funds -= self.hintaY
-            self.pelaaja.MoneySpent += self.hintaY
+            self.pelaaja.Funds -= hinta
+            self.pelaaja.MoneySpent += hinta
 
             # Siirrä peliaikaa eteenpäin (8 tuntia)
             self.advTime(420)
@@ -128,7 +151,7 @@ class Game:
     #metodi odottamiselle
     def wait(self):
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
-        odotus = (360 - self.time + 1440) % 1440
+        odotus = (self.airport_open[self.pelaaja.Airport['size']][0] - self.time + 1440) % 1440
         self.advTime(odotus)
 
     # metodi laskemaan pelin pistesaldoa
@@ -168,6 +191,7 @@ class Game:
     # funktio karsimaan resurssien ulottumattomissa olevat kentat
     def getValidAirports(self):
         airportList = []
+        valid_size = {'small': ['small', 'medium'], 'medium': ['small', 'medium', 'large'], 'large': ['medium', 'large']}
 
         # Käyn läpi listan lentokentista
         for airport in self.airports:
@@ -175,7 +199,7 @@ class Game:
             etaisyys = self.calculateDistance(airport)
 
             # Tarkistetan, riittävätkö pelaajan resurssit lentämään kentälle
-            if etaisyys <= self.maxFlightDistance and self.pelaaja.Funds >= self.laske_lennon_hinta(airport) and self.pelaaja.LastSlept + self.lennon_kesto(etaisyys) < 22*60:
+            if etaisyys <= self.maxFlightDistance and self.pelaaja.Funds >= self.laske_lennon_hinta(airport) and self.pelaaja.LastSlept + self.lennon_kesto(etaisyys) < 22*60 and airport['size'] in valid_size[self.pelaaja.Airport['size']]:
                 # Jos lentokenttä on kelvollinen, kerätään sen tiedot
 
                 airportList.append(airport)
