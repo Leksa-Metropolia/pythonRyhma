@@ -66,6 +66,8 @@ function game_end(reason) {
         failureMessage.textContent = "Game Over. Better luck next time!";
         document.getElementById("menu").appendChild(failureMessage);
         addReturnToMainMenuButton();
+    } else {
+        menu_main()
     }
 }
 
