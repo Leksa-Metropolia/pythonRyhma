@@ -60,13 +60,13 @@ function game_end(reason) {
                 },
             });
         });
-     } else if (reason === "exit") {
-        menu_main();
     } else {
-        // Pelin häviäminen
+        // Jos peli päättyi ilman voittoa, näytä viesti
         const failureMessage = document.createElement("h2");
         failureMessage.textContent = "Game Over. Better luck next time!";
         document.getElementById("menu").appendChild(failureMessage);
+
+        // Lisään nappi päävalikkoon palaamista varten
         addReturnToMainMenuButton();
     }
 }
@@ -88,14 +88,6 @@ function show_high_scores() {
         });
         document.getElementById("menu").appendChild(highScoreList);
     });
-}
-
-// Lisää nappi päävalikkoon palaamista varten
-function addReturnToMainMenuButton() {
-    const buttonMainMenu = document.createElement("button");
-    buttonMainMenu.textContent = "Return to Main Menu";
-    buttonMainMenu.onclick = menu_main;
-    document.getElementById("menu").appendChild(buttonMainMenu);
 }
 
 // Lisään napin päävalikkoon palaamista varten
