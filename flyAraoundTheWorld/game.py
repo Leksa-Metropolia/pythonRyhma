@@ -64,7 +64,7 @@ class Game:
             return False
 
     def can_fly(self):
-        if self.time in range(self.airport_open[self.pelaaja.Airport['size'][0], self.pelaaja.Airport['size'][1]]):
+        if self.time in range(self.airport_open[self.pelaaja.Airport['size']][0], self.airport_open[self.pelaaja.Airport['size']][1]):
             return True
         else:
             return False

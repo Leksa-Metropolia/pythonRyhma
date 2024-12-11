@@ -16,11 +16,17 @@ class GameDBC:
         cursor = self.connector.cursor()
         sql = (f"SELECT airport.ident, airport.name as airport_name, airport.iso_country, country.name as country_name, airport.municipality, airport.continent,"
                f" country.continent as country_continent, airport.latitude_deg, airport.longitude_deg, airport.type"
-               f" FROM airport JOIN country on airport.iso_country = country.iso_country WHERE type = 'large_airport'")
+               f" FROM airport JOIN country on airport.iso_country = country.iso_country")
         #kirjoita sql haku lause hakemaan kentan ICAO-tunniste, koko nimi, maatunniste, maa, kaupunki, mannertunniste, manner, latitude, longitude, tyyppi
         cursor.execute(sql)
         kursori = cursor.fetchall()
         for row in kursori:
+            if row[9] == 'large_airport':
+                size = 'large'
+            elif row[9] == 'small_airport':
+                size = 'small'
+            elif row[9] == 'medium_airport':
+                size = 'medium'
             kentta = {'icao': row[0],
                       'name': row[1],
                       'iso': row[2],
@@ -28,7 +34,8 @@ class GameDBC:
                       'city': row[4],
                       'continent': row[5],
                       'lat': row[7],
-                      'lng': row[8]
+                      'lng': row[8],
+                      'size': size
                       }
             saveTarget.append(kentta)
 
