@@ -9,7 +9,6 @@ let sizes = []
 let small = []
 let medium = []
 let large = []
-let menu = document.getElementById("menu")
 
 async function game_start() {
     let player_name = 'Mario' //document.getElementById('player_name').value
@@ -239,17 +238,17 @@ function menu_fly() {
         mantereet.appendChild(option)
     }
     mantereet.id = 'continents'
-    menu.appendChild(mantereet)
+    document.getElementById("menu").appendChild(mantereet)
 
     maat.appendChild(def)
     maat.id = 'countries'
-    menu.appendChild(maat)
+    document.getElementById("menu").appendChild(maat)
     koot.appendChild(def)
     koot.id = 'sizes'
-    menu.appendChild(koot)
+    document.getElementById("menu").appendChild(koot)
     kentat.appendChild(def)
     kentat.id = 'airports'
-    menu.appendChild(kentat)
+    document.getElementById("menu").appendChild(kentat)
 
     document.getElementById('continents').addEventListener('change', function() {
         const continent = this.value
@@ -296,13 +295,13 @@ function menu_fly() {
     button_fly.id = 'button_fly'
     button_fly.innerHTML = 'Fly'
     button_fly.onclick = fly
-    menu.appendChild(button_fly)
+    document.getElementById("menu").appendChild(button_fly)
 
     let button_back = document.createElement("button")
     button_back.id = 'button_back'
     button_back.innerHTML = 'Back'
     button_back.onclick = menu_game
-    menu.appendChild(button_back)
+    document.getElementById("menu").appendChild(button_back)
 }
 
 function player_data(){
