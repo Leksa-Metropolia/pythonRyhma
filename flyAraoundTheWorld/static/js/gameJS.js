@@ -112,6 +112,7 @@ function update() {
 function valid_flights() {
     $.get('/valid_locations', function(data, status) {
     valid_locations = data
+    console.log(valid_locations)
     })
 }
 
@@ -231,6 +232,7 @@ function menu_fly() {
     def.disabled = true
     def.selected = true
     mantereet.appendChild(def)
+    list_continents()
     for (let continent in continents) {
         let option = document.createElement("option")
         option.value = continent
@@ -253,6 +255,7 @@ function menu_fly() {
     document.getElementById('continents').addEventListener('change', function() {
         const continent = this.value
         document.getElementById('countries').innerHTML = `<option value="" selected disabled></option>`
+        list_countries()
         for (let country in countries) {
             let option = document.createElement("option")
             option.value = country
@@ -264,6 +267,8 @@ function menu_fly() {
     document.getElementById('countries').addEventListener('change', function() {
         const country = this.value
         document.getElementById('sizes').innerHTML = `<option value="" selected disabled></option>`
+        list_countries()
+        list_size()
         for (let size in sizes) {
             let option = document.createElement("option")
             option.value = country
