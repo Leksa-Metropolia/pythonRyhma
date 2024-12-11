@@ -73,7 +73,9 @@ function game_end(reason) {
 
 // Funktio high score -listan näyttämiseen
 function show_high_scores() {
-    $.get('/get_high_scores', function (data, status) {
+    document.getElementById("menu").innerHTML = "";
+    addReturnToMainMenuButton()
+    $.get('/get_high_scores', function (data, status) {});
         // Näytä otsikko
         const highScoreTitle = document.createElement("h2");
         highScoreTitle.textContent = "High Scores";
@@ -81,21 +83,9 @@ function show_high_scores() {
 
         // Luo lista high scoreista
         const highScoreList = document.createElement("ul");
-        data.forEach((scoreEntry) => {
-            const listItem = document.createElement("li");
-            listItem.textContent = `${scoreEntry.name}: ${scoreEntry.score} km flown in ${scoreEntry.time} minutes`;
-            highScoreList.appendChild(listItem);
-        });
+        const listItem = document.createElement("li");
+        document.getElementById("menu").appendChild(listItem);
         document.getElementById("menu").appendChild(highScoreList);
-    });
-}
-
-// Lisää nappi päävalikkoon palaamista varten
-function addReturnToMainMenuButton() {
-    const buttonMainMenu = document.createElement("button");
-    buttonMainMenu.textContent = "Return to Main Menu";
-    buttonMainMenu.onclick = menu_main;
-    document.getElementById("menu").appendChild(buttonMainMenu);
 }
 
 // Lisään napin päävalikkoon palaamista varten
@@ -253,9 +243,6 @@ function player_data(){
 
 }
 
-function show_high_scores() {
-    let route = document.getElementById("route").value
-}
 
 function fly() {
     let icao = document.getElementById('airport').value
