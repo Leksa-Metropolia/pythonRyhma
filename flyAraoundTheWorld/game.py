@@ -183,8 +183,8 @@ class Game:
         #laske pelin lopputulos tallennetusta datasta
 
     def calculateDistance(self, airport):
-        s1 = (self.pelaaja.Airport['lat'], self.pelaaja.Airport['lon'])
-        s2 = (airport['lat'], airport['lon'])
+        s1 = (self.pelaaja.Airport['lat'], self.pelaaja.Airport['lng'])
+        s2 = (airport['lat'], airport['lng'])
         distance = geodesic(s1, s2).km
         return distance
 

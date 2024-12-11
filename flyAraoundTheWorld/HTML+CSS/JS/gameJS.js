@@ -70,6 +70,7 @@ function menu_main() {
     }
     document.getElementById('menu').appendChild(select)
 
+
     //nappi avaamaan reitin tallennetut tulokset
     let button_open_high_score = document.createElement("button")
     button_open_high_score.innerHTML = "Show high scores"
@@ -82,6 +83,14 @@ function menu_new_game() {
     document.getElementById("menu").innerHTML("")
 
     //kenttä pelaajan nimen syötölle
+    let input_name = document.createElement("input")
+    input_name.type = "text"
+    input_name.id = "input_name"
+    input_name.placeholder = "Enter name"
+    document.getElementById("menu").appendChild(input_name)
+
+    //lista josta valitaan pelattava reitti
+    let route = document.createElement("select")
 
 }
 

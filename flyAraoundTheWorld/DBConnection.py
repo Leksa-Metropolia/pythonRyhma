@@ -28,7 +28,7 @@ class GameDBC:
                       'city': row[4],
                       'continent': row[5],
                       'lat': row[7],
-                      'lon': row[8]
+                      'lng': row[8]
                       }
             saveTarget.append(kentta)
 
