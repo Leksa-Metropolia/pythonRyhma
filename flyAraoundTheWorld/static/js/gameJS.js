@@ -248,7 +248,7 @@ function player_data(){
     document.getElementById("target").appendChild(sleep)
 
     let countries = document.createElement("p")
-    countries.innerHTML = `Countries you nedd to visit: ${game_data['location_to_visit']}`
+    countries.innerHTML = `Countries you still need to visit: ${game_data['location_to_visit']}`
     document.getElementById("target").appendChild(countries)
 
 }

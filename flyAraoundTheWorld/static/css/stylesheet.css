@@ -38,9 +38,12 @@ section{
 }
 .playerdata h1{
     margin: 0;
-    padding: 0;
+    padding: 5px;
     font-size: medium;
     text-align: center;
+}
+.playerdata p{
+    padding-left: 3px;
 }
 .UI {
 
