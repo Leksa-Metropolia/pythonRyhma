@@ -21,7 +21,7 @@ function game_start() {
         success: function (response) {
             valid_flights()
             update()
-            //kitjoita pätkä siitrymään aloitus menusta pelin pää menuhun
+            menu_game()
         },
         error: function (error) {
             console.log(error)
@@ -29,7 +29,8 @@ function game_start() {
 }
 
 function game_end(reason) {
-    //metodi lopettamaan peli
+    //metodi lopettamaan peli ja palataan pää valikkoon
+    menu_main()
 }
 
 function update() {
@@ -45,6 +46,43 @@ function valid_flights() {
     $.get('valid_locations', function(data, status) {
         valid_locations = data
     })
+}
+
+function menu_main() {
+    //tyhjennetään menu kenttä
+    document.getElementById("menu").innerHTML("")
+
+    //nappi aloittamaan uusi peli
+    let button_new_game = document.createElement("button")
+    button_new_game.innerHTML = "New game"
+    button_new_game.id = "open_menu_start"
+    button_new_game.onclick = menu_new_game()
+    document.getElementById("menu").appendChild(button_new_game)
+
+    //lista pelireaiteistä
+    let select = document.createElement("select")
+    select.id = "route"
+    for (let i = 1; i < 9; i++) {
+        let option = document.createElement("option")
+        option.value = i.toString()
+        option.textContent = i.toString()
+        select.appendChild(option)
+    }
+    document.getElementById('menu').appendChild(select)
+
+    //nappi avaamaan reitin tallennetut tulokset
+    let button_open_high_score = document.createElement("button")
+    button_open_high_score.innerHTML = "Show high scores"
+    button_open_high_score.id = "open_high_scores"
+    button_open_high_score.onclick = show_high_scores()
+}
+
+function menu_new_game() {
+    //tyhjennetään menu kenttä
+    document.getElementById("menu").innerHTML("")
+
+    //kenttä pelaajan nimen syötölle
+
 }
 
 function menu_game() {
@@ -86,6 +124,10 @@ function menu_game() {
     document.getElementById("menu").appendChild(button_stop)
 }
 
+function show_high_scores() {
+    let route = document.getElementById("route").value
+}
+
 function fly() {
     let icao = document.getElementById('airport').value
     $.ajax({
@@ -96,7 +138,7 @@ function fly() {
         success: function (response) {
             valid_flights()
             update()
-            //siirry pelin pää menuhun
+            menu_game()
         },
         error: function (error) {
             console.log(error)
