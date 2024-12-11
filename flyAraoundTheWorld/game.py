@@ -10,9 +10,9 @@ class Game:
         # staattiset muuttujat listoille, jotka sisaltavat pelikulkureitit
         self.airports = [] #lista kaikista lentokentista
         self.time = 720 #peliaika minuutteina
-        self.l1 = ["FI", "MG", "TH", "CA", "AU", "BR", "FI"]
-        self.l2 = ["JM", "CA", "DK", "CG", "JP", "NP", "JM"]
-        self.l3 = ["IS", "RU", "ZA", "HN", "CH", "AU", "IS"]
+        self.l1 = ["FI", "MG", "TH", "CA", "AU", "BR", "JP", "FI"]
+        self.l2 = ["JM", "CA", "DK", "CG", "JP", "NP", "AO", "JM"]
+        self.l3 = ["IS", "RU", "ZA", "HN", "CH", "AU", "BR", "IS"]
         self.l4 = ["VE", "ES", "BW", "IR", "MM", "NZ", "CA", "VE"]
         self.l5 = ["NC", "KR", "TM", "MG", "GH", "UY", "US", "NC"]
         self.l6 = ["AO", "BY", "IS", "KG", "JP", "NZ", "CL", "AO"]
