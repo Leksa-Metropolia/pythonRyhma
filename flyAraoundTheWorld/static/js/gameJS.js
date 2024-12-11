@@ -30,8 +30,29 @@ async function game_start() {
 }
 
 function game_end(reason) {
-    //metodi lopettamaan peli ja palataan pää valikkoon
-    menu_main()
+    $.get('/get_high_scores', function (data, status) {
+        // Näytetaan otsikko
+        const highScoreTitle = document.createElement("h2");
+        highScoreTitle.textContent = "High Scores";
+        document.getElementById("menu").appendChild(highScoreTitle);
+
+        // Luodaan lista high scoreista
+        const highScoreList = document.createElement("ul");
+        data.forEach((scoreEntry) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${scoreEntry.name}: ${scoreEntry.score} km flown in ${scoreEntry.time} minutes`;
+            highScoreList.appendChild(listItem);
+        });
+        document.getElementById("menu").appendChild(highScoreList);
+    });
+}
+
+// Lisään napin päävalikkoon palaamista varten
+function addReturnToMainMenuButton() {
+    const buttonMainMenu = document.createElement("button");
+    buttonMainMenu.textContent = "Return to Main Menu";
+    buttonMainMenu.onclick = menu_main;
+    document.getElementById("menu").appendChild(buttonMainMenu);
 }
 
 function update() {
