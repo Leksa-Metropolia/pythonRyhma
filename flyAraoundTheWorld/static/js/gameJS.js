@@ -88,8 +88,8 @@ function show_high_scores() {
         const listItem = document.createElement("li");
         document.getElementById("menu").appendChild(listItem);
         document.getElementById("menu").appendChild(highScoreList);
-    });
-}
+    };
+
 
 // Lisään napin päävalikkoon palaamista varten
 function addReturnToMainMenuButton() {
