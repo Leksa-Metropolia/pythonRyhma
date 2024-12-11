@@ -3,7 +3,7 @@
 // Ladataan Google Maps -API
 function loadGoogleMapsAPI(callback) {
     const script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBmovX9_tGA7WBQhV9OQQOwkciOxRySghY";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=Your_API_Key";
     script.async = true;
     script.defer = true;
     script.onload = callback;
