@@ -22,6 +22,7 @@ class Game:
         self.hintaM = 120 #hinta mantereen vaihdolle
         self.hintaR = 40 #hinta maan vaihdolle
         self.hintaY = {'small': 50, 'medium': 85, 'large': 120} #hinta yopymiselle
+        self.airport_open = {'small': [10*60, 18*60], 'medium': [8*60, 22*60], 'large': [6*60, 24*60]}
         self.flightSpeed = 13 #lentonopeus kilometria minuutissa
         self.maxFlightDistance = 12000 #lentojen maksimi pituus
         self.routes = [self.l1, self.l2, self.l3, self.l4, self.l5, self.l6, self.l7, self.l8]
@@ -54,10 +55,16 @@ class Game:
             return False
 
     def can_continue(self):
-        #metodi joka tarkastaa voiko pelaaja enää edetä pelissä nukkumalla tai lentämällä, palauttaa ture/false
+        #metodi joka tarkastaa voiko pelaaja enää edetä pelissä nukkumalla tai lentämällä, palauttaa true/false
         if len(self.getValidAirports()) > 0:
             return True
         elif self.pelaaja.Funds <= self.hintaY[self.pelaaja.Airport['size']]:
+            return True
+        else:
+            return False
+
+    def can_fly(self):
+        if self.time in range(self.airport_open[self.pelaaja.Airport['size'][0], self.pelaaja.Airport['size'][1]]):
             return True
         else:
             return False
@@ -144,7 +151,7 @@ class Game:
     #metodi odottamiselle
     def wait(self):
         #siirra aikaa eteenpain ensimmaisen lennon lahtoaikaan
-        odotus = (360 - self.time + 1440) % 1440
+        odotus = (self.airport_open[self.pelaaja.Airport['size']][0] - self.time + 1440) % 1440
         self.advTime(odotus)
 
     # metodi laskemaan pelin pistesaldoa

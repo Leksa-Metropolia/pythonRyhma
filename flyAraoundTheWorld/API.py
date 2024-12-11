@@ -33,6 +33,7 @@ def game_data():
         'distance_flown': game.pelaaja.FlownKM,
         'location_visited': game.pelaaja.Airports,
         'location_to_visit': game.remainingCountries,
+        'can_fly': game.can_fly(),
         'can_continue': game.can_continue()}
     return game_data
 
