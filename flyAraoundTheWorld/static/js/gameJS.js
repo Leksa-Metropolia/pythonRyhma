@@ -110,9 +110,9 @@ function update() {
 }
 
 function valid_flights() {
-    $.get('valid_locations', function(data, status) {
-    })
+    $.get('/valid_locations', function(data, status) {
     valid_locations = data
+    })
 }
 
 function menu_main() {
