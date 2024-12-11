@@ -60,10 +60,8 @@ function game_end(reason) {
                 },
             });
         });
-     } else if (reason === "exit") {
-        menu_main();
-    } else {
-        // Pelin häviäminen
+    } else if (reason === 'failure') {
+        // Jos peli päättyi ilman voittoa, näytä viesti
         const failureMessage = document.createElement("h2");
         failureMessage.textContent = "Game Over. Better luck next time!";
         document.getElementById("menu").appendChild(failureMessage);
@@ -90,6 +88,7 @@ function show_high_scores() {
         const listItem = document.createElement("li");
         document.getElementById("menu").appendChild(listItem);
         document.getElementById("menu").appendChild(highScoreList);
+    });
 }
 
 // Lisään napin päävalikkoon palaamista varten
@@ -147,7 +146,6 @@ function menu_main() {
 }
 
 function menu_new_game() {
-    console.log("starting game")
     //tyhjennetään menu kenttä
     document.getElementById("menu").innerHTML = ""
 
@@ -164,6 +162,7 @@ function menu_new_game() {
     let random = document.createElement("option")
     random.value = "0"
     random.textContent = "Random"
+    route.appendChild(random)
     for (let i = 1; i < 9; i++) {
         let option = document.createElement("option")
         option.value = i.toString()
@@ -221,11 +220,81 @@ function menu_game() {
 
 function menu_fly() {
     document.getElementById("menu").innerHTML = ""
-    let continents = document.createElement("select")
-    let countries = document.createElement("select")
-    let size = document.createElement("select")
-    let airports = document.createElement("select")
+    let mantereet = document.createElement("select")
+    let maat = document.createElement("select")
+    let koot = document.createElement("select")
+    let kentat = document.createElement("select")
+    let def = document.createElement("option")
+    def.value = ""
+    def.textContent = ""
+    def.disabled = true
+    def.selected = true
+    mantereet.appendChild(def)
+    for (let continent in continents) {
+        let option = document.createElement("option")
+        option.value = continent
+        option.textContent = continent
+        mantereet.appendChild(option)
+    }
+    mantereet.id = 'continents'
+    menu.appendChild(mantereet)
 
+    maat.appendChild(def)
+    maat.id = 'countries'
+    menu.appendChild(maat)
+    koot.appendChild(def)
+    koot.id = 'sizes'
+    menu.appendChild(koot)
+    kentat.appendChild(def)
+    kentat.id = 'airports'
+    menu.appendChild(kentat)
+
+    document.getElementById('continents').addEventListener('change', function() {
+        const continent = this.value
+        document.getElementById('countries').innerHTML = `<option value="" selected disabled></option>`
+        for (let country in countries) {
+            let option = document.createElement("option")
+            option.value = country
+            option.textContent = country
+            document.getElementById('countries').appendChild(option)
+        }
+    })
+
+    document.getElementById('countries').addEventListener('change', function() {
+        const country = this.value
+        document.getElementById('sizes').innerHTML = `<option value="" selected disabled></option>`
+        for (let size in sizes) {
+            let option = document.createElement("option")
+            option.value = country
+            option.textContent = country
+            document.getElementById('countries').appendChild(option)
+        }
+    })
+
+    document.getElementById('sizes').addEventListener('change', function() {
+        const size = this.value
+        let airport_list
+        document.getElementById('countries').innerHTML = `<option value="" selected disabled></option>`
+        if (size === 'small') {
+            airport_list = small
+        } else if (size === 'medium') {
+            airport_list = medium
+        } else if (size === 'large') {
+            airport_list = large
+        }
+        for (let airport in airport_list) {
+            let option = document.createElement("option")
+            option.value = airport['icao']
+            option.textContent = airport['name']
+            document.getElementById('countries').appendChild(option)
+        }
+    })
+
+    let button_fly = document.createElement("button")
+    button_fly.id = 'button_fly'
+    button_fly.innerHTML = 'Fly'
+    button_fly.onclick = fly
+    menu.appendChild(button_fly)
 }
 
 function player_data(){
