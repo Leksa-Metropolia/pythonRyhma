@@ -60,13 +60,13 @@ function game_end(reason) {
                 },
             });
         });
+     } else if (reason === "exit") {
+        menu_main();
     } else {
-        // Jos peli päättyi ilman voittoa, näytä viesti
+        // Pelin häviäminen
         const failureMessage = document.createElement("h2");
         failureMessage.textContent = "Game Over. Better luck next time!";
         document.getElementById("menu").appendChild(failureMessage);
-
-        // Lisään nappi päävalikkoon palaamista varten
         addReturnToMainMenuButton();
     }
 }
