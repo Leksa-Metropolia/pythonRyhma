@@ -91,6 +91,16 @@ function menu_new_game() {
 
     //lista josta valitaan pelattava reitti
     let route = document.createElement("select")
+     route.id = "route";
+
+    for (let i = 1; i < 9; i++) {
+        let option = document.createElement("option");
+        option.value = i.toString();
+        option.textContent = `Route ${i}`;
+        route.appendChild(option);
+    }
+
+    document.getElementById("menu").appendChild(route);
 
 }
 
