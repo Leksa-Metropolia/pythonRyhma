@@ -37,7 +37,7 @@ function game_end(reason) {
         $.get('/game_data', function (game_data, status) {
             // Lisää pelaajan data high score -listaan
             $.ajax({
-                url: '/add high_score',
+                url: '/add_high_score',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -88,8 +88,7 @@ function show_high_scores() {
         const listItem = document.createElement("li");
         document.getElementById("menu").appendChild(listItem);
         document.getElementById("menu").appendChild(highScoreList);
-    };
-
+}
 
 // Lisään napin päävalikkoon palaamista varten
 function addReturnToMainMenuButton() {
