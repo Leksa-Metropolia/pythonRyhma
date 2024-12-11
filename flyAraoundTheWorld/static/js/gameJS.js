@@ -149,9 +149,11 @@ function menu_main() {
     button_open_high_score.innerHTML = "Show high scores"
     button_open_high_score.id = "open_high_scores"
     button_open_high_score.onclick = show_high_scores()
+    document.getElementById("menu").appendChild(button_open_high_score)
 }
 
 function menu_new_game() {
+    console.log("starting game")
     //tyhjennetään menu kenttä
     document.getElementById("menu").innerHTML = ""
 
@@ -164,7 +166,7 @@ function menu_new_game() {
 
     //lista josta valitaan pelattava reitti
     let route = document.createElement("select")
-     route.id = "route";
+    route.id = "route";
 
     for (let i = 1; i < 9; i++) {
         let option = document.createElement("option");
