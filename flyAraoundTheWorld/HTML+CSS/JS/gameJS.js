@@ -47,6 +47,10 @@ function valid_flights() {
     })
 }
 
+function game_menu() {
+
+}
+
 function fly() {
     let icao = document.getElementById('airport').value
     $.ajax({

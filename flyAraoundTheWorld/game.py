@@ -29,7 +29,7 @@ class Game:
         self.connector = DBC
         self.connector.getAirports(self.airports)
         self.pelaaja = Player(player_name)
-        self.route = self.routes[route]
+        self.route = self.routes[self.route_selection(route)]
         self.setStartLocation()
 
     #pelisilmukka
@@ -61,6 +61,12 @@ class Game:
             return True
         else:
             return False
+
+    def route_selection(self, route):
+        if route == 0:
+            return randint(0, len(self.routes) - 1)
+        else:
+            return route
 
     def remainingCountries(self):
         remaining = []
