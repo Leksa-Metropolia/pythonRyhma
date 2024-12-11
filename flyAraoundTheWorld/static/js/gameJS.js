@@ -246,7 +246,7 @@ function menu_fly() {
     menu.appendChild(koot)
     kentat.appendChild(def)
     kentat.id = 'airports'
-    menu.appendChild(kentat)oncli
+    menu.appendChild(kentat)
 
     document.getElementById('continents').addEventListener('change', function() {
         const continent = this.value
@@ -337,12 +337,14 @@ function wait() {
     $.get('/wait', function(data, status) {})
     valid_flights()
     update()
+    menu_game()
 }
 
 function sleep() {
     $.get('/sleep', function(data, status) {})
     valid_flights()
     update()
+    menu_game()
 }
 
 function list_continents() {
