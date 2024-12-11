@@ -145,7 +145,6 @@ function menu_main() {
 }
 
 function menu_new_game() {
-    console.log("starting game")
     //tyhjennetään menu kenttä
     document.getElementById("menu").innerHTML = ""
 
@@ -162,6 +161,7 @@ function menu_new_game() {
     let random = document.createElement("option")
     random.value = "0"
     random.textContent = "Random"
+    route.appendChild(random)
     for (let i = 1; i < 9; i++) {
         let option = document.createElement("option")
         option.value = i.toString()
