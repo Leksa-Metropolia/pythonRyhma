@@ -42,8 +42,8 @@ function game_end(reason) {
                 contentType: 'application/json',
                 data: JSON.stringify({
                     name: game_data['player_name'],
-                    score: game_data['distance_flown'],
-                    time: game_data['time_played'],
+                    score: game_data['distance'],
+                    time: game_data['time'],
                 }),
                 success: function (response) {
                     // Näytä onnittelut
@@ -75,7 +75,11 @@ function game_end(reason) {
 function show_high_scores() {
     document.getElementById("menu").innerHTML = "";
     addReturnToMainMenuButton()
-    $.get('/get_high_scores', function (data, status) {});
+    $.ajax({
+        url:'/get_high_scores',
+        type: 'POST',
+        contentType: 'application/json',
+    })
         // Näytä otsikko
         const highScoreTitle = document.createElement("h2");
         highScoreTitle.textContent = "High Scores";

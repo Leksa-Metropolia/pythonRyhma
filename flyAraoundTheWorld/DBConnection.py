@@ -8,8 +8,8 @@ class GameDBC:
             host='localhost',
             port=3306,
             database='flight_game',
-            user='leksa',
-            password='tapani',
+            user='root',
+            password='password',
             autocommit=True)
 
     def getAirports(self, saveTarget):
@@ -47,7 +47,9 @@ class GameDBC:
         for row in scores:
             high_score_lista = {'player_name': row[0],
                   'flight_count' : row[1],
-                  'points' : row[2]
+                  'points' : row[2],
+                  'time' : row[3],
+                  'distance' : row[4]
                 }
         return high_score_lista
         # nayta haetut tulokset
