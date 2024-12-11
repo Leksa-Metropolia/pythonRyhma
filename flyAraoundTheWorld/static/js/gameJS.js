@@ -60,13 +60,13 @@ function game_end(reason) {
                 },
             });
         });
-    } else if (reason === 'failure') {
-        // Jos peli päättyi ilman voittoa, näytä viesti
+     } else if (reason === "exit") {
+        menu_main();
+    } else {
+        // Pelin häviäminen
         const failureMessage = document.createElement("h2");
         failureMessage.textContent = "Game Over. Better luck next time!";
         document.getElementById("menu").appendChild(failureMessage);
-
-        // Lisään nappi päävalikkoon palaamista varten
         addReturnToMainMenuButton();
     }
 }
@@ -88,6 +88,14 @@ function show_high_scores() {
         });
         document.getElementById("menu").appendChild(highScoreList);
     });
+}
+
+// Lisää nappi päävalikkoon palaamista varten
+function addReturnToMainMenuButton() {
+    const buttonMainMenu = document.createElement("button");
+    buttonMainMenu.textContent = "Return to Main Menu";
+    buttonMainMenu.onclick = menu_main;
+    document.getElementById("menu").appendChild(buttonMainMenu);
 }
 
 // Lisään napin päävalikkoon palaamista varten
@@ -145,6 +153,7 @@ function menu_main() {
 }
 
 function menu_new_game() {
+    console.log("starting game")
     //tyhjennetään menu kenttä
     document.getElementById("menu").innerHTML = ""
 
@@ -161,7 +170,6 @@ function menu_new_game() {
     let random = document.createElement("option")
     random.value = "0"
     random.textContent = "Random"
-    route.appendChild(random)
     for (let i = 1; i < 9; i++) {
         let option = document.createElement("option")
         option.value = i.toString()
@@ -227,8 +235,24 @@ function menu_fly() {
 }
 
 function player_data(){
-    
+    let funds = document.createElement("p")
+    funds.innerHTML = `Funds: ${game_data['player_funds']}`
+    document.getElementById("target").appendChild(funds)
+
+    let time = document.createElement("p")
+    time.innerHTML = `Current time: ${game_data['time_current']}`
+    document.getElementById("target").appendChild(time)
+
+    let sleep = document.createElement("p")
+    sleep.innerHTML = `Last slept: ${game_data['time_slept']} hours ago`
+    document.getElementById("target").appendChild(sleep)
+
+    let countries = document.createElement("p")
+    countries.innerHTML = `Countries you still need to visit: ${game_data['location_to_visit']}`
+    document.getElementById("target").appendChild(countries)
+
 }
+
 function show_high_scores() {
     let route = document.getElementById("route").value
 }
