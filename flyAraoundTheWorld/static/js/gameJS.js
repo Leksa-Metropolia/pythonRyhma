@@ -9,6 +9,7 @@ let sizes = []
 let small = []
 let medium = []
 let large = []
+let menu = document.getElementById("menu")
 
 async function game_start() {
     let player_name = 'Mario' //document.getElementById('player_name').value
@@ -296,6 +297,12 @@ function menu_fly() {
     button_fly.innerHTML = 'Fly'
     button_fly.onclick = fly
     menu.appendChild(button_fly)
+
+    let button_back = document.createElement("button")
+    button_back.id = 'button_back'
+    button_back.innerHTML = 'Back'
+    button_back.onclick = menu_game
+    menu.appendChild(button_back)
 }
 
 function player_data(){
