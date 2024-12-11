@@ -37,7 +37,7 @@ function game_end(reason) {
         $.get('/game_data', function (game_data, status) {
             // Lisää pelaajan data high score -listaan
             $.ajax({
-                url: '/add_high_score',
+                url: '/add high_score',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -188,7 +188,7 @@ function menu_game() {
     let button_fly = document.createElement("button")
     button_fly.innerHTML = "Fly"
     button_fly.id = "open_menu_fly"
-    button_fly.onclick = menu_fly()
+    button_fly.onclick = menu_fly
     document.getElementById("menu").appendChild(button_fly)
     if (!game_data['can_fly']) {
         document.getElementById("open_menu_fly").disabled = true
@@ -198,14 +198,14 @@ function menu_game() {
     let button_sleep = document.createElement("button")
     button_sleep.innerHTML = "Sleep"
     button_sleep.id = "run_sleep"
-    button_sleep.onclick = sleep()
+    button_sleep.onclick = sleep
     document.getElementById("menu").appendChild(button_sleep)
 
     //nappi odottamiselle
     let button_wait = document.createElement("button")
     button_wait.innerHTML = "Wait"
     button_wait.id = "run_wait"
-    button_wait.onclick = wait()
+    button_wait.onclick = wait
     document.getElementById("menu").appendChild(button_wait)
     if (game_data['can_fly']) {
         document.getElementById("run_wait").disabled = true
@@ -215,7 +215,7 @@ function menu_game() {
     let button_stop = document.createElement("button")
     button_stop.innerHTML = "Exit"
     button_stop.id = "exit_game"
-    button_stop.onclick = game_end('exit')
+    button_stop.onclick = game_end
     document.getElementById("menu").appendChild(button_stop)
 }
 
