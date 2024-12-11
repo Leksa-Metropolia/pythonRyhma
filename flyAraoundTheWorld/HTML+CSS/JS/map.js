@@ -3,7 +3,7 @@
 // Ladataan Google Maps -API
 function loadGoogleMapsAPI(callback) {
     const script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?key=Hieno_API_avain";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY";
     script.async = true;
     script.defer = true;
     script.onload = callback;
@@ -32,51 +32,28 @@ function initMap() {
             });
 
             // Jos halutaan niin tällä saadaan infoikkunaa markkereille
-            const infoWindow = new google.maps.InfoWindow({
+             const infoWindow = new google.maps.InfoWindow({
                 content: `<div>
-                            <h3>${airport.name}</h3> <!-- Näytetään lentokentän nimi -->
-                            <p>Sijainti: ${airport.city}, ${airport.country}</p> <!-- Näytetään kaupunki ja maa -->
-                            <p>ICAO-koodi: ${airport.icao}</p> <!-- Näytetään lentokentän ICAO-tunnus -->
+                            <h3>${location.name}</h3>
+                            <p>Maa: ${location.country}</p>
+                            <p>ICAO-koodi: ${location.icao}</p>
                           </div>`,
             });
 
             // Lisää markkerille tapahtuma: avaa infoikkuna, kun markkeria klikataan
-            marker.addListener("click", () => {
-                infoWindow.open(map, marker); // Näytä infoikkuna markkerin kohdalla
+               marker.addListener("click", () => {
+                infoWindow.open(map, marker);
             });
         });
     }
 
-    // Paikkatiedot (esimerkkidata, joku saa korvata backendistä tulevalla datalla)
-    const sampleAirports = [
-        {
-            icao: "EGLL",
-            name: "London Heathrow Airport",
-            city: "Lontoo",
-            country: "Yhdistynyt kuningaskunta",
-            lat: 51.4706,
-            lon: -0.4619,
-        },
-        {
-            icao: "KJFK",
-            name: "John F. Kennedy International Airport",
-            city: "New York",
-            country: "USA",
-            lat: 40.6413,
-            lon: -73.7781,
-        },
-        {
-            icao: "RJTT",
-            name: "Tokyo Haneda Airport",
-            city: "Tokio",
-            country: "Japani",
-            lat: 35.5494,
-            lon: 139.7798,
-        },
-    ];
-
-    // Lisätään markkerit kartalle
-    addMarkers(sampleAirports);
+    // Päivitetään 'valid locations' dataa gameJS.js tiedostosta
+const interval = setInterval(() => {
+        if (valid_locations.length > 0) {
+            addMarkers(valid_locations); // Lisäätään markkerit, kun data on saatavilla
+            clearInterval(interval);
+        }
+    }, 500); // Tarkitusväli on nyt tässä 500ms
 }
 
 // Ladataan Google Maps -API ja alustetaan kartta
