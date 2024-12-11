@@ -143,6 +143,9 @@ function menu_game() {
     document.getElementById("menu").appendChild(button_stop)
 }
 
+function player_data(){
+    
+}
 function show_high_scores() {
     let route = document.getElementById("route").value
 }
