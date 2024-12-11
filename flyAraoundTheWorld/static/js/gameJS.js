@@ -30,13 +30,56 @@ async function game_start() {
 }
 
 function game_end(reason) {
+    // Tyhjennetään menu-kenttä
+    document.getElementById("menu").innerHTML = "";
+
+    if (reason === "success") {
+        $.get('/game_data', function (game_data, status) {
+            // Lisää pelaajan data high score -listaan
+            $.ajax({
+                url: '/add_high_score',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    name: game_data['player_name'],
+                    score: game_data['distance_flown'],
+                    time: game_data['time_played'],
+                }),
+                success: function (response) {
+                    // Näytä onnittelut
+                    const congrats = document.createElement("h2");
+                    congrats.textContent = `Congratulations, ${game_data['player_name']}! You've completed the game with a total distance of ${game_data['distance_flown']} km flown in ${game_data['time_played']} minutes.`;
+                    document.getElementById("menu").appendChild(congrats);
+
+                    show_high_scores();
+
+                    addReturnToMainMenuButton();
+                },
+                error: function (error) {
+                    console.error("Failed to save high score:", error);
+                },
+            });
+        });
+    } else {
+        // Jos peli päättyi ilman voittoa, näytä viesti
+        const failureMessage = document.createElement("h2");
+        failureMessage.textContent = "Game Over. Better luck next time!";
+        document.getElementById("menu").appendChild(failureMessage);
+
+        // Lisään nappi päävalikkoon palaamista varten
+        addReturnToMainMenuButton();
+    }
+}
+
+// Funktio high score -listan näyttämiseen
+function show_high_scores() {
     $.get('/get_high_scores', function (data, status) {
-        // Näytetaan otsikko
+        // Näytä otsikko
         const highScoreTitle = document.createElement("h2");
         highScoreTitle.textContent = "High Scores";
         document.getElementById("menu").appendChild(highScoreTitle);
 
-        // Luodaan lista high scoreista
+        // Luo lista high scoreista
         const highScoreList = document.createElement("ul");
         data.forEach((scoreEntry) => {
             const listItem = document.createElement("li");
@@ -45,6 +88,14 @@ function game_end(reason) {
         });
         document.getElementById("menu").appendChild(highScoreList);
     });
+}
+
+// Lisää nappi päävalikkoon palaamista varten
+function addReturnToMainMenuButton() {
+    const buttonMainMenu = document.createElement("button");
+    buttonMainMenu.textContent = "Return to Main Menu";
+    buttonMainMenu.onclick = menu_main;
+    document.getElementById("menu").appendChild(buttonMainMenu);
 }
 
 // Lisään napin päävalikkoon palaamista varten
