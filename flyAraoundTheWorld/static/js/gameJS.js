@@ -129,7 +129,7 @@ function menu_main() {
     let button_new_game = document.createElement("button")
     button_new_game.innerHTML = "New game"
     button_new_game.id = "open_menu_start"
-    button_new_game.onclick = menu_new_game()
+    button_new_game.onclick = menu_new_game
     document.getElementById("menu").appendChild(button_new_game)
 
     //lista pelireaiteistä
@@ -148,7 +148,7 @@ function menu_main() {
     let button_open_high_score = document.createElement("button")
     button_open_high_score.innerHTML = "Show high scores"
     button_open_high_score.id = "open_high_scores"
-    button_open_high_score.onclick = show_high_scores()
+    button_open_high_score.onclick = show_high_scores
     document.getElementById("menu").appendChild(button_open_high_score)
 }
 
@@ -166,17 +166,24 @@ function menu_new_game() {
 
     //lista josta valitaan pelattava reitti
     let route = document.createElement("select")
-    route.id = "route";
-
+    route.id = "route"
+    let random = document.createElement("option")
+    random.value = "0"
+    random.textContent = "Random"
     for (let i = 1; i < 9; i++) {
-        let option = document.createElement("option");
-        option.value = i.toString();
-        option.textContent = `Route ${i}`;
-        route.appendChild(option);
+        let option = document.createElement("option")
+        option.value = i.toString()
+        option.textContent = `Route ${i}`
+        route.appendChild(option)
     }
-
+    route.value = "0"
     document.getElementById("menu").appendChild(route);
 
+    let button_start = document.createElement("button")
+    button_start.id = "button_start"
+    button_start.innerHTML = "Start game"
+    button_start.onclick = game_start
+    document.getElementById('menu').appendChild(button_start)
 }
 
 function menu_game() {
