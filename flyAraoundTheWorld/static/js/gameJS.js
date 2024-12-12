@@ -10,23 +10,22 @@ let small = []
 let medium = []
 let large = []
 
-async function game_start() {
+function game_start() {
     let player_name = 'Mario' //document.getElementById('player_name').value
-    let route = 1//document.getElementById('route').value
+    let route = 0//document.getElementById('route').value
     $.ajax({
         url: '/game_start',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({'player_name': player_name, 'route': route}),
         success: function (response) {
+            valid_flights()
+            update()
+            menu_game()
         },
         error: function (error) {
             console.log(error)
         }})
-    await delay(500).then(() => {}).catch((error) => console.error("error", error))
-    valid_flights()
-    update()
-    menu_game()
 }
 
 function game_end(reason) {
@@ -100,19 +99,27 @@ function addReturnToMainMenuButton() {
     document.getElementById("menu").appendChild(buttonMainMenu);
 }
 
-function update() {
+function update(reason) {
     $.get('/game_data', function(data, status) {
         game_data = data
+        player_data()
+
+        if (reason === "flown") {
+            let visited = game_data['location_visited']
+            drawFlightPath(visited[visited.length-2], visited[visited.length-1])
+        }
         if (game_data['can_continue'] === false) {
             game_end('failure')
+        }
+        if (game_data['location_current'] === game_data['location_start'] && game_data['location_to_visit'].length === 0) {
+            game_end('success')
         }
     })
 }
 
 function valid_flights() {
     $.get('/valid_locations', function(data, status) {
-    valid_locations = data
-    console.log(valid_locations)
+    valid_locations = data['airports']
     })
 }
 
@@ -162,16 +169,16 @@ function menu_new_game() {
     let route = document.createElement("select")
     route.id = "route"
     let random = document.createElement("option")
-    random.value = "0"
+    random.value = "8"
     random.textContent = "Random"
     route.appendChild(random)
     for (let i = 1; i < 9; i++) {
         let option = document.createElement("option")
-        option.value = i.toString()
+        option.value = (i-1).toString()
         option.textContent = `Route ${i}`
         route.appendChild(option)
     }
-    route.value = "0"
+    route.value = "8"
     document.getElementById("menu").appendChild(route);
 
     let button_start = document.createElement("button")
@@ -228,59 +235,56 @@ function menu_fly() {
     let kentat = document.createElement("select")
     let def = document.createElement("option")
     def.value = ""
-    def.textContent = ""
+    def.textContent = "Choose a continent"
     def.disabled = true
-    def.selected = true
     mantereet.appendChild(def)
     list_continents()
-    for (let continent in continents) {
+    for (let i = 0; i < continents.length; i++) {
         let option = document.createElement("option")
-        option.value = continent
-        option.textContent = continent
+        option.value = continents[i]
+        option.textContent = continents[i]
         mantereet.appendChild(option)
     }
     mantereet.id = 'continents'
     document.getElementById("menu").appendChild(mantereet)
 
-    maat.appendChild(def)
     maat.id = 'countries'
     document.getElementById("menu").appendChild(maat)
-    koot.appendChild(def)
     koot.id = 'sizes'
     document.getElementById("menu").appendChild(koot)
-    kentat.appendChild(def)
     kentat.id = 'airports'
     document.getElementById("menu").appendChild(kentat)
 
     document.getElementById('continents').addEventListener('change', function() {
         const continent = this.value
-        document.getElementById('countries').innerHTML = `<option value="" selected disabled></option>`
-        list_countries()
-        for (let country in countries) {
+        document.getElementById('countries').innerHTML = `<option value="" disabled>Choose a country</option>`
+        list_countries(continent)
+        for (let i = 0; i < countries.length; i++) {
             let option = document.createElement("option")
-            option.value = country
-            option.textContent = country
+            option.value = countries[i]
+            option.textContent = countries[i]
             document.getElementById('countries').appendChild(option)
         }
     })
 
     document.getElementById('countries').addEventListener('change', function() {
         const country = this.value
-        document.getElementById('sizes').innerHTML = `<option value="" selected disabled></option>`
-        list_countries()
+        document.getElementById('sizes').innerHTML = `<option value="" disabled>Choose a size</option>`
+        list_airports(country)
         list_size()
-        for (let size in sizes) {
+        console.log(sizes)
+        for (let i = 0; i < sizes.length; i++) {
             let option = document.createElement("option")
-            option.value = country
-            option.textContent = country
-            document.getElementById('countries').appendChild(option)
+            option.value = sizes[i]
+            option.textContent = sizes[i]
+            document.getElementById('sizes').appendChild(option)
         }
     })
 
     document.getElementById('sizes').addEventListener('change', function() {
         const size = this.value
-        let airport_list
-        document.getElementById('countries').innerHTML = `<option value="" selected disabled></option>`
+        let airport_list = []
+        document.getElementById('airports').innerHTML = `<option value="" disabled>Choose a airport</option>`
         if (size === 'small') {
             airport_list = small
         } else if (size === 'medium') {
@@ -288,11 +292,11 @@ function menu_fly() {
         } else if (size === 'large') {
             airport_list = large
         }
-        for (let airport in airport_list) {
+        for (let i = 0; i < airport_list.length; i++) {
             let option = document.createElement("option")
-            option.value = airport['icao']
-            option.textContent = airport['name']
-            document.getElementById('countries').appendChild(option)
+            option.value = airport_list[i]['icao']
+            option.textContent = airport_list[i]['name']
+            document.getElementById('airports').appendChild(option)
         }
     })
 
@@ -310,16 +314,28 @@ function menu_fly() {
 }
 
 function player_data(){
+    document.getElementById("target").innerHTML = ""
+    let time_float = parseFloat(game_data['time_current'])
+    let time_hours = parseInt(time_float/60)
+    let time_minutes = parseInt(time_float%60)
+    let slept = parseFloat(game_data['time_slept'])/60
+    let slept_hours = parseInt(slept/60)
+    let slept_minutes = parseInt(slept%60)
     let funds = document.createElement("p")
-    funds.innerHTML = `Funds: ${game_data['player_funds']}`
+    funds.innerHTML = `Funds: ${parseInt(game_data['player_funds'])}`
     document.getElementById("target").appendChild(funds)
 
+    let location = document.createElement("p")
+    location.innerHTML = `Location: ${game_data['location_current']['name']}, ${game_data['location_current']['city']},
+    ${game_data['location_current']['iso']}, ${game_data['location_current']['size']}`
+    document.getElementById("target").appendChild(location)
+
     let time = document.createElement("p")
-    time.innerHTML = `Current time: ${game_data['time_current']}`
+    time.innerHTML = `Current time: ${time_hours}:${time_minutes}`
     document.getElementById("target").appendChild(time)
 
     let sleep = document.createElement("p")
-    sleep.innerHTML = `Last slept: ${game_data['time_slept']} hours ago`
+    sleep.innerHTML = `Last slept: ${slept_hours} hours and ${slept_minutes} minutes ago`
     document.getElementById("target").appendChild(sleep)
 
     let countries = document.createElement("p")
@@ -330,7 +346,7 @@ function player_data(){
 
 
 function fly() {
-    let icao = document.getElementById('airport').value
+    let icao = document.getElementById('airports').value
     $.ajax({
         url: '/fly',
         type: 'POST',
@@ -338,7 +354,7 @@ function fly() {
         data: JSON.stringify({'icao': icao}),
         success: function (response) {
             valid_flights()
-            update()
+            update("flown")
             menu_game()
         },
         error: function (error) {
@@ -361,50 +377,54 @@ function sleep() {
 }
 
 function list_continents() {
-    continents = []
-    for (let airport in valid_locations) {
-        if (!continents.includes(airport['continent'])) {
-            continents.append(airport['continent'])
-        }
+    let mantereet = []
+    for (let i=0; i<valid_locations.length; i++) {
+        mantereet.push(valid_locations[i]['continent'])
     }
+    continents = [...new Set(mantereet)]
 }
 
 function list_countries(continent) {
-    countries = []
-    for (let airport in valid_locations) {
-        if (!countries.includes(airport['country']) && airport['continent'] === continent) {
-            countries.append(airport['country'])
+    let maat = []
+    for (let i=0; i<valid_locations.length; i++) {
+        if (valid_locations[i]['continent'] === continent) {
+            maat.push(valid_locations[i]['country'])
         }
     }
+    countries = [...new Set(maat)]
 }
 
 function list_airports(country) {
     airports = []
-    for (let airport in valid_locations) {
-        if (airport['country'] === country) {
-            if (airport['size'] === 'small') {
-                small.append({'icao': airport['icao'], 'name': airport['name']})
-            } else if (airport['size'] === 'medium') {
-                medium.append({'icao': airport['icao'], 'name': airport['name']})
-            } else if (airport['size'] === 'large') {
-                large.append({'icao': airport['icao'], 'name': airport['name']})
+    small = []
+    medium = []
+    large = []
+    for (let i = 0; i < valid_locations.length; i++) {
+        if (valid_locations[i]['country'] === country) {
+            if (valid_locations[i]['size'] === 'small') {
+                small.push({'icao': valid_locations[i]['icao'], 'name': valid_locations[i]['name']})
+            } else if (valid_locations[i]['size'] === 'medium') {
+                medium.push({'icao': valid_locations[i]['icao'], 'name': valid_locations[i]['name']})
+            } else if (valid_locations[i]['size'] === 'large') {
+                large.push({'icao': valid_locations[i]['icao'], 'name': valid_locations[i]['name']})
             }
-            airports.append({'icao': airport['icao'], 'name': airport['name']})
+            airports.push({'icao': valid_locations[i]['icao'], 'name': valid_locations[i]['name']})
         }
     }
 }
 
 function list_size() {
-    sizes = []
+    let koot = []
     if (small.length > 0) {
-        sizes.append('small')
+        koot.push('small')
     }
     if (medium.length > 0) {
-        sizes.append('medium')
+        koot.push('medium')
     }
     if (large.length > 0) {
-        sizes.append('large')
+        koot.push('large')
     }
+    sizes = [...new Set(koot)]
 }
 
 function delay(ms) {

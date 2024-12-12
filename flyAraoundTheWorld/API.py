@@ -55,10 +55,12 @@ def get_high_scores():
     high_scores = db_connector.getHighScores(route)
     return jsonify({'high_scores': high_scores})
 
-@app.route('/fly')
+@app.route('/fly', methods=['POST'])
 def fly():
     data = request.get_json()
+    print(data)
     icao = data['icao']
+    print(icao)
     for a in game.airports:
         if a['icao'] == icao:
             airport = a

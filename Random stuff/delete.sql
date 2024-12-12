@@ -1,4 +1,3 @@
-drop table high_score;
 drop table goal_reached;
 drop table game;
 drop table goal;

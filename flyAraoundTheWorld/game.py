@@ -24,7 +24,7 @@ class Game:
         self.hintaY = {'small': 50, 'medium': 85, 'large': 120} #hinta yopymiselle
         self.airport_open = {'small': [10*60, 18*60], 'medium': [8*60, 22*60], 'large': [6*60, 24*60]}
         self.flightSpeed = 13 #lentonopeus kilometria minuutissa
-        self.maxFlightDistance = 12000 #lentojen maksimi pituus
+        self.maxFlightDistance = {'large': 8000, 'medium': 4000, 'small': 1500} #lentojen maksimi pituus
         self.routes = [self.l1, self.l2, self.l3, self.l4, self.l5, self.l6, self.l7, self.l8]
 
         self.connector = DBC
@@ -70,7 +70,7 @@ class Game:
             return False
 
     def route_selection(self, route):
-        if route == 0:
+        if route == 8:
             return randint(0, len(self.routes) - 1)
         else:
             return route
@@ -95,7 +95,7 @@ class Game:
         # Päivitän lentoajan
         lentoaika = self.lennon_kesto(self.calculateDistance(airport))
 
-        self.advTime(lentoaika)
+        self.advTime(int(lentoaika))
         self.pelaaja.updateLocation(airport)
         print(f"Lento suoritettu kohteeseen {airport['city']}.")
         return True
@@ -192,14 +192,14 @@ class Game:
     def getValidAirports(self):
         airportList = []
         valid_size = {'small': ['small', 'medium'], 'medium': ['small', 'medium', 'large'], 'large': ['medium', 'large']}
-
         # Käyn läpi listan lentokentista
         for airport in self.airports:
+
             # Lasketaan etäisyys pelaajan ja lentokentän välillä
             etaisyys = self.calculateDistance(airport)
 
             # Tarkistetan, riittävätkö pelaajan resurssit lentämään kentälle
-            if etaisyys <= self.maxFlightDistance and self.pelaaja.Funds >= self.laske_lennon_hinta(airport) and self.pelaaja.LastSlept + self.lennon_kesto(etaisyys) < 22*60 and airport['size'] in valid_size[self.pelaaja.Airport['size']]:
+            if etaisyys <= self.maxFlightDistance[airport['size']] and self.pelaaja.Funds >= self.laske_lennon_hinta(airport) and self.pelaaja.LastSlept + self.lennon_kesto(etaisyys) < 22*60 and airport['size'] in valid_size[self.pelaaja.Airport['size']]:
                 # Jos lentokenttä on kelvollinen, kerätään sen tiedot
 
                 airportList.append(airport)
