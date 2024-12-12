@@ -1,11 +1,14 @@
 'use strict'
 
-let drawn_paths = []
+let paths = []
+let markers = []
+let map
+let polyline
 
 // Ladataan Google Maps -API
 function loadGoogleMapsAPI(callback) {
     const script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?key=Api_key";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBaslQFdS_MXou-lCDsCerX9ObaMO_Z8IY";
     script.async = true;
     script.defer = true;
     script.onload = callback;
@@ -20,10 +23,21 @@ function initMap() {
     const mapContainer = document.getElementById("map");
 
     // Luodaan kartta
-    const map = new google.maps.Map(mapContainer, {
+    map = new google.maps.Map(mapContainer, {
         center: { lat: 0, lng: 0 }, // Keskitetään globaaliin näkymään
         zoom: 2,
     });
+
+    polyline = new google.maps.Polyline({
+        path: paths, // Viivan alku- ja loppupisteet
+        geodesic: true, // Käytetään suoraa linjaa
+        strokeColor: "#FF0000", // Viivan väri
+        strokeOpacity: 1.0, // Viivan läpinäkyvyys
+        strokeWeight: 2, // Viivan paksuus
+    });
+
+    // Näytetään viiva kartalla
+    polyline.setMap(map)
 
     // Funktio markkereiden lisäämiseksi
     function addMarkers(valid_locations) {
@@ -79,21 +93,16 @@ function getPlayerLocation() {
     return null; // Palautetaan null, jos pelaajan sijainti ei ole määritelty
 }
 
-// Funktio viivan piirtämiseen kahden pisteen välille
-function drawFlightPath(start, end) {
-    // Luodaan uusi viiva
-    let flightPath = new google.maps.Polyline({
-        path: [start, end], // Viivan alku- ja loppupisteet
-        geodesic: true, // Käytetään suoraa linjaa
-        strokeColor: "#FF0000", // Viivan väri
-        strokeOpacity: 1.0, // Viivan läpinäkyvyys
-        strokeWeight: 2, // Viivan paksuus
-    });
-
-    drawn_paths.push(flightPath)
-
-    // Näytetään viiva kartalla
-    flightPath.setMap(map);
+function add_marker(lat, lng) {
+    lat = parseFloat(lat)
+    lng = parseFloat(lng)
+    let marker = new google.maps.Marker({
+        position: {lat: lat, lng: lng},
+        map: map
+    })
+    markers.push(marker)
+    paths.push(marker.getPosition())
+    polyline.setPath(paths)
 }
 
 // Ladataan Google Maps -API ja alustetaan kartta

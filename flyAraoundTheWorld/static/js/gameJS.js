@@ -106,7 +106,8 @@ function update(reason) {
 
         if (reason === "flown") {
             let visited = game_data['location_visited']
-            drawFlightPath(visited[visited.length-2], visited[visited.length-1])
+            add_marker(visited[visited.length-1]['lat'], visited[visited.length-1]['lng'])
+            console.log('path drawn')
         }
         if (game_data['can_continue'] === false) {
             game_end('failure')
@@ -318,7 +319,7 @@ function player_data(){
     let time_float = parseFloat(game_data['time_current'])
     let time_hours = parseInt(time_float/60)
     let time_minutes = parseInt(time_float%60)
-    let slept = parseFloat(game_data['time_slept'])/60
+    let slept = parseFloat(game_data['time_slept'])
     let slept_hours = parseInt(slept/60)
     let slept_minutes = parseInt(slept%60)
     let funds = document.createElement("p")
